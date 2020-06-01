@@ -1,6 +1,6 @@
 {
   "name": "compt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JS dom support",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codehyouka/compt.git"
+    "url": "git+https://github.com/compts/compts.git"
   },
   "keywords": [
     "compt"
@@ -16,9 +16,9 @@
   "author": "Pein Freccs",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/codehyouka/compt/issues"
+    "url": "https://github.com/compts/compts/issues"
   },
-  "homepage": "https://github.com/codehyouka/compt#readme",
+  "homepage": "https://github.com/compts/compts#readme",
   "dependencies": {
   
   },
