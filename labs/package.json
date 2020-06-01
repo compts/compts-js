@@ -1,0 +1,29 @@
+{
+  "name": "pasteur",
+  "version": "1.0.0",
+  "description": "JS dom support",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codehyouka/pasteur.git"
+  },
+  "keywords": [
+    "pasteur"
+  ],
+  "author": "Codehyouka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codehyouka/pasteur/issues"
+  },
+  "homepage": "https://github.com/codehyouka/pasteur#readme",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^3.0.1"
+  }
+}
