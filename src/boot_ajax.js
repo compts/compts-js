@@ -125,7 +125,7 @@ try{
 			}
 			
 		}
-		console.log(config.value,"config.value");
+	 
 		if(s_type==="timeout"){
 		setTimeout(function(){
 	s_ajax(main_ajx,ajx.xdr,method,s_data,main_dom.js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);

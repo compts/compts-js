@@ -414,64 +414,9 @@ this.css=function(d,c){
 			return _ct.count(arry_pl)==1?arry_pl[0]:arry_pl;
 
 	} 
-	this.getserializearray=function(){
-	var form_name=this.element;
-	var valr=((form_name.length>1)?[]:{});
-	var valr_output=[];
-	var html_form;
-	var valr_oupt;
-	this.each(function(html_form,td){
-	
-	 valr_oupt=((_ct.count(form_name)>1)?(valr[td]={}):valr);
-	 
-	for(var i=0;i<this.getlength();i++){
-	
-	
-		var glb_arry={};
-		var type_opt=['checkbox','radio'];
-		if(_ct.has(html_form.type) && html_form.name.length>0){
-		if(_ct.indexOf(type_opt,html_form.type)>-1){
-				
-			if(html_form.checked && _ct.has(html_form.value)&& _ct.has(html_form.name)){ 
-				glb_arry[html_form.name]=ct("dom",html_form).val();	
-				
-			}else{
-				var alt_val=main_dom.get_attr(html_form,"ps_alt_value");
-				if(_ct.has(alt_val,"ps_alt_value") && _ct.has(html_form.name)){
-				glb_arry[html_form.name]=alt_val.ps_alt_value;	
-				
-				}
-			}
-
-		}else{
-			if(_ct.has(html_form.name)){
-				if(_ct.has(html_form.value) ){
-				if(html_form.value.trim().split("").length>0){
-					glb_arry[html_form.name]=ct("dom",html_form).val();		
-				}	
-				else{
-				var alt_val=main_dom.get_attr(html_form,"ps_alt_value");
-				if(_ct.has(alt_val,"ps_alt_value")){
-				glb_arry[html_form.name]=alt_val.ps_alt_value;	
-				
-				}else{
-				glb_arry[html_form.name]=ct("dom",html_form).val();	
-				}
-				}
-				
-				}
-			}
-		}
-		}	if(_ct.count(glb_arry)>0)
-			valr_output.push(glb_arry);
-
-			}
-		});
-			return valr_output;
-		
-			
-			
-	};
+	this.getFormAttr=function(){
+		return main_dom.formGetValues(this)
+	}
 	this.eq=function(d){
 
 

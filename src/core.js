@@ -42,7 +42,26 @@ var main_dom={
 		},100);		
 		
 	},
-	
+	formGetValues:function(self){
+		var list_elem = ["input","select","textarea"];
+		var ret_value = [];	
+		self.each(function(html_form,td){
+			for(var key in list_elem){
+				if(list_elem[key] == "select"){
+					ct$(html_form).findElem(list_elem[key]).each(function(k,v){
+						var get_attr = ct$(k).attr();
+						get_attr["value"]=ct$(k).val();
+						get_attr["type"]="select";
+						ret_value =_ct.arrayConcat(ret_value,get_attr);
+					});
+				}else{
+					
+					ret_value =_ct.arrayConcat(ret_value,ct$(html_form).findElem(list_elem[key]).attr());
+				}
+			}
+		});
+		return ret_value;
+	},
 	parentchild:function(pt_cld,de,cnt){
 		var child_prnt=pt_cld;
 	
@@ -89,7 +108,7 @@ var main_dom={
 			return false;	
 	}
 	},
-		css:function(id,d){
+	css:function(id,d){
 		var elem_str_class="";
 		var get_attr=(_ct.has(main_dom.get_attr(id,['style']).style))?main_dom.get_attr(id,['style']).style:"";
 		var split_style=get_attr.toString().split(";");
