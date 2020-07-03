@@ -1,6 +1,6 @@
 {
-  "name": "compt",
-  "version": "1.0.3",
+  "name": "compts",
+  "version": "1.0.2",
   "description": "JS dom support",
   "main": "main.js",
   "scripts": {
