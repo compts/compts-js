@@ -77,7 +77,7 @@ var ps_core;
 			
 			}
 			document_ready_exist=function(func){
-				main_dom.document_ready(func);
+				document_ready(func);
 
 			}
 			

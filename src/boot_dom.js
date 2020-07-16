@@ -221,7 +221,7 @@ this.css=function(d,c){
 
 	this.each(function(meth,td){
 		if (typeofs)
-		main_dom.css(meth,d);
+		domCSS(meth,d);
 		else{
 		if(parseInt(td)<=cntt){
 		
@@ -238,7 +238,7 @@ this.css=function(d,c){
 		this.each(function(meth,td){
 
 	var elem=meth.style.display||main_dom.getcss(meth,"display");
-		main_dom.css(meth,{display:((elem=="none")?d_var:"none")});
+		domCSS(meth,{display:((elem=="none")?d_var:"none")});
 
 		});
 		return this;
@@ -248,7 +248,7 @@ this.css=function(d,c){
 	
 		this.each(function(meth,td){
 
-		main_dom.css(meth,{display:"none"});
+			domCSS(meth,{display:"none"});
 		});
 		return this;
 	};
@@ -256,7 +256,7 @@ this.css=function(d,c){
 	
 		this.each(function(meth,td){
 
-		main_dom.css(meth,{display:""});
+			domCSS(meth,{display:""});
 		});
 		return this;
 	}
@@ -415,7 +415,7 @@ this.css=function(d,c){
 
 	} 
 	this.getFormAttr=function(){
-		return main_dom.formGetValues(this)
+		return formGetValues(this)
 	}
 	this.eq=function(d){
 
