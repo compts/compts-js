@@ -98,5 +98,20 @@ var ps_core;
 				};				
 				})();	
 
-	
+				 
+			
+			
+	bootstrap["dom"] = function(d){		
+					
+		return ps_core.doc(d);
+				
+	};
+	bootstrap["dom_all"] = function(d){		
+		return ps_core.docall(d);
+				
+	};
+					
+	bootstrap["ready"] = function(func){
+		return ps_core.dom_ready(func);
+	};
 				

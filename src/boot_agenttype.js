@@ -105,3 +105,7 @@ function ps_agenttype(d){
 		return _ct.has(d)?(_ct.has(vers,d)?vers[d]:0):vers;
 	}
 	};
+	bootstrap["agenttype"] = function(d){
+				
+		return new ps_agenttype(d);				
+	}

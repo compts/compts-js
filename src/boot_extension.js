@@ -50,3 +50,11 @@ extension_loader = (function(dom){
 
 
  })
+ bootstrap["ext"] = function(d){
+				
+    var dom = ps_core.doc(d);
+
+    var cls_ext_return = extension_loader(dom).extend_ext_module()
+
+    return cls_ext_return;
+}

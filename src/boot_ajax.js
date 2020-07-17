@@ -1,16 +1,16 @@
 function ps_ajax(d){
 	
 
-this.dataform;
-this.data=d;
-this.setcnnt={};
-this.iecross=false;
-this.ajx=main_dom.ajax_controller(this.iecross);
-this.is_abort=false;		 
-this.set_type="none";
-this.time=0;
-this.jsones="false";	
-this.request_header={};
+	this.dataform;
+	this.data=d;
+	this.setcnnt={};
+	this.iecross=false;
+	this.ajx=ajax_controller(this.iecross);
+	this.is_abort=false;		 
+	this.set_type="none";
+	this.time=0;
+	this.jsones="false";	
+	this.request_header={};
 	}
 	ps_ajax.prototype.setcontenttype=function(val){
 		var main_jsn=this;
@@ -60,58 +60,56 @@ this.request_header={};
 	}
 	ps_ajax.prototype.iecrosssite=function(){
 		this.iecross=true;
-		this.ajx=main_dom.ajax_controller(this.iecross);
+		this.ajx=ajax_controller(this.iecross);
 		return this;
 	}
 	ps_ajax.prototype.abort=function(bools){
-		
-	//	ajx.xhr.onreadystatechange = null;
-	//	ajx.xdr.send();
+
 		
 		this.ajx.xdr.abort();
 		ps_glbl.is_ajax_abort=true;
 		var loc_bools=bools||true;
 		if (loc_bools==true)
-		this.ajx=main_dom.ajax_controller(this.iecross);
+		this.ajx=ajax_controller(this.iecross);
 		return this;
 	}
 	ps_ajax.prototype.ajax=function(config){ 
-	var method=((!_ct.has(config.method))?"get":config.method);
-	var jsons=this.jsones; 
-	var main_ajx=this;
-	var ajx=this.ajx;
-	
-try{
-	if(typeof(config.value)=="function"){
-	var js_event=main_dom.js_event_type(ajx.xdr,ajx.xhr_type,config.value,jsons,config);
-		 js_event[ajx.xhr_type].load;
+		var method=((!_ct.has(config.method))?"get":config.method);
+		var jsons=this.jsones; 
+		var main_ajx=this;
+		var ajx=this.ajx;
 		
-		}else if(typeof(config.value)=="object"){
-	
-		 _ct.each(config.value,function(i,v){
-		
-		var js_event=main_dom.js_event_type(ajx.xdr,ajx.xhr_type,v,jsons,config);
-	 js_event[ajx.xhr_type][i];
-		});
-		}
-		if(typeof(config.functions)=="function"){
-		var js_event=main_dom.js_event_type(ajx.xdr,ajx.xhr_type,config.functions,jsons,config);
-	 js_event[ajx.xhr_type].load;
-	
-		}else if(typeof(config.functions)=="object"){
-		
-		for (var i in config.functions){ 
-		var v=config.functions[i];
-		var js_event=main_dom.js_event_type(ajx.xdr,ajx.xhr_type,v,jsons,config.functions);
-	 js_event[ajx.xhr_type][i];
-		
-		}
-		}
+		try{
+			if(typeof(config.value)=="function"){
+			var js_event=js_event_type(ajx.xdr,ajx.xhr_type,config.value,jsons,config);
+				js_event[ajx.xhr_type].load;
+				
+				}else if(typeof(config.value)=="object"){
+			
+				_ct.each(config.value,function(i,v){
+				
+				var js_event=js_event_type(ajx.xdr,ajx.xhr_type,v,jsons,config);
+			js_event[ajx.xhr_type][i];
+				});
+				}
+				if(typeof(config.functions)=="function"){
+				var js_event=js_event_type(ajx.xdr,ajx.xhr_type,config.functions,jsons,config);
+			js_event[ajx.xhr_type].load;
+			
+				}else if(typeof(config.functions)=="object"){
+				
+				for (var i in config.functions){ 
+				var v=config.functions[i];
+				var js_event=js_event_type(ajx.xdr,ajx.xhr_type,v,jsons,config.functions);
+			js_event[ajx.xhr_type][i];
+				
+				}
+				}
 		}catch(e){
 		}
 		var s_type=this.set_type;
 		var s_time=this.time;
-		var s_ajax=main_dom.ajax_http_loader;
+		var s_ajax=ajaxHttpLoader;
 		var s_data=this.data;
 		var s_dataform=this.dataform;
 		
@@ -128,15 +126,15 @@ try{
 	 
 		if(s_type==="timeout"){
 		setTimeout(function(){
-	s_ajax(main_ajx,ajx.xdr,method,s_data,main_dom.js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
+	s_ajax(main_ajx,ajx.xdr,method,s_data,js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
 			},s_time);
 	}
 		else if(s_type==="interval"){
 		setInterval(function(){
-	s_ajax(main_ajx,ajx.xdr,method,s_data,main_dom.js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
+	s_ajax(main_ajx,ajx.xdr,method,s_data,js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
 			},s_time);
 	}else{
-	s_ajax(main_ajx,ajx.xdr,method,s_data,main_dom.js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
+	s_ajax(main_ajx,ajx.xdr,method,s_data,js_json_delimiters(((typeof(config.value)=="function")?"":config.value)),s_dataform);
 	
 	}
 	
@@ -179,3 +177,7 @@ ps_ajax.prototype.returnvalue=function(value_s,func,bool){
 	
 	}
 	
+	bootstrap["ajax"] = function(d){
+				
+		return new ps_ajax(d);				
+	};

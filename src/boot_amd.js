@@ -4,11 +4,11 @@ var c=0;
 	var check_exist= (!_ct.has(d) || d==="" )?false:true;
 	if(check_exist===true){
 	
-	ps_glbl.src.push(main_dom.checkurlvalid(d));
-	var url = main_dom.checkurlvalid(d);
+	ps_glbl.src.push(checkurlvalid(d));
+	var url = checkurlvalid(d);
 	
 	this.dms=d;
-	this.js_url=main_dom.checkurlvalid(main_dom.checkfile("js",d));
+	this.js_url=checkurlvalid(checkFile("js",d));
 	var loadd=false;
 	var caches_bol=!_ct.has(bol_clear_cache)?false:bol_clear_cache;
 
@@ -97,5 +97,10 @@ function load_js(func){
 	}
 	
 	}
+	
+}
+bootstrap["require"] =function(d,bol){
+			
+	return new ps_amd(d,bol);
 	
 }

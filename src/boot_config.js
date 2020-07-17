@@ -14,3 +14,7 @@ function ps_config(d){
 		
 	
 	}
+	bootstrap["config"] =function(d){
+			
+		return new ps_config(d);
+	}

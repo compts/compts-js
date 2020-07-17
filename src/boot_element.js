@@ -2,7 +2,7 @@ function ps_element(d){
 	this.main=d;
 
 	this.ScrollPosition=function(){
-		return main_dom.get_scroll_position();
+		return get_scroll_position();
 	}
 	this.EventScrollResize=function(fnc){
 			ct("dom",root).on("resize,scroll",function(e){
@@ -39,4 +39,8 @@ function ps_element(d){
 
   return obj;
 	}	
-	}
+  }
+  
+  bootstrap["element"] = function(){
+    return new ps_element();			
+  }

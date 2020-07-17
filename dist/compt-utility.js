@@ -16,6 +16,7 @@ else{
    
 } 
 
+var bootstrap={};
 
 var ps_glbl=root[Math.random().toString(36).replace(/[^a-z]+/g, '')]={};
 
