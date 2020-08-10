@@ -5,3 +5,4 @@ src_old_copy/*
 dist/compt-full.js
 dist/compt-utility.js
 Gruntfile.js
+compts-labs/*
