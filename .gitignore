@@ -1,8 +1,14 @@
 node_modules/*
 node_modules
 node_modules/*
-src_old_copy/*
+src_old_copy
+src_copy
 dist/compt-full.js
 dist/compt-utility.js
 Gruntfile.js
 compts-labs/*
+notes
+.DS_Store
+dist_reference/
+grassfile copy.js
+package-lock.json
