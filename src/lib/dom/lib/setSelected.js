@@ -1,23 +1,37 @@
 import CoreElementInit from '../../../core/coreElementInit';
 
-function setSelected (d,c){
+/**
+ * Show Element in dom
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {string} val The second number in an addition.
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("div").setSelected('test')
+ * // => null
+ */
+function setSelected (val) {
 
     const core = new CoreElementInit(this);
 
-    let opt;
+    let opt = null;
 
-	core.each(function(meth,td){
-		opt=meth.options;
-		
-			for(var i=0;i<opt.length;i++){
+    core.each(function (meth) {
 
-					opt[i].selected=(opt[i].value==val);			
-				
-			}
-        
-	});
+        opt=meth.options;
+        for (let inc =0; inc<opt.length;) {
 
-	return this;
+            opt[inc].selected = opt[inc].value===val;
+
+            inc+=1;
+
+        }
+
+    });
+
+    return this;
 
 }
 

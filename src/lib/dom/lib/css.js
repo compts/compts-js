@@ -3,29 +3,56 @@ import domGetCSS from '../../../core/dom/domGetCSS';
 import domCSS from '../../../core/dom/domCSS';
 import {getTypeof, has} from 'structkit';
 
-function css (d,c){
+/**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object} value The second number in an addition.
+ * @param {number} countValue The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function css (value, countValue) {
 
     const core = new CoreElementInit(this);
 
-    var typeofs = getTypeof(d) == "json"?true:false;
+    const typeofs = getTypeof(value) === "json";
 
-	var cntt=((!has(c))?0:c-1);
-	var val_g={};
+    const cntt=has(countValue) === false
+        ?0
+        :countValue-1;
 
-	core.each(function(meth,td){
-		if (typeofs){
-            domCSS(meth,d);
+    const val_g = {};
+
+    core.each(function (meth, td) {
+
+        if (typeofs) {
+
+            domCSS(meth, value);
+
         } else {
 
-		    if(parseInt(td)<=cntt){
+            if (parseInt(td)<=cntt) {
 
-		        val_g[td]=domGetCSS(meth,d);
+                val_g[td]=domGetCSS(meth, value);
 
-			}
-		}
-	});
+            }
 
-	return typeofs ? this : ((cntt===0)?val_g[0]:val_g);
+        }
+
+    });
+
+    const returnValue = cntt===0
+        ?val_g[0]
+        :val_g;
+
+    return typeofs
+        ? this
+        : returnValue;
 
 }
 

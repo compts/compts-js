@@ -22,6 +22,7 @@ import index from './lib/index';
 import isDomNull from './lib/isDomNull';
 import getChildPosition from './lib/getChildPosition';
 import domView from './lib/domView';
+import eventListener from '../../core/dom/eventListener';
 
 const elementConfig = {};
 
@@ -43,6 +44,40 @@ elementConfig.appendhtml=[
         "beforeend"
     ]
 ];
+
+elementConfig.eventListener=[
+    'scroll',
+    'focus',
+    'blur',
+    'change',
+    'abort',
+    'error',
+    'click',
+    'dblclick',
+    'mousemove',
+    'mouseout',
+    'mouseover',
+    'mousedown',
+    'mouseup',
+    'mouseenter',
+    'mouseleave',
+    'resize',
+    'keydown',
+    'keyup',
+    'keypress',
+    'touchstart',
+    'touchmove',
+    'touchend',
+    'contextmenu',
+    'drag',
+    'dragstart',
+    'dragend',
+    'dragover',
+    'dragenter',
+    'dragleave',
+    'drop'
+];
+
 elementConfig.styletype= [
     'width',
     'display',
@@ -138,19 +173,47 @@ ElementTrigger.prototype.isDomNull = isDomNull;
 ElementTrigger.prototype.getChildPosition = getChildPosition;
 ElementTrigger.prototype.domView = domView;
 
+
+for (const f1 in elementConfig.eventListener) {
+
+    if (has(elementConfig.eventListener[f1])) {
+
+        const check_mobile=(/(touchstart|touchmove|touchend)/).test(elementConfig.eventListener[f1])
+            ?elementConfig.eventListener[f1]
+            :"none";
+
+        (function (meth, m1, m2, m3) {
+
+            ElementTrigger.prototype[meth]=function (func) {
+
+                eventListener(this, m1, m2, m3, func, true);
+
+                return this;
+
+            };
+
+        }(elementConfig.eventListener[f1]+'', elementConfig.eventListener[f1]+'', 'on'+elementConfig.eventListener[f1]+'', check_mobile));
+
+    }
+
+}
+
+
 for (const f2 in elementConfig.child) {
 
     if (has(elementConfig.child[f2])) {
 
-        (function(m1, m2) {
+        (function (m1, m2) {
 
-            ElementTrigger.prototype[m1]=function(){
-            this.parent_child="node::"+m2;
-            return this;
+            ElementTrigger.prototype[m1]=function () {
 
-        }
+                this.parent_child="node::"+m2;
 
-    })(elementConfig.child[f2][0],elementConfig.child[f2][1]);
+                return this;
+
+            };
+
+        }(elementConfig.child[f2][0], elementConfig.child[f2][1]));
 
     }
 
@@ -160,14 +223,17 @@ for (const f3 in elementConfig.appendhtml) {
 
     if (has(elementConfig.appendhtml[f3])) {
 
-        (function(m1,m2){
+        (function (m1, m2) {
 
-            ElementTrigger.prototype[m1]=function(html){
+            ElementTrigger.prototype[m1]=function (html) {
 
-            this.insertHtml(m2,html);
-            return this;
-            }
-        })(elementConfig.appendhtml[f3][0],elementConfig.appendhtml[f3][1]);
+                this.insertHtml(m2, html);
+
+                return this;
+
+            };
+
+        }(elementConfig.appendhtml[f3][0], elementConfig.appendhtml[f3][1]));
 
     }
 
@@ -178,14 +244,15 @@ for (const f4 in elementConfig.styletype) {
 
     if (has(elementConfig.styletype[f4])) {
 
-        (function(m){
-        
-            ElementTrigger.prototype["get"+m]=function(cnt){
-            
-            return this.css(m,cnt);
-            }
-            
-        })(elementConfig.styletype[f4]);
+        (function (meth) {
+
+            ElementTrigger.prototype["get"+meth]=function (cnt) {
+
+                return this.css(meth, cnt);
+
+            };
+
+        }(elementConfig.styletype[f4]));
 
     }
 
@@ -195,14 +262,15 @@ for (const f5 in elementConfig.domview) {
 
     if (has(elementConfig.domview[f5])) {
 
-        (function(m){
-        
-            ElementTrigger.prototype[m]=function(value){
-            
-            return this.domView(m,value);
-            }
-            
-        })(elementConfig.domview[f5]);
+        (function (meth) {
+
+            ElementTrigger.prototype[meth] = function (value) {
+
+                return this.domView(meth, value);
+
+            };
+
+        }(elementConfig.domview[f5]));
 
     }
 

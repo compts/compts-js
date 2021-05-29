@@ -40,7 +40,7 @@ function documentReady (func) {
 
         }
 
-    }
+    };
 
     let set_intr=null;
 
@@ -58,6 +58,7 @@ function documentReady (func) {
     }, 100);
 
     return null;
+
 }
 
 export default documentReady;

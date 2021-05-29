@@ -5,7 +5,7 @@ import ElementTrigger from '../lib/dom/index';
 
 function PsExtender () { }
 PsExtender.prototype.extend={
-    "class_extnd" : function(clas, id) {
+    "class_extnd" (clas, id) {
 
         for (const key in clas) {
 
@@ -17,7 +17,7 @@ PsExtender.prototype.extend={
 
     },
 
-    "obj_extnd" : function(id) {
+    "obj_extnd" (id) {
 
         const ps_ob=new ElementTrigger(id);
 
@@ -30,16 +30,18 @@ PsExtender.prototype.extend={
 PsExtender.prototype.dom={
 
     "html": {
-        "hasClass" : function(s, klass) {
+        "hasClass" (s, klass) {
 
             const r = new RegExp("(?:^| )(" + klass + ")(?: |$)"),
                 m = (""+s).match(r);
 
 
-            return m ? m[1] : null;
+            return m
+                ? m[1]
+                : null;
 
         },
-        "tag_value" : function(tar, ar) {
+        "tag_value" (tar, ar) {
 
             const tar_sub=tar.split("=>");
 
@@ -55,7 +57,7 @@ PsExtender.prototype.dom={
 
     },
 
-    "init" : function(s, ar) {
+    "init" (s, ar) {
 
         const ar_s=[];
 

@@ -1,4 +1,4 @@
-import CoreElementInit from '../../../core/coreElementInit'; 
+import CoreElementInit from '../../../core/coreElementInit';
 import {has} from 'structkit';
 
 /**

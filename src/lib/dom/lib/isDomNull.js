@@ -1,4 +1,4 @@
-import CoreElementInit from '../../../core/coreElementInit'; 
+import CoreElementInit from '../../../core/coreElementInit';
 
 /**
  * Is Dom null
@@ -9,7 +9,7 @@ import CoreElementInit from '../../../core/coreElementInit';
  * @example
  *
  * dom("div").isDomNull()
- * // => 1
+ * // => false
  */
 function isDomNull () {
 

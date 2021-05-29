@@ -1,4 +1,4 @@
-import {each, has, count, getKey, where,clone,getTypeof} from 'structkit'; 
+import {each, has, count, getKey, where, clone, getTypeof} from 'structkit';
 import getDomAttr from './getDomAttr';
 
 /**
@@ -18,7 +18,9 @@ import getDomAttr from './getDomAttr';
 function findElement (tar_m_sub, ar, bool) {
 
     const tar_m_split=tar_m_sub.split("=>");
-    const tar_m=(tar_m_split.length==0?tar_m_sub:tar_m_split[0]).trim();
+    const tar_m=(tar_m_split.length==0
+        ?tar_m_sub
+        :tar_m_split[0]).trim();
 
     if (bool) {
 
