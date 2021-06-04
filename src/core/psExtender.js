@@ -4,6 +4,7 @@ import findElement from './findElement';
 import ElementTrigger from '../lib/dom/index';
 
 function PsExtender () { }
+
 PsExtender.prototype.extend={
     "class_extnd" (clas, id) {
 
@@ -30,10 +31,10 @@ PsExtender.prototype.extend={
 PsExtender.prototype.dom={
 
     "html": {
-        "hasClass" (s, klass) {
+        "hasClass" (str, klass) {
 
             const r = new RegExp("(?:^| )(" + klass + ")(?: |$)"),
-                m = (""+s).match(r);
+                m = (""+str).match(r);
 
 
             return m
@@ -57,12 +58,12 @@ PsExtender.prototype.dom={
 
     },
 
-    "init" (s, ar) {
+    "init" (str, ar) {
 
         const ar_s=[];
 
 
-        const chd_dom=s.toString().match(/^[#.\w]{0,1}/g);
+        const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
         if (chd_dom===null) {
 
@@ -70,9 +71,9 @@ PsExtender.prototype.dom={
 
         }
 
-        this.html.tag_value(s, ar_s);
+        this.html.tag_value(str, ar_s);
 
-        return assignElementDistinction(ar_s, s, ar);
+        return assignElementDistinction(ar_s, str, ar);
 
     }
 };

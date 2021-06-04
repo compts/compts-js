@@ -23,111 +23,14 @@ import isDomNull from './lib/isDomNull';
 import getChildPosition from './lib/getChildPosition';
 import domView from './lib/domView';
 import eventListener from '../../core/dom/eventListener';
+import fade from './lib//fade';
+import getScrollPositon from './lib//getScrollPositon';
+import getElementOffSet from './lib//getElementOffSet';
+import getElementDimension from './lib//getElementDimension';
 
-const elementConfig = {};
+import elementConfig from '../../variable/internalConfig';
 
-elementConfig.appendhtml=[
-    [
-        "after",
-        "afterend"
-    ],
-    [
-        "before",
-        "beforebegin"
-    ],
-    [
-        "prepend",
-        "afterbegin"
-    ],
-    [
-        "append",
-        "beforeend"
-    ]
-];
 
-elementConfig.eventListener=[
-    'scroll',
-    'focus',
-    'blur',
-    'change',
-    'abort',
-    'error',
-    'click',
-    'dblclick',
-    'mousemove',
-    'mouseout',
-    'mouseover',
-    'mousedown',
-    'mouseup',
-    'mouseenter',
-    'mouseleave',
-    'resize',
-    'keydown',
-    'keyup',
-    'keypress',
-    'touchstart',
-    'touchmove',
-    'touchend',
-    'contextmenu',
-    'drag',
-    'dragstart',
-    'dragend',
-    'dragover',
-    'dragenter',
-    'dragleave',
-    'drop'
-];
-
-elementConfig.styletype= [
-    'width',
-    'display',
-    'height',
-    'visible'
-];
-elementConfig.domview=[
-    'val',
-    'html',
-    'text',
-    'outerhtml'
-];
-
-elementConfig.child= [
-    [
-        "firstChild",
-        "first"
-    ],
-    [
-        "haschild",
-        "haschild"
-    ],
-    [
-        "hasChildNodes",
-        "hasChildNodes"
-    ],
-    [
-        "childNodes",
-        "hasChildNodes"
-    ],
-    [
-        "lastChild",
-        "last"
-    ],
-    [
-        "even",
-        "even"
-    ],
-    [
-        "odd",
-        "odd"
-    ]
-];
-
-elementConfig.styletype=[
-    'width',
-    'display',
-    'height',
-    'visible'
-];
 
 /**
  * Class for dom
@@ -151,6 +54,7 @@ function ElementTrigger (value) {
 
 ElementTrigger.prototype.attr = attr;
 ElementTrigger.prototype.css = css;
+ElementTrigger.prototype.fade = fade;
 ElementTrigger.prototype.each = each;
 ElementTrigger.prototype.show = show;
 ElementTrigger.prototype.hide = hide;
@@ -162,7 +66,10 @@ ElementTrigger.prototype.tagName = tagName;
 ElementTrigger.prototype.findElem = findElem;
 ElementTrigger.prototype.getSelected = getSelected;
 ElementTrigger.prototype.index = index;
-ElementTrigger.prototype.getSelectedText = getSelectedCount;
+ElementTrigger.prototype.getScrollPositon = getScrollPositon;
+ElementTrigger.prototype.getElementOffSet = getElementOffSet;
+ElementTrigger.prototype.getElementDimension = getElementDimension;
+ElementTrigger.prototype.getSelectedCount = getSelectedCount;
 ElementTrigger.prototype.getSelectedText = getSelectedText;
 ElementTrigger.prototype.setSelected = setSelected;
 ElementTrigger.prototype.toggleDisplay = toggleDisplay;
@@ -197,7 +104,6 @@ for (const f1 in elementConfig.eventListener) {
     }
 
 }
-
 
 for (const f2 in elementConfig.child) {
 
@@ -271,6 +177,24 @@ for (const f5 in elementConfig.domview) {
             };
 
         }(elementConfig.domview[f5]));
+
+    }
+
+}
+
+for (const f6 in elementConfig.elemfade) {
+
+    if (has(elementConfig.elemfade[f6])) {
+
+        (function (meth) {
+
+            ElementTrigger.prototype[meth]=function (intrvl, fncmthd) {
+
+                return this.fade(meth.toLowerCase(), intrvl, fncmthd);
+
+            };
+
+        }(elementConfig.elemfade[f6]));
 
     }
 

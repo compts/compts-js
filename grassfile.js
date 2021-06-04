@@ -1,4 +1,8 @@
 const list_package_utility_js = ["src/module/*/index.js"];
+const list_iife_js = [
+    "src/variable/globalConfig.js",
+    "src/module/*/index.js"
+];
 
 exports.module=function (grassconf) {
 
@@ -25,9 +29,9 @@ exports.module=function (grassconf) {
     });
 
 
-    grassconf.load("web_cjs", function () {
+    grassconf.load("web_iife", function () {
 
-        return grassconf.src(list_package_utility_js)
+        return grassconf.src(list_iife_js)
 
             .pipe(grass_packpier({
                 "config": {"mainType": "exportFileNameOnly",
@@ -50,7 +54,7 @@ exports.execute=function (lib) {
     lib.default=function (strm) {
 
         strm.series("esm")
-            .series("web_cjs");
+            .series("web_iife");
 
     };
 

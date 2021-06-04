@@ -49,7 +49,7 @@ const domCoreAssign=(function () {
 
         } catch (error) {
 
-            console.log(error, ":error");
+            console.log(error);
 
         }
 

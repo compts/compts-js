@@ -90,8 +90,8 @@ function assignElementDistinction (dom, assn, bools) {
                 }
 
             }
-            var type_pos="";
-            var index_pos="";
+            let type_pos="";
+            let index_pos="";
 
             if ((/([\w\-\_]{1,})(\(\d\))/g).test(spl2)) {
 
