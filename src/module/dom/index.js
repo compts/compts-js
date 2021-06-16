@@ -14,7 +14,7 @@ import domCoreAssign from '../../core/domCoreAssign';
  */
 function dom (element) {
 
-    return domCoreAssign.doc(element);
+    return domCoreAssign(element);
 
 }
 export default dom;

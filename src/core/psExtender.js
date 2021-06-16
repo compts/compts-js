@@ -1,81 +1,80 @@
-import {each} from 'structkit';
+import {each, has} from 'structkit';
 import assignElementDistinction from './assignElementDistinction';
 import findElement from './findElement';
 import ElementTrigger from '../lib/dom/index';
 
-function PsExtender () { }
+function PsExtender () {}
 
-PsExtender.prototype.extend={
-    "class_extnd" (clas, id) {
+PsExtender.prototype.extendElement= function (id) {
 
-        for (const key in clas) {
+    const ps_ob=new ElementTrigger(id);
 
-            id[key] = clas[key];
+    return ps_ob;
 
-        }
-
-        return id;
-
-    },
-
-    "obj_extnd" (id) {
-
-        const ps_ob=new ElementTrigger(id);
-
-        return ps_ob;
-
-    }
 
 };
 
-PsExtender.prototype.dom={
-
-    "html": {
-        "hasClass" (str, klass) {
-
-            const r = new RegExp("(?:^| )(" + klass + ")(?: |$)"),
-                m = (""+str).match(r);
+PsExtender.prototype.tag_value= function (tar, ar) {
 
 
-            return m
-                ? m[1]
-                : null;
+    const tar_sub=tar.split("=>");
 
-        },
-        "tag_value" (tar, ar) {
+    each(tar_sub, function (eck, ecv) {
 
-            const tar_sub=tar.split("=>");
+        findElement(ecv, ar, eck>0);
 
-            each(tar_sub, function (eck, ecv) {
+    });
 
-                findElement(ecv, ar, eck>0);
+};
 
-            });
+PsExtender.prototype.init= function (str, ar) {
 
 
-        }
+    const ar_s=[];
 
 
-    },
+    const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
-    "init" (str, ar) {
+    if (chd_dom===null) {
 
-        const ar_s=[];
-
-
-        const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
-
-        if (chd_dom===null) {
-
-            return document;
-
-        }
-
-        this.html.tag_value(str, ar_s);
-
-        return assignElementDistinction(ar_s, str, ar);
+        return document;
 
     }
+
+    this.tag_value(str, ar_s);
+
+    return assignElementDistinction(ar_s, str, ar);
+
+};
+
+PsExtender.prototype.domQuerySelector= function (idss, ar) {
+
+    if (ar.length ===0 && has(document.querySelectorAll)) {
+
+        for (const tKey in idss) {
+
+            if (has(idss[tKey])) {
+
+                const str_sub=idss[tKey].split("=>");
+
+                const dataElem = document.querySelectorAll(str_sub[0]);
+
+                for (const key in dataElem) {
+
+                    if (has(dataElem[key])) {
+
+                        ar.push(dataElem[key]);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
 };
 
 export default PsExtender;

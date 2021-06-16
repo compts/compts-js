@@ -23,13 +23,16 @@ import isDomNull from './lib/isDomNull';
 import getChildPosition from './lib/getChildPosition';
 import domView from './lib/domView';
 import eventListener from '../../core/dom/eventListener';
-import fade from './lib//fade';
-import getScrollPositon from './lib//getScrollPositon';
-import getElementOffSet from './lib//getElementOffSet';
-import getElementDimension from './lib//getElementDimension';
+import fade from './lib/fade';
+import getScrollPositon from './lib/getScrollPositon';
+import getElementOffSet from './lib/getElementOffSet';
+import getElementDimension from './lib/getElementDimension';
+
+import on from './lib/on';
+import off from './lib//off';
+import delegate from './lib//delegate';
 
 import elementConfig from '../../variable/internalConfig';
-
 
 
 /**
@@ -79,6 +82,9 @@ ElementTrigger.prototype.insertHtml = insertHtml;
 ElementTrigger.prototype.isDomNull = isDomNull;
 ElementTrigger.prototype.getChildPosition = getChildPosition;
 ElementTrigger.prototype.domView = domView;
+ElementTrigger.prototype.on = on;
+ElementTrigger.prototype.off = off;
+ElementTrigger.prototype.delegate = delegate;
 
 
 for (const f1 in elementConfig.eventListener) {

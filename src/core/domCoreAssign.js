@@ -1,7 +1,7 @@
 import {each, getTypeof, has} from 'structkit';
 import PsExtender from './psExtender';
 
-const domCoreAssign=(function () {
+const domCoreAssign=function (id) {
 
     const doc_set=function (idss) {
 
@@ -24,7 +24,7 @@ const domCoreAssign=(function () {
 
                     } else if (getTypeof(val)==="string") {
 
-                        ps_ext.dom.init(val, domm);
+                        ps_ext.init(val, domm);
 
                     }
 
@@ -38,12 +38,13 @@ const domCoreAssign=(function () {
 
                     if (has(doc_loop[tKey])) {
 
-                        ps_ext.dom.init(doc_loop[tKey], domm);
+                        ps_ext.init(doc_loop[tKey], domm);
 
                     }
 
-
                 }
+
+                ps_ext.domQuerySelector(doc_loop, domm);
 
             }
 
@@ -53,23 +54,13 @@ const domCoreAssign=(function () {
 
         }
 
-        return ps_ext.extend.obj_extnd(domm);
+        return ps_ext.extendElement(domm);
 
 
     };
 
+    return doc_set(id);
 
-    return {
-
-        "doc" (id) {
-
-            return doc_set(id);
-
-        }
-
-
-    };
-
-}());
+};
 
 export default domCoreAssign;

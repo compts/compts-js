@@ -1,6 +1,16 @@
-import {indexOf} from 'structkit';
+import {indexOf, has} from 'structkit';
 
-const remove_list_action= [];
+// Const remove_list_action= [];
+
+const comptsWindow = window;
+
+if (has(comptsWindow, "comptsControl") ===false) {
+
+    comptsWindow.comptsControl = {};
+    comptsWindow.comptsControl.remove_list_action=[];
+
+}
+
 
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
@@ -18,7 +28,7 @@ function eventListener (elthis, c1, c2, c3, func, act_bool) {
      }
 
 
-        remove_list_action.push(elemm);
+     comptsWindow.comptsControl.remove_list_action.push(elemm);
         return elthis;
 
     });
@@ -35,7 +45,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
             elems11.attachEvent(ie, function (se) {
 
-                if (indexOf(remove_list_action, elems11)==-1) {
+                if (indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                     ff.call(elems11, se);
 
@@ -54,7 +64,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
                 elems11.addEventListener(ch, function (e) {
 
-                    if (typeof e.targetTouches!=="object" && indexOf(remove_list_action, elems11)==-1) {
+                    if (typeof e.targetTouches!=="object" && indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                         ff.call(this, e);
 
@@ -70,7 +80,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
                     elems11.addEventListener(mo, function (e) {
 
-                        if (indexOf(remove_list_action, elems11)==-1) {
+                        if (indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                             ff.call(this, e);
 

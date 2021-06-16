@@ -1,5 +1,5 @@
 import CoreElementInit from '../../../core/coreElementInit';
-import {has, count} from 'structkit';
+import {has, count, first} from 'structkit';
 
 /**
  * Is Dom null
@@ -38,7 +38,7 @@ function getElementDimension () {
     });
 
     return count(arryElem)===1
-        ?arryElem[0]
+        ?first(arryElem)
         :arryElem;
 
 }

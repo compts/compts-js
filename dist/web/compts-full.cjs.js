@@ -1,4 +1,4 @@
-(function(window){
+(function(global){
 
 
 function CoreElementInit (dom) {
@@ -543,6 +543,53 @@ function domOffset (_el) {
     lcwps(target.offsetParent);
 
     return rect;
+
+}
+
+function domEventIniate (main, spltt, fn, bools) {
+
+    for (var v=0; v<spltt.length; v++) {
+
+        (function (main, m1, m2, m3, func) {
+
+            eventListener(main, m1, m2, m3, func, bools);
+
+        }(main, spltt[v]+'', 'on'+spltt[v]+'', 'none', fn));
+
+    }
+
+    return main;
+
+}
+
+var comptsWindow = window;
+
+if (_stk.has(comptsWindow, "comptsControl") ===false) {
+
+    comptsWindow.comptsControl = {};
+    comptsWindow.comptsControl.delegation_record_list=[];
+
+}
+function elemDelegateEvent (elem, evnt, func) {
+
+    dom(elem).on(evnt, function (e) {
+
+        var self = this;
+
+        if (e.target) {
+
+            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, self);
+
+            if (elem_index===-1) {
+
+                func.call(this, e);
+                comptsWindow.comptsControl.delegation_record_list.push(self);
+
+            }
+
+        }
+
+    });
 
 }
 
@@ -1452,7 +1499,16 @@ function domView (dom, htm) {
 
 }
 
-var remove_list_action= [];
+// Const remove_list_action= [];
+
+var comptsWindow = window;
+
+if (_stk.has(comptsWindow, "comptsControl") ===false) {
+
+    comptsWindow.comptsControl = {};
+    comptsWindow.comptsControl.remove_list_action=[];
+
+}
 
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
@@ -1469,7 +1525,7 @@ function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
      }
 
-        remove_list_action.push(elemm);
+     comptsWindow.comptsControl.remove_list_action.push(elemm);
         return elthis;
 
     });
@@ -1486,7 +1542,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
             elems11.attachEvent(ie, function (se) {
 
-                if (_stk.indexOf(remove_list_action, elems11)==-1) {
+                if (_stk.indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                     ff.call(elems11, se);
 
@@ -1504,7 +1560,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
                 elems11.addEventListener(ch, function (e) {
 
-                    if (typeof e.targetTouches!=="object" && _stk.indexOf(remove_list_action, elems11)==-1) {
+                    if (typeof e.targetTouches!=="object" && _stk.indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                         ff.call(this, e);
 
@@ -1520,7 +1576,7 @@ function actionevent (elems11, ch, ie, mo, func) {
 
                     elems11.addEventListener(mo, function (e) {
 
-                        if (_stk.indexOf(remove_list_action, elems11)==-1) {
+                        if (_stk.indexOf(comptsWindow.comptsControl.remove_list_action, elems11)==-1) {
 
                             ff.call(this, e);
 
@@ -1723,8 +1779,91 @@ function getElementDimension () {
     });
 
     return _stk.count(arryElem)===1
-        ?arryElem[0]
+        ?_stk.first(arryElem)
         :arryElem;
+
+}
+
+/**
+ * Get Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {String} event The second number in an addition.
+ * @param {String} fn The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function on (event, fn) {
+
+    domEventIniate(this, event.split(","), fn, true);
+
+    return this;
+
+}
+
+/**
+ * Get Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {String} event The second number in an addition.
+ * @param {String} fn The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function off (event, fn) {
+
+    domEventIniate(this, event.split(","), fn, false);
+
+    return this;
+
+}
+
+var comptsWindow = window;
+
+if (_stk.has(comptsWindow, "comptsControl") ===false) {
+
+    comptsWindow.comptsControl = {};
+    comptsWindow.comptsControl.delegation_record_list=[];
+
+}
+
+/**
+ * Get not Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {String} evnt The second number in an addition.
+ * @param {String} target_element The second number in an addition.
+ * @param {String} func The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function delegate (evnt, target_element, func) {
+
+    this.on("click,touchstart", function () {
+
+        comptsWindow.comptsControl.delegation_record_list=[];
+
+        dom(target_element).each(function (ev) {
+
+            elemDelegateEvent(ev, evnt, func, false);
+
+        });
+
+    });
+
+    return this;
 
 }
 
@@ -2265,6 +2404,9 @@ ElementTrigger.prototype.insertHtml = insertHtml;
 ElementTrigger.prototype.isDomNull = isDomNull;
 ElementTrigger.prototype.getChildPosition = getChildPosition;
 ElementTrigger.prototype.domView = domView;
+ElementTrigger.prototype.on = on;
+ElementTrigger.prototype.off = off;
+ElementTrigger.prototype.delegate = delegate;
 
 for (var f1 in elementConfig.eventListener) {
 
@@ -2384,75 +2526,74 @@ for (var f6 in elementConfig.elemfade) {
 
 }
 
-function PsExtender () { }
+function PsExtender () {}
 
-PsExtender.prototype.extend={
-    "class_extnd" (clas, id) {
+PsExtender.prototype.extendElement= function (id) {
 
-        for (var key in clas) {
+    var ps_ob=new ElementTrigger(id);
 
-            id[key] = clas[key];
-
-        }
-
-        return id;
-
-    },
-
-    "obj_extnd" (id) {
-
-        var ps_ob=new ElementTrigger(id);
-
-        return ps_ob;
-
-    }
+    return ps_ob;
 
 };
 
-PsExtender.prototype.dom={
+PsExtender.prototype.tag_value= function (tar, ar) {
 
-    "html": {
-        "hasClass" (str, klass) {
+    var tar_sub=tar.split("=>");
 
-            var r = new RegExp("(?:^| )(" + klass + ")(?: |$)"),
-                m = (""+str).match(r);
+    _stk.each(tar_sub, function (eck, ecv) {
 
-            return m
-                ? m[1]
-                : null;
+        findElement(ecv, ar, eck>0);
 
-        },
-        "tag_value" (tar, ar) {
+    });
 
-            var tar_sub=tar.split("=>");
+};
 
-            _stk.each(tar_sub, function (eck, ecv) {
+PsExtender.prototype.init= function (str, ar) {
 
-                findElement(ecv, ar, eck>0);
+    var ar_s=[];
 
-            });
+    var chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
-        }
+    if (chd_dom===null) {
 
-    },
-
-    "init" (str, ar) {
-
-        var ar_s=[];
-
-        var chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
-
-        if (chd_dom===null) {
-
-            return document;
-
-        }
-
-        this.html.tag_value(str, ar_s);
-
-        return assignElementDistinction(ar_s, str, ar);
+        return document;
 
     }
+
+    this.tag_value(str, ar_s);
+
+    return assignElementDistinction(ar_s, str, ar);
+
+};
+
+PsExtender.prototype.domQuerySelector= function (idss, ar) {
+
+    if (ar.length ===0 && _stk.has(document.querySelectorAll)) {
+
+        for (var tKey in idss) {
+
+            if (_stk.has(idss[tKey])) {
+
+                var str_sub=idss[tKey].split("=>");
+
+                var dataElem = document.querySelectorAll(str_sub[0]);
+
+                for (var key in dataElem) {
+
+                    if (_stk.has(dataElem[key])) {
+
+                        ar.push(dataElem[key]);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
 };
 
 /**
@@ -2518,7 +2659,7 @@ function documentReady (func) {
 
 }
 
-var domCoreAssign=(function () {
+var domCoreAssign=function (id) {
 
     var doc_set=function (idss) {
 
@@ -2541,7 +2682,7 @@ var domCoreAssign=(function () {
 
                     } else if (_stk.getTypeof(val)==="string") {
 
-                        ps_ext.dom.init(val, domm);
+                        ps_ext.init(val, domm);
 
                     }
 
@@ -2555,11 +2696,13 @@ var domCoreAssign=(function () {
 
                     if (_stk.has(doc_loop[tKey])) {
 
-                        ps_ext.dom.init(doc_loop[tKey], domm);
+                        ps_ext.init(doc_loop[tKey], domm);
 
                     }
 
                 }
+
+                ps_ext.domQuerySelector(doc_loop, domm);
 
             }
 
@@ -2569,21 +2712,17 @@ var domCoreAssign=(function () {
 
         }
 
-        return ps_ext.extend.obj_extnd(domm);
+        return ps_ext.extendElement(domm);
 
     };
 
-    return {
+    return doc_set(id);
 
-        "doc" (id) {
+};
 
-            return doc_set(id);
+var globalConfig = {};
 
-        }
-
-    };
-
-}());
+window.globalConfig=globalConfig;
 
 /**
  * Check if HTML is rendered completed
@@ -2619,7 +2758,7 @@ window.control=control;
  */
 function dom (element) {
 
-    return domCoreAssign.doc(element);
+    return domCoreAssign(element);
 
 }
 
@@ -2661,8 +2800,4 @@ function extension (dom, bascConfig) {
 
 window.extension=extension;
 
-var globalConfig = {};
-
-window.globalConfig=globalConfig;
-
-})(window)
+})(typeof window !== "undefined" ? window : this);
