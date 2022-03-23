@@ -1,5 +1,7 @@
-import {count, each, has} from 'structkit';
-import getDomAttr from './getDomAttr';
+const {count, each, has} =  require('structkit'); 
+;
+const getDomAttr =  require('./getDomAttr'); 
+;
 
 /**
  * Css core engine
@@ -95,4 +97,5 @@ function domCSS (id, dList) {
 
 }
 
-export default domCSS;
+module.exports=domCSS
+;

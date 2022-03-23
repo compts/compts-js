@@ -1,40 +1,75 @@
-import {has} from 'structkit';
-import attr from './lib/attr';
-import css from './lib/css';
-import each from './lib/each';
-import empty from './lib/empty';
-import getLength from './lib/getLength';
-import getDom from './lib/getDom';
-import getIndexAttr from './lib/getIndexAttr';
-import show from './lib/show';
-import hide from './lib/hide';
-import removeAttr from './lib/removeAttr';
-import remove from './lib/remove';
-import tagName from './lib/tagName';
-import findElem from './lib/findElem';
-import getSelected from './lib/getSelected';
-import getFormAttr from './lib/getFormAttr';
-import getSelectedCount from './lib/getSelectedCount';
-import getSelectedText from './lib/getSelectedText';
-import setSelected from './lib/setSelected';
-import toggleDisplay from './lib/toggleDisplay';
-import getParent from './lib/getParent';
-import insertHtml from './lib/insertHtml';
-import index from './lib/index';
-import isDomNull from './lib/isDomNull';
-import getChildPosition from './lib/getChildPosition';
-import domView from './lib/domView';
-import eventListener from '../../core/dom/eventListener';
-import fade from './lib/fade';
-import getScrollPositon from './lib/getScrollPositon';
-import getElementOffSet from './lib/getElementOffSet';
-import getElementDimension from './lib/getElementDimension';
+const {has} =  require('structkit'); 
+;
+const attr =  require('./lib/attr'); 
+;
+const css =  require('./lib/css'); 
+;
+const each =  require('./lib/each'); 
+;
+const empty =  require('./lib/empty'); 
+;
+const getLength =  require('./lib/getLength'); 
+;
+const getDom =  require('./lib/getDom'); 
+;
+const getIndexAttr =  require('./lib/getIndexAttr'); 
+;
+const show =  require('./lib/show'); 
+;
+const hide =  require('./lib/hide'); 
+;
+const removeAttr =  require('./lib/removeAttr'); 
+;
+const remove =  require('./lib/remove'); 
+;
+const tagName =  require('./lib/tagName'); 
+;
+const findElem =  require('./lib/findElem'); 
+;
+const getSelected =  require('./lib/getSelected'); 
+;
+const getFormAttr =  require('./lib/getFormAttr'); 
+;
+const getSelectedCount =  require('./lib/getSelectedCount'); 
+;
+const getSelectedText =  require('./lib/getSelectedText'); 
+;
+const setSelected =  require('./lib/setSelected'); 
+;
+const toggleDisplay =  require('./lib/toggleDisplay'); 
+;
+const getParent =  require('./lib/getParent'); 
+;
+const insertHtml =  require('./lib/insertHtml'); 
+;
+const index =  require('./lib/index'); 
+;
+const isDomNull =  require('./lib/isDomNull'); 
+;
+const getChildPosition =  require('./lib/getChildPosition'); 
+;
+const domView =  require('./lib/domView'); 
+;
+const eventListener =  require('../../core/dom/eventListener'); 
+;
+const fade =  require('./lib/fade'); 
+;
+const getScrollPositon =  require('./lib/getScrollPositon'); 
+;
+const getElementOffSet =  require('./lib/getElementOffSet'); 
+;
+const getElementDimension =  require('./lib/getElementDimension'); 
+;
 
-import on from './lib/on';
-import off from './lib//off';
-import delegate from './lib//delegate';
+const on =  require('./lib/on'); 
+;
+const off =  require('./lib//off'); 
+;
+const delegate =  require('./lib//delegate'); 
+;
 
-import elementConfig from '../../variable/internalConfig';
+const elementConfig =  require('../../variable/internalConfig'); 
+;
 
 
 /**
@@ -210,4 +245,5 @@ for (const f6 in elementConfig.elemfade) {
 
 }
 
-export default ElementTrigger;
+module.exports=ElementTrigger
+;

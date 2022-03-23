@@ -1,5 +1,7 @@
-import CoreElementInit from '../../../core/coreElementInit';
-import {getTypeof} from 'structkit';
+const CoreElementInit =  require('../../../core/coreElementInit'); 
+;
+const {getTypeof} =  require('structkit'); 
+;
 
 /**
  * Get the index of Element
@@ -38,4 +40,5 @@ function getLength () {
 
 }
 
-export default getLength;
+module.exports=getLength
+;

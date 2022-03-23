@@ -1,5 +1,618 @@
 (function(global){
+var globalConfig = {};
 
+global.globalConfig=globalConfig;
+/**
+ * Check if document is ready
+ * @since 1.0.1
+ * @category Seq
+ * @param {Object} func The first number in an addition.
+ * @example  documentReady(function(){})
+ * @returns {Array|Object} Returns the total.
+ * null
+ */
+function documentReady (func) {
+
+    var root = window;
+
+    var dom_rdy_ctt=0;
+
+    if (dom_rdy_ctt===0) {
+
+        if (root.attachEvent) {
+
+            // DOMContentLoaded
+            root.attachEvent("onload", dom_load_ready);
+            root.attachEvent("onreadystatechange", dom_load_ready);
+
+        } else if (root.addEventListener) {
+
+            root.addEventListener("load", dom_load_ready, false);
+
+        }
+
+    }
+    var fails=false;
+
+    var dom_load_ready =function () {
+
+        if (document.readyState==="complete" && fails === false) {
+
+            func();
+            dom_rdy_ctt+=1;
+            fails=true;
+
+        }
+
+    };
+
+    var set_intr=null;
+
+    set_intr=setInterval(function () {
+
+        if (document.readyState==="complete" && fails === false) {
+
+            dom_rdy_ctt+=1;
+            fails=true;
+            clearInterval(set_intr);
+            func();
+
+        }
+
+    }, 100);
+
+    return null;
+
+}
+
+
+
+/**
+ * Check if HTML is rendered completed
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {function} func The second number in an addition.
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * control(function(){})
+ * // => null
+ */
+function control (func) {
+
+    return documentReady(func);
+
+}
+global.control=control;
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function element () {}
+global.element=element;
+;
+
+/**
+ * Check if object or value
+ *
+ * @since 1.0.1
+ * @category Seq
+ * @param {string} child_prnt The first number in an addition.
+ * @param {Object} de The second number in an addition.
+ * @param {number} cnt The second number in an addition.
+ * @returns {Array|Object} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function parentchild (child_prnt, de, cnt) {
+
+    if (child_prnt===null) {
+
+        return true;
+
+    } else if (child_prnt==="first") {
+
+        if (parseInt(cnt)===0) {
+
+            return true;
+
+        }
+
+    } else if (child_prnt==="last") {
+
+        if (de.length-1===parseInt(cnt)) {
+
+            return true;
+
+        }
+
+        return false;
+
+    } else if (child_prnt==="haschild") {
+
+        if (de[cnt].children.length>0) {
+
+            return true;
+
+        }
+
+    } else if (child_prnt==="hasChildNodes") {
+
+        if (de[cnt].hasChildNodes()) {
+
+            return true;
+
+        }
+
+    } else if (child_prnt==="odd" || child_prnt==="even") {
+
+        var sel={
+            "even": 0,
+            "odd": 1
+        };
+
+        if (cnt%2===sel[child_prnt]) {
+
+            return true;
+
+        }
+
+    } else if (child_prnt==="childNodes") {
+
+        if (de.childNodes.length > 0) {
+
+            return true;
+
+        }
+
+    }
+
+    return false;
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 1.0.1
+ * @category Seq
+ * @param {string} bools The first number in an addition.
+ * @param {string} glb The first number in an addition.
+ * @param {Object} key The second number in an addition.
+ * @param {number} valu The second number in an addition.
+ * @returns {object} sad
+ * @example
+ *
+ * assignElementDistinction("first",element,1)
+ * // => {'as':2}
+ */
+function glgFuncAssign (bools, glb, key, valu) {
+
+    if (_stk.getTypeof(bools)==="array") {
+
+        glb.push(valu[key]);
+
+    } else {
+
+        glb[key]=valu;
+
+    }
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 1.0.1
+ * @category Seq
+ * @param {string} dom The first number in an addition.
+ * @param {Object} assn The second number in an addition.
+ * @param {number} bools The second number in an addition.
+ * @returns {Array|Object} Returns the total.
+ * @example
+ *
+ * assignElementDistinction("first",element,1)
+ * // => {'as':2}
+ */
+function assignElementDistinction (dom, assn, bools) {
+
+    var assn_splt=_stk.ifUndefined(assn, "").split("::");
+
+    var glb=bools;
+
+    if (assn_splt.length===1) {
+
+        for (var td in dom) {
+
+            glgFuncAssign(bools, glb, td, dom);
+
+        }
+
+        return bools;
+
+    } else if (assn_splt.length==2) {
+
+        var spl2=assn_splt[1];
+
+        var fltr=[
+            "first",
+            "haschild",
+            "hasChildNodes",
+            "last",
+            "even",
+            "odd"
+        ];
+        var cnt=0;
+
+        for (var td1 in dom) {
+
+            if (dom.length>cnt) {
+
+                if (_stk.indexOf(fltr, spl2)>=0) {
+
+                    if (parentchild(spl2, dom, td1)) {
+
+                        glgFuncAssign(bools, glb, td1, dom);
+
+                    }
+
+                }
+
+            }
+            var type_pos="";
+            var index_pos="";
+
+            if ((/([\w\-\_]{1,})(\(\d\))/g).test(spl2)) {
+
+                var replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
+
+                    type_pos=g1;
+                    index_pos=g2;
+
+                });
+
+                if (type_pos=="eq") {
+
+                    glb[index_pos]=dom;
+                    glgFuncAssign(bools, glb, index_pos, dom);
+
+                }
+                if (type_pos=="noteq") {
+
+                    if (td1!=index_pos) {
+
+                        glgFuncAssign(bools, glb, td1, dom);
+
+                    }
+
+                }
+
+            }
+
+            cnt++;
+
+        }
+
+        return glb;
+
+    }
+
+    return {};
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category Seq
+ * @param {string} meth The first number in an addition.
+ * @param {Object} domValue The second number in an addition.
+ * @returns {Array|Object} Returns the total.
+ * @example
+ *
+ * getDomAttr("first",element,1)
+ * // => {'as':2}
+ */
+function getDomAttr (meth, domValue) {
+
+    var attr_type=_stk.getTypeof(domValue)==="array"
+        ?domValue
+        :[domValue];
+    var globl={};
+
+    if (_stk.has(meth)) {
+
+        if (_stk.has(meth.getAttributeNode)) {
+
+            _stk.each(attr_type, function (ky, vl) {
+
+                if (meth.getAttributeNode(vl)) {
+
+                    globl[vl]=meth.getAttributeNode(vl).value;
+
+                }
+
+            });
+
+        } else {
+
+            _stk.each(attr_type, function (ky, vl) {
+
+                if (meth.getAttribute) {
+
+                    globl[vl]=meth.getAttribute(vl);
+
+                }
+
+            });
+
+        }
+
+    }
+
+    return globl;
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 1.0.1
+ * @category Seq
+ * @param {string} tar_m_sub The first number in an addition.
+ * @param {Object} ar The second number in an addition.
+ * @param {Object} bool The second number in an addition.
+ * @returns {Array|Object} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function findElement (tar_m_sub, ar, bool) {
+
+    var tar_m_split=tar_m_sub.split("=>");
+    var tar_m=(tar_m_split.length==0
+        ?tar_m_sub
+        :tar_m_split[0]).trim();
+
+    if (bool) {
+
+        var node=_stk.clone(ar);
+
+	   ar.splice(0, ar.length);
+
+    } else {
+
+        var node=[];
+
+        node.push(document);
+
+    }
+
+    var tar=tar_m.split(",");
+
+    for (var ni in node) {
+
+	   for (var ti in tar_m) {
+
+       if ((/\[/g).test(tar[ti])) {
+
+                var fl_m="";
+                var fl_type="where";
+                var fl_va=[];
+                var fl_va_cntnt={};
+                var fl_va_cntnt_all=[];
+                var fl_va_attr_all=[];
+                var replc_str=tar[ti].replace(/([a-zA-Z\-\_]{0,}|\*)\[([\w\s\d\=\_\-\[\]\'\"\;\:]{1,})\]/gm, function (m, m1, m2, m3) {
+
+               var m2_split_count=m2.split(";");
+
+               _stk.each(m2_split_count, function (sck, scv) {
+
+                        var m2_split_cnt=scv.split("=");
+
+                        if (_stk.count(m2_split_cnt)==1) {
+
+                       fl_va_attr_all.push(m2_split_cnt[0].trim());
+
+                   }
+                        if (_stk.count(m2_split_cnt)>=2) {
+
+                       fl_va.push(m2_split_cnt[0].trim());
+                       if (_stk.has(m2_split_cnt[1].trim())) {
+
+                                fl_va_cntnt[m2_split_cnt[0].trim()]=m2_split_cnt[1].trim().replace(/[\'\"]{0,}/g, "");
+
+                            } else {
+
+                                fl_va_cntnt_all.push(m2_split_cnt[1].trim());
+
+                            }
+
+                   }
+
+                    });
+               fl_type="where";
+
+               fl_m=m1;
+
+               return "asd";
+
+           });
+
+                var fl_m_tot=fl_m;
+
+                if (_stk.has(node[ni].getElementsByTagName(fl_m_tot))) {
+
+               var node_elem=node[ni].getElementsByTagName(fl_m_tot);
+
+               for (var i=0, j=node_elem.length; i<j; i++) {
+
+                        if (fl_type=="where") {
+
+                       if (_stk.count(fl_va_cntnt)>0 || _stk.count(fl_va_cntnt_all)>0 || _stk.count(fl_va_attr_all)>0) {
+
+                                var get_attr=getDomAttr(node_elem[i], fl_va);
+
+                                if (_stk.count(fl_va_cntnt_all)>0) {
+
+                               var get_attr_key=_stk.getKey(get_attr);
+
+                               if (_stk.count(get_attr_key)==_stk.count(fl_va_cntnt_all) && _stk.count(_stk.where(get_attr, fl_va_cntnt))>0) {
+
+                                        ar.push(node_elem[i]);
+
+                                    }
+
+                           } else {
+
+                               if (_stk.count(_stk.where(get_attr, fl_va_cntnt))>0) {
+
+                                        ar.push(node_elem[i]);
+
+                                    }
+
+                           }
+                                if (_stk.count(fl_va_attr_all)>0) {
+
+                               for (var kl in fl_va_attr_all) {
+
+                                        var get_attr=getDomAttr(node_elem[i], fl_va_attr_all[kl]);
+
+                                        if (_stk.has(get_attr, fl_va_attr_all[kl])) {
+
+                                       ar.push(node_elem[i]);
+
+                                   }
+
+                                    }
+
+                           }
+
+                            }
+
+                   }
+                        if (fl_type=="all") {
+
+                       ar.push(node_elem[i]);
+
+                   }
+
+                    }
+
+           }
+
+            } else if ((/#/g).test(tar[ti])) {
+
+           var replce_dom=tar[ti].toString().replace(/^[#]/g, "");
+           var idd_m=document.getElementById(replce_dom);
+
+           if (_stk.has(idd_m)) {
+
+                    ar.push(idd_m);
+
+                }
+
+       } else if ((/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g).test(tar[ti])) {
+
+                var s_node =document;
+                var match_dom=tar[ti].toString().match(/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g, "");
+
+                if (match_dom.length==0) {
+
+               return false;
+
+           }
+
+                var main_class = match_dom[0].split(".");
+
+                if ((/\w/g).test(main_class[0])) {
+
+               cls_name=main_class[1];
+               cls_tag=main_class[0];
+
+           } else {
+
+               cls_name=main_class[1];
+               cls_tag="*";
+
+           }
+
+                if (s_node.getElementsByTagName(cls_tag)!=null && s_node.getElementsByTagName(cls_tag)!=undefined) {
+
+               var els = s_node.getElementsByTagName(cls_tag);
+
+               for (var i=0, j=els.length; i<j; i++) {
+
+                        var class_name_string = els[i].className;
+
+                        if (_stk.getTypeof(class_name_string) == "object") {
+
+                            // SVG classs interpreter
+                       if (_stk.has(class_name_string, "animVal")) {
+
+                                class_name_string = class_name_string.animVal;
+
+                            }
+
+                   }
+                        var r = new RegExp("(?:^| )(" + cls_name + ")(?: |$)"),
+			 m = (""+class_name_string).match(r);
+			 var var_return = !!m;
+
+			  if (var_return) {
+
+      ar.push(els[i]);
+
+  }
+
+                    }
+
+           }
+
+            } else {
+
+                if (_stk.has(node[ni].getElementsByTagName(tar[ti]))) {
+
+               var els = node[ni].getElementsByTagName(tar[ti]);
+
+               for (var i1=0, j1=els.length; i1<j1; i1++) {
+
+                        ar.push(els[i1]);
+
+                    }
+
+           }
+
+            }
+
+   }
+
+    }
+
+    _stk.each(tar_m_split, function (cek, cev) {
+
+        if (cek>0) {
+
+            findElement(cev, ar, bool);
+
+        }
+
+    });
+
+}
 
 function CoreElementInit (dom) {
 
@@ -90,6 +703,76 @@ function getElementExistAttr (res) {
 
 }
 
+/**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object} dl The second number in an addition.
+ * @param {number} bol The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function attr (dl, bol) {
+
+    var core = new CoreElementInit(this);
+
+    var cnt=0;
+	var globl={},globl_all=[];
+	var var_bol=bol||false;
+
+	var is_where_attr = _stk.has(dl);
+	
+	var	attr_type=((_stk.getTypeof(dl)=="array")?dl:[dl]);
+
+	var typeofs = _stk.getTypeof(dl) == "json"?false:true;
+	
+	core.each(function(meth,td){
+
+			if(is_where_attr){
+
+				if(typeofs){
+					var get_attr=getDomAttr(meth,attr_type);
+					if( var_bol==true){
+					
+					if(_stk.count(get_attr)>0 ){
+						globl[cnt]={};
+						globl[cnt]=get_attr;		
+								cnt++;
+					}
+						}else{
+						globl[cnt]={};
+						globl[cnt]=get_attr;		
+								cnt++;
+
+						}
+				}else{
+					for(var v in dl){
+						var crte_elem=document.createAttribute(v);	
+							crte_elem.value = dl[v];
+
+					if(meth.setAttribute)
+						meth.setAttribute(v,dl[v]);	
+					else
+						meth.setAttributeNode(crte_elem);
+					}
+				}		
+			}else{
+				globl_all.push(getElementExistAttr(meth));
+			}
+		});	
+			if( is_where_attr==true){
+				return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
+			}
+			else{
+				return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
+			}	
+
+}
+
 function domGetCSS (ele, prop) {
 
     this.loopstyle=function (dom, style, intt) {
@@ -133,7 +816,20 @@ function domGetCSS (ele, prop) {
 
 }
 
-function domCSS (id, d) {
+/**
+ * Css core engine
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {object} id The second number in an addition.
+ * @param {object} dList The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").findElem("div")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function domCSS (id, dList) {
 
     var elem_str_class="";
     var get_attr=_stk.has(getDomAttr(id, ['style']).style)
@@ -147,14 +843,14 @@ function domCSS (id, d) {
 
         if (_stk.count(elem_d)>0 && _stk.has(spv)) {
 
-            if (!_stk.has(d, elem_d[0]) && _stk.has(elem_d[1])) {
+            if (!_stk.has(dList, elem_d[0]) && _stk.has(elem_d[1])) {
 
                 var ele_key=elem_d[0].replace(/\s/, "");
                 var ele_val=elem_d[1].replace(/\s/, "");
 
-                if (!_stk.has(d[ele_key])) {
+                if (!_stk.has(dList[ele_key])) {
 
-                    d[ele_key]=ele_val;
+                    dList[ele_key]=ele_val;
 
                 }
 
@@ -164,22 +860,27 @@ function domCSS (id, d) {
 
     });
 
-    for (var v in d) {
+    for (var vK in dList) {
 
-        elem_str_class+=v+":"+d[v]+";";
-        if (_stk.has(id)) {
+        if (_stk.has(dList, vK)) {
 
-            try {
+            elem_str_class+=vK+":"+dList[vK]+";";
 
-                if (_stk.has(id.style.setAttribute)) {
+            if (_stk.has(id)) {
 
-                    id.style.setAttribute(v, d[v]);
+                try {
+
+                    if (_stk.has(id.style.setAttribute)) {
+
+                        id.style.setAttribute(vK, dList[vK]);
+
+                    }
+
+                } catch (err) {
+
+                    console.log(err);
 
                 }
-
-            } catch (e) {
-
-                console.log(e);
 
             }
 
@@ -199,589 +900,13 @@ function domCSS (id, d) {
 
             }
 
-        } catch (e) {
+        } catch (err) {
 
-            console.log(e);
+            console.log(err);
 
         }
 
     }
-
-}
-
-function domSelectOption (main, bol, type) {
-
-    var opt;
-    var sel_opt='';
-    var sel_opt_ar=[];
-    var opt_cnt=0;
-    var select_count=0;
-    var booln=bol||false;
-
-    main.each(function (td, meth) {
-
-        if (_stk.has(meth[td])) {
-
-            opt=meth[td].options;
-            for (var i=0; i<opt.length; i++) {
-
-                if (opt[i].selected==true) {
-
-                    if ((/\b(value)\b/g).test(type)) {
-
-                        sel_opt=opt[i].value;
-                        sel_opt_ar.push(opt[i].value);
-
-                    }
-                    if ((/\b(text)\b/g).test(type)) {
-
-                        sel_opt=opt[i].text;
-                        sel_opt_ar.push(opt[i].text);
-
-                    }
-                    if ((/\b(count)\b/g).test(type)) {
-
-                        select_count=i;
-
-                    }
-                    opt_cnt++;
-
-                }
-
-            }
-
-        }
-
-    });
-    if ((/(value|text)/g).test(type)) {
-
-        if (booln==false) {
-
-            return opt_cnt>1
-                ?sel_opt_ar
-                :sel_opt;
-
-        }
-
-        return sel_opt_ar;
-
-    }
-
-    return select_count;
-
-}
-
-function formGetValues (self) {
-
-    var list_elem = [
-        "input",
-        "select",
-        "textarea"
-    ];
-    var ret_value = [];
-
-    self.each(function (html_form, td) {
-
-        for (var key in list_elem) {
-
-            if (list_elem[key] == "select") {
-
-                dom(html_form).findElem(list_elem[key])
-                    .each(function (k, v) {
-
-                        var get_attr = dom(k).attr();
-
-                        get_attr.value=dom(k).val();
-                        get_attr.type="select";
-                        ret_value =_stk.arrayConcat(ret_value, get_attr);
-
-                    });
-
-            } else {
-
-                ret_value =_stk.arrayConcat(ret_value, dom(html_form).findElem(list_elem[key])
-                    .attr());
-
-            }
-
-        }
-
-    });
-
-    return ret_value;
-
-}
-
-function domIOtype (type, dom, htmll) {
-
-    var main_dom=null;
-
-    if ((/\b(val)\b/g).test(type)) {
-
-        var alt_val=this.get_attr(dom, "ps_alt_value");
-
-        if (_stk.has(htmll)) {
-
-            dom.value=htmll;
-
-        }
-        if (_stk.has(alt_val, "ps_alt_value") && dom.value.trim().length==0) {
-
-            return alt_val.ps_alt_value;
-
-        }
-
-        return dom.value;
-
-    }
-    if ((/\b(html)\b/g).test(type)) {
-
-        if (_stk.has(htmll)) {
-
-            dom.innerHTML=htmll;
-
-        }
-
-        return dom.innerHTML;
-
-    }
-    if ((/\b(text)\b/g).test(type)) {
-
-        if (_stk.has(htmll)) {
-
-            !_stk.has(dom.innerText)
-                ?dom.textContent
-                :dom.innerText=htmll;
-
-        }
-
-        return !_stk.has(dom.innerText)
-            ?dom.textContent
-            :dom.innerText;
-
-    } if ((/\b(outerhtml)\b/g).test(type)) {
-
-        if (_stk.has(htmll)) {
-
-            dom.outerHTML=htmll;
-
-        }
-
-        return dom.outerHTML;
-
-    }
-
-}
-
-/**
- * Search Sub element
- *
- * @since 2.0.1
- * @category DOM
- * @param {function} meth The second number in an addition.
- * @param {function} fade The second number in an addition.
- * @returns {Class} Returns the total.
- * @example
- *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function fadefun (meth, fade) {
-
-    domCSS(meth, {"opacity": fade/100});
-
-}
-
-/**
- * Search Sub element
- *
- * @since 2.0.1
- * @category DOM
- * @param {function} meth The second number in an addition.
- * @param {function} typ_s The second number in an addition.
- * @param {function} intrvl_s The second number in an addition.
- * @param {function} func The second number in an addition.
- * @returns {Class} Returns the total.
- * @example
- *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function initFadeElement (meth, typ_s, intrvl_s, func) {
-
-    var ot={"fadein": 100,
-        "fadeout": 0,
-        "fadeto": 100};
-    var timetofade={"fadein": "ot-20",
-        "fadeout": "ot+20",
-        "fadeto": "100"};
-    var timetoequal={"fadein": "ot<10",
-        "fadeout": "ot>90",
-        "fadeto": "ot==100"};
-
-    if ((/(fadeout)/g).test(typ_s)) {
-
-        domCSS(meth, {"display": ""});
-
-    }
-    if ((/(fadeto)/g).test(typ_s)) {
-
-        domCSS(meth, {"display": ""});
-        fadefun(meth, intrvl_s.time/10);
-        if (_stk.has(func) && intrvl_s.time/10===1) {
-
-            func();
-
-        }
-
-    } else {
-
-        var intval=setInterval(function () {
-
-            var func_check=new Function("ot", "return "+timetoequal[typ_s]);
-
-            if (func_check(ot[typ_s])) {
-
-                clearInterval(intval);
-
-                if ((/(fadein)/g).test(typ_s)) {
-
-                    domCSS(meth, {"display": "none"});
-                    if (_stk.has(func)) {
-
-                        func();
-
-                    }
-
-                }
-
-            }
-
-            if ((/(fadein|fadeout)/g).test(typ_s)) {
-
-                fadefun(meth, ot[typ_s]);
-
-            }
-            var func_ot=new Function("ot", "return "+timetofade[typ_s]);
-
-            ot[typ_s]=func_ot(ot[typ_s]);
-
-        }, intrvl_s.time);
-
-    }
-
-}
-
-/**
- * Search Sub element
- *
- * @since 2.0.1
- * @category DOM
- * @returns {Class} Returns the total.
- * @example
- *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function getScrollPosition () {
-
-    return {
-        "left": document.documentElement.scrollLeft
-            ?document.documentElement.scrollLeft
-            :document.body.scrollLeft,
-        "top": document.documentElement.scrollTop
-            ?document.documentElement.scrollTop
-            :document.body.scrollTop
-    };
-
-}
-
-/**
- * Search Sub element
- *
- * @since 2.0.1
- * @category DOM
- * @param {object} _el The second number in an addition.
- * @returns {Class} Returns the total.
- * @example
- *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function domOffset (_el) {
-
-    var gleft = 0,
-        gtop = 0,
-        rect = {};
-    var target = _el,
-        target_height = target.offsetHeight,
-        target_width = target.offsetWidth;
-
-    var lcwps = function (_parent) {
-
-        if (_parent===false) {
-
-            gleft += _parent.offsetLeft;
-            gtop += _parent.offsetTop;
-            lcwps(_parent.offsetParent);
-
-        } else {
-
-            rect = {
-
-                "bottom": target.offsetTop + gtop + target_height,
-                "left": target.offsetLeft + gleft,
-                "right": target.offsetLeft + gleft + target_width,
-                "top": target.offsetTop + gtop
-
-            };
-
-        }
-
-    };
-
-    lcwps(target.offsetParent);
-
-    return rect;
-
-}
-
-function domEventIniate (main, spltt, fn, bools) {
-
-    for (var v=0; v<spltt.length; v++) {
-
-        (function (main, m1, m2, m3, func) {
-
-            eventListener(main, m1, m2, m3, func, bools);
-
-        }(main, spltt[v]+'', 'on'+spltt[v]+'', 'none', fn));
-
-    }
-
-    return main;
-
-}
-
-var comptsWindow = window;
-
-if (_stk.has(comptsWindow, "comptsControl") ===false) {
-
-    comptsWindow.comptsControl = {};
-    comptsWindow.comptsControl.delegation_record_list=[];
-
-}
-function elemDelegateEvent (elem, evnt, func) {
-
-    dom(elem).on(evnt, function (e) {
-
-        var self = this;
-
-        if (e.target) {
-
-            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, self);
-
-            if (elem_index===-1) {
-
-                func.call(this, e);
-                comptsWindow.comptsControl.delegation_record_list.push(self);
-
-            }
-
-        }
-
-    });
-
-}
-
-/**
- * Check if object or value
- *
- * @since 1.0.1
- * @category Seq
- * @param {string} child_prnt The first number in an addition.
- * @param {Object} de The second number in an addition.
- * @param {number} cnt The second number in an addition.
- * @returns {Array|Object} Returns the total.
- * @example
- *
- * parentchild("first",element,1)
- * // => {'as':2}
- */
-function parentchild (child_prnt, de, cnt) {
-
-    if (child_prnt===null) {
-
-        return true;
-
-    } else if (child_prnt==="first") {
-
-        if (parseInt(cnt)===0) {
-
-            return true;
-
-        }
-
-    } else if (child_prnt==="last") {
-
-        if (de.length-1===parseInt(cnt)) {
-
-            return true;
-
-        }
-
-        return false;
-
-    } else if (child_prnt==="haschild") {
-
-        if (de[cnt].children.length>0) {
-
-            return true;
-
-        }
-
-    } else if (child_prnt==="hasChildNodes") {
-
-        if (de[cnt].hasChildNodes()) {
-
-            return true;
-
-        }
-
-    } else if (child_prnt==="odd" || child_prnt==="even") {
-
-        var sel={
-            "even": 0,
-            "odd": 1
-        };
-
-        if (cnt%2===sel[child_prnt]) {
-
-            return true;
-
-        }
-
-    } else if (child_prnt==="childNodes") {
-
-        if (de.childNodes.length > 0) {
-
-            return true;
-
-        }
-
-    }
-
-    return false;
-
-}
-
-/**
- * Check if object or value
- *
- * @since 2.0.1
- * @category Seq
- * @param {string} meth The first number in an addition.
- * @param {Object} domValue The second number in an addition.
- * @returns {Array|Object} Returns the total.
- * @example
- *
- * getDomAttr("first",element,1)
- * // => {'as':2}
- */
-function getDomAttr (meth, domValue) {
-
-    var attr_type=_stk.getTypeof(domValue)==="array"
-        ?domValue
-        :[domValue];
-    var globl={};
-
-    if (_stk.has(meth)) {
-
-        if (_stk.has(meth.getAttributeNode)) {
-
-            _stk.each(attr_type, function (ky, vl) {
-
-                if (meth.getAttributeNode(vl)) {
-
-                    globl[vl]=meth.getAttributeNode(vl).value;
-
-                }
-
-            });
-
-        } else {
-
-            _stk.each(attr_type, function (ky, vl) {
-
-                if (meth.getAttribute) {
-
-                    globl[vl]=meth.getAttribute(vl);
-
-                }
-
-            });
-
-        }
-
-    }
-
-    return globl;
-
-}
-
-function attr (d,bol){
-
-    var core = new CoreElementInit(this);
-
-    var cnt=0;
-	var globl={},globl_all=[];
-	var var_bol=bol||false;
-
-	var is_where_attr = _stk.has(d);
-	
-	var	attr_type=((_stk.getTypeof(d)=="array")?d:[d]);
-
-	var typeofs = _stk.getTypeof(d) == "json"?false:true;
-	
-	core.each(function(meth,td){
-
-			if(is_where_attr){
-
-				if(typeofs){
-					var get_attr=getDomAttr(meth,attr_type);
-					if( var_bol==true){
-					
-					if(_stk.count(get_attr)>0 ){
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
-					}
-						}else{
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
-
-						}
-				}else{
-					for(var v in d){
-						var crte_elem=document.createAttribute(v);	
-							crte_elem.value = d[v];
-
-					if(meth.setAttribute)
-						meth.setAttribute(v,d[v]);	
-					else
-						meth.setAttributeNode(crte_elem);
-					}
-				}		
-			}else{
-				globl_all.push(getElementExistAttr(meth));
-			}
-		});	
-			if( is_where_attr==true){
-				return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][d]):globl[0]):globl);
-			}
-			else{
-				return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
-			}	
 
 }
 
@@ -863,6 +988,36 @@ function each (func) {
  *
  * @since 2.0.1
  * @category DOM
+ * @param {Object} doms The second number in an addition.
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("div").index()
+ * // => 1
+ */
+function empty () {
+
+    var core = new CoreElementInit(this);
+
+    core.each(function (elemm) {
+
+        while (elemm.firstChild) {
+
+            elemm.removeChild(elemm.firstChild);
+
+        }
+
+    });
+
+    return this;
+
+}
+
+/**
+ * Get the index of Element
+ *
+ * @since 2.0.1
+ * @category DOM
  * @returns {Object} Returns the total.
  * @example
  *
@@ -879,7 +1034,11 @@ function getLength () {
 
         if (meth !== null) {
 
-            cnt_i+=1;
+            if (_stk.getTypeof(meth) === "object") {
+
+                cnt_i+=1;
+
+            }
 
         }
 
@@ -1061,6 +1220,46 @@ function removeAttr (value) {
 }
 
 /**
+ * Get the index of Element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object} doms The second number in an addition.
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("div").index()
+ * // => 1
+ */
+function remove (doms) {
+
+    var domSelector=_stk.has(doms)===false
+        ?"none"
+        :document.querySelector(doms);
+
+    var core = new CoreElementInit(this);
+
+    core.each(function (elemm) {
+
+        if (domSelector !=="none" ) {
+
+            elemm && elemm.parentNode && elemm.parentNode.removeChild(domSelector);
+
+        }
+        else{
+    
+            
+            elemm && elemm.parentNode && elemm.parentNode.removeChild(elemm);
+
+        }
+
+    });
+
+    return this;
+
+}
+
+/**
  * Get tag name of element
  * @since 2.0.1
  * @category DOM
@@ -1110,6 +1309,68 @@ function findElem (elem) {
 
 }
 
+function domSelectOption (main, bol, type) {
+
+    var opt;
+    var sel_opt='';
+    var sel_opt_ar=[];
+    var opt_cnt=0;
+    var select_count=0;
+    var booln=bol||false;
+
+    main.each(function (td, meth) {
+
+        if (_stk.has(meth[td])) {
+
+            opt=meth[td].options;
+            for (var i=0; i<opt.length; i++) {
+
+                if (opt[i].selected==true) {
+
+                    if ((/\b(value)\b/g).test(type)) {
+
+                        sel_opt=opt[i].value;
+                        sel_opt_ar.push(opt[i].value);
+
+                    }
+                    if ((/\b(text)\b/g).test(type)) {
+
+                        sel_opt=opt[i].text;
+                        sel_opt_ar.push(opt[i].text);
+
+                    }
+                    if ((/\b(count)\b/g).test(type)) {
+
+                        select_count=i;
+
+                    }
+                    opt_cnt++;
+
+                }
+
+            }
+
+        }
+
+    });
+    if ((/(value|text)/g).test(type)) {
+
+        if (booln==false) {
+
+            return opt_cnt>1
+                ?sel_opt_ar
+                :sel_opt;
+
+        }
+
+        return sel_opt_ar;
+
+    }
+
+    return select_count;
+
+}
+
 /**
  * Get not Sub element
  *
@@ -1127,6 +1388,65 @@ function getSelected (bol) {
     var core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "value");
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object|String} element The second number in an addition.
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function dom (element) {
+
+    return domCoreAssign(element);
+
+}
+
+function formGetValues (self) {
+
+    var list_elem = [
+        "input",
+        "select",
+        "textarea"
+    ];
+    var ret_value = [];
+
+    self.each(function (html_form, td) {
+
+        for (var key in list_elem) {
+
+            if (list_elem[key] == "select") {
+
+                dom(html_form).findElem(list_elem[key])
+                    .each(function (k, v) {
+
+                        var get_attr = dom(k).attr();
+
+                        get_attr.value=dom(k).val();
+                        get_attr.type="select";
+                        ret_value =_stk.arrayConcat(ret_value, get_attr);
+
+                    });
+
+            } else {
+
+                ret_value =_stk.arrayConcat(ret_value, dom(html_form).findElem(list_elem[key])
+                    .attr());
+
+            }
+
+        }
+
+    });
+
+    return ret_value;
 
 }
 
@@ -1432,6 +1752,67 @@ function getChildPosition () {
 
 }
 
+function domIOtype (type, dom, htmll) {
+
+    var main_dom=null;
+
+    if ((/\b(val)\b/g).test(type)) {
+
+        var alt_val=this.get_attr(dom, "ps_alt_value");
+
+        if (_stk.has(htmll)) {
+
+            dom.value=htmll;
+
+        }
+        if (_stk.has(alt_val, "ps_alt_value") && dom.value.trim().length==0) {
+
+            return alt_val.ps_alt_value;
+
+        }
+
+        return dom.value;
+
+    }
+    if ((/\b(html)\b/g).test(type)) {
+
+        if (_stk.has(htmll)) {
+
+            dom.innerHTML=htmll;
+
+        }
+
+        return dom.innerHTML;
+
+    }
+    if ((/\b(text)\b/g).test(type)) {
+
+        if (_stk.has(htmll)) {
+
+            !_stk.has(dom.innerText)
+                ?dom.textContent
+                :dom.innerText=htmll;
+
+        }
+
+        return !_stk.has(dom.innerText)
+            ?dom.textContent
+            :dom.innerText;
+
+    } if ((/\b(outerhtml)\b/g).test(type)) {
+
+        if (_stk.has(htmll)) {
+
+            dom.outerHTML=htmll;
+
+        }
+
+        return dom.outerHTML;
+
+    }
+
+}
+
 /**
  * Search Sub element
  *
@@ -1599,6 +1980,105 @@ function actionevent (elems11, ch, ie, mo, func) {
  *
  * @since 2.0.1
  * @category DOM
+ * @param {function} meth The second number in an addition.
+ * @param {function} fade The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").findElem("div")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function fadefun (meth, fade) {
+
+    domCSS(meth, {"opacity": fade/100});
+
+}
+
+/**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {function} meth The second number in an addition.
+ * @param {function} typ_s The second number in an addition.
+ * @param {function} intrvl_s The second number in an addition.
+ * @param {function} func The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").findElem("div")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function initFadeElement (meth, typ_s, intrvl_s, func) {
+
+    var ot={"fadein": 100,
+        "fadeout": 0,
+        "fadeto": 100};
+    var timetofade={"fadein": "ot-20",
+        "fadeout": "ot+20",
+        "fadeto": "100"};
+    var timetoequal={"fadein": "ot<10",
+        "fadeout": "ot>90",
+        "fadeto": "ot==100"};
+
+    if ((/(fadeout)/g).test(typ_s)) {
+
+        domCSS(meth, {"display": ""});
+
+    }
+    if ((/(fadeto)/g).test(typ_s)) {
+
+        domCSS(meth, {"display": ""});
+        fadefun(meth, intrvl_s.time/10);
+        if (_stk.has(func) && intrvl_s.time/10===1) {
+
+            func();
+
+        }
+
+    } else {
+
+        var intval=setInterval(function () {
+
+            var func_check=new Function("ot", "return "+timetoequal[typ_s]);
+
+            if (func_check(ot[typ_s])) {
+
+                clearInterval(intval);
+
+                if ((/(fadein)/g).test(typ_s)) {
+
+                    domCSS(meth, {"display": "none"});
+                    if (_stk.has(func)) {
+
+                        func();
+
+                    }
+
+                }
+
+            }
+
+            if ((/(fadein|fadeout)/g).test(typ_s)) {
+
+                fadefun(meth, ot[typ_s]);
+
+            }
+            var func_ot=new Function("ot", "return "+timetofade[typ_s]);
+
+            ot[typ_s]=func_ot(ot[typ_s]);
+
+        }, intrvl_s.time);
+
+    }
+
+}
+
+/**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
  * @param {function} typ The second number in an addition.
  * @param {function} intrvl The second number in an addition.
  * @param {function} func The second number in an addition.
@@ -1677,6 +2157,30 @@ function fade (typ, intrvl, func) {
 }
 
 /**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").findElem("div")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function getScrollPosition () {
+
+    return {
+        "left": document.documentElement.scrollLeft
+            ?document.documentElement.scrollLeft
+            :document.body.scrollLeft,
+        "top": document.documentElement.scrollTop
+            ?document.documentElement.scrollTop
+            :document.body.scrollTop
+    };
+
+}
+
+/**
  * Get scrolll position
  *
  * @since 2.0.1
@@ -1710,6 +2214,56 @@ function getScrollPositon () {
     return _stk.count(arryElem)===1
         ? arryElem[0]
         : arryElem;
+
+}
+
+/**
+ * Search Sub element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {object} _el The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").findElem("div")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function domOffset (_el) {
+
+    var gleft = 0,
+        gtop = 0,
+        rect = {};
+    var target = _el,
+        target_height = target.offsetHeight,
+        target_width = target.offsetWidth;
+
+    var lcwps = function (_parent) {
+
+        if (_parent===false) {
+
+            gleft += _parent.offsetLeft;
+            gtop += _parent.offsetTop;
+            lcwps(_parent.offsetParent);
+
+        } else {
+
+            rect = {
+
+                "bottom": target.offsetTop + gtop + target_height,
+                "left": target.offsetLeft + gleft,
+                "right": target.offsetLeft + gleft + target_width,
+                "top": target.offsetTop + gtop
+
+            };
+
+        }
+
+    };
+
+    lcwps(target.offsetParent);
+
+    return rect;
 
 }
 
@@ -1784,6 +2338,22 @@ function getElementDimension () {
 
 }
 
+function domEventIniate (main, spltt, fn, bools) {
+
+    for (var v=0; v<spltt.length; v++) {
+
+        (function (main, m1, m2, m3, func) {
+
+            eventListener(main, m1, m2, m3, func, bools);
+
+        }(main, spltt[v]+'', 'on'+spltt[v]+'', 'none', fn));
+
+    }
+
+    return main;
+
+}
+
 /**
  * Get Sub element
  *
@@ -1823,6 +2393,37 @@ function off (event, fn) {
     domEventIniate(this, event.split(","), fn, false);
 
     return this;
+
+}
+
+var comptsWindow = window;
+
+if (_stk.has(comptsWindow, "comptsControl") ===false) {
+
+    comptsWindow.comptsControl = {};
+    comptsWindow.comptsControl.delegation_record_list=[];
+
+}
+function elemDelegateEvent (elem, evnt, func) {
+
+    dom(elem).on(evnt, function (e) {
+
+        var self = this;
+
+        if (e.target) {
+
+            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, self);
+
+            if (elem_index===-1) {
+
+                func.call(this, e);
+                comptsWindow.comptsControl.delegation_record_list.push(self);
+
+            }
+
+        }
+
+    });
 
 }
 
@@ -1980,384 +2581,6 @@ elementConfig.elemfade=[
 ];
 
 /**
- * Check if object or value
- *
- * @since 1.0.1
- * @category Seq
- * @param {string} bools The first number in an addition.
- * @param {string} glb The first number in an addition.
- * @param {Object} key The second number in an addition.
- * @param {number} valu The second number in an addition.
- * @returns {object} sad
- * @example
- *
- * assignElementDistinction("first",element,1)
- * // => {'as':2}
- */
-function glgFuncAssign (bools, glb, key, valu) {
-
-    if (_stk.getTypeof(bools)==="array") {
-
-        glb.push(valu[key]);
-
-    } else {
-
-        glb[key]=valu;
-
-    }
-
-}
-
-/**
- * Check if object or value
- *
- * @since 1.0.1
- * @category Seq
- * @param {string} dom The first number in an addition.
- * @param {Object} assn The second number in an addition.
- * @param {number} bools The second number in an addition.
- * @returns {Array|Object} Returns the total.
- * @example
- *
- * assignElementDistinction("first",element,1)
- * // => {'as':2}
- */
-function assignElementDistinction (dom, assn, bools) {
-
-    var assn_splt=_stk.ifUndefined(assn, "").split("::");
-
-    var glb=bools;
-
-    if (assn_splt.length===1) {
-
-        for (var td in dom) {
-
-            glgFuncAssign(bools, glb, td, dom);
-
-        }
-
-        return bools;
-
-    } else if (assn_splt.length==2) {
-
-        var spl2=assn_splt[1];
-
-        var fltr=[
-            "first",
-            "haschild",
-            "hasChildNodes",
-            "last",
-            "even",
-            "odd"
-        ];
-        var cnt=0;
-
-        for (var td1 in dom) {
-
-            if (dom.length>cnt) {
-
-                if (_stk.indexOf(fltr, spl2)>=0) {
-
-                    if (parentchild(spl2, dom, td1)) {
-
-                        glgFuncAssign(bools, glb, td1, dom);
-
-                    }
-
-                }
-
-            }
-            var type_pos="";
-            var index_pos="";
-
-            if ((/([\w\-\_]{1,})(\(\d\))/g).test(spl2)) {
-
-                var replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
-
-                    type_pos=g1;
-                    index_pos=g2;
-
-                });
-
-                if (type_pos=="eq") {
-
-                    glb[index_pos]=dom;
-                    glgFuncAssign(bools, glb, index_pos, dom);
-
-                }
-                if (type_pos=="noteq") {
-
-                    if (td1!=index_pos) {
-
-                        glgFuncAssign(bools, glb, td1, dom);
-
-                    }
-
-                }
-
-            }
-
-            cnt++;
-
-        }
-
-        return glb;
-
-    }
-
-    return {};
-
-}
-
-/**
- * Check if object or value
- *
- * @since 1.0.1
- * @category Seq
- * @param {string} tar_m_sub The first number in an addition.
- * @param {Object} ar The second number in an addition.
- * @param {Object} bool The second number in an addition.
- * @returns {Array|Object} Returns the total.
- * @example
- *
- * parentchild("first",element,1)
- * // => {'as':2}
- */
-function findElement (tar_m_sub, ar, bool) {
-
-    var tar_m_split=tar_m_sub.split("=>");
-    var tar_m=(tar_m_split.length==0
-        ?tar_m_sub
-        :tar_m_split[0]).trim();
-
-    if (bool) {
-
-        var node=_stk.clone(ar);
-
-	   ar.splice(0, ar.length);
-
-    } else {
-
-        var node=[];
-
-        node.push(document);
-
-    }
-
-    var tar=tar_m.split(",");
-
-    for (var ni in node) {
-
-	   for (var ti in tar_m) {
-
-       if ((/\[/g).test(tar[ti])) {
-
-                var fl_m="";
-                var fl_type="where";
-                var fl_va=[];
-                var fl_va_cntnt={};
-                var fl_va_cntnt_all=[];
-                var fl_va_attr_all=[];
-                var replc_str=tar[ti].replace(/([a-zA-Z\-\_]{0,}|\*)\[([\w\s\d\=\_\-\[\]\'\"\;\:]{1,})\]/gm, function (m, m1, m2, m3) {
-
-               var m2_split_count=m2.split(";");
-
-               _stk.each(m2_split_count, function (sck, scv) {
-
-                        var m2_split_cnt=scv.split("=");
-
-                        if (_stk.count(m2_split_cnt)==1) {
-
-                       fl_va_attr_all.push(m2_split_cnt[0].trim());
-
-                   }
-                        if (_stk.count(m2_split_cnt)>=2) {
-
-                       fl_va.push(m2_split_cnt[0].trim());
-                       if (_stk.has(m2_split_cnt[1].trim())) {
-
-                                fl_va_cntnt[m2_split_cnt[0].trim()]=m2_split_cnt[1].trim().replace(/[\'\"]{0,}/g, "");
-
-                            } else {
-
-                                fl_va_cntnt_all.push(m2_split_cnt[1].trim());
-
-                            }
-
-                   }
-
-                    });
-               fl_type="where";
-
-               fl_m=m1;
-
-               return "asd";
-
-           });
-
-                var fl_m_tot=fl_m;
-
-                if (_stk.has(node[ni].getElementsByTagName(fl_m_tot))) {
-
-               var node_elem=node[ni].getElementsByTagName(fl_m_tot);
-
-               for (var i=0, j=node_elem.length; i<j; i++) {
-
-                        if (fl_type=="where") {
-
-                       if (_stk.count(fl_va_cntnt)>0 || _stk.count(fl_va_cntnt_all)>0 || _stk.count(fl_va_attr_all)>0) {
-
-                                var get_attr=getDomAttr(node_elem[i], fl_va);
-
-                                if (_stk.count(fl_va_cntnt_all)>0) {
-
-                               var get_attr_key=_stk.getKey(get_attr);
-
-                               if (_stk.count(get_attr_key)==_stk.count(fl_va_cntnt_all) && _stk.count(_stk.where(get_attr, fl_va_cntnt))>0) {
-
-                                        ar.push(node_elem[i]);
-
-                                    }
-
-                           } else {
-
-                               if (_stk.count(_stk.where(get_attr, fl_va_cntnt))>0) {
-
-                                        ar.push(node_elem[i]);
-
-                                    }
-
-                           }
-                                if (_stk.count(fl_va_attr_all)>0) {
-
-                               for (var kl in fl_va_attr_all) {
-
-                                        var get_attr=getDomAttr(node_elem[i], fl_va_attr_all[kl]);
-
-                                        if (_stk.has(get_attr, fl_va_attr_all[kl])) {
-
-                                       ar.push(node_elem[i]);
-
-                                   }
-
-                                    }
-
-                           }
-
-                            }
-
-                   }
-                        if (fl_type=="all") {
-
-                       ar.push(node_elem[i]);
-
-                   }
-
-                    }
-
-           }
-
-            } else if ((/#/g).test(tar[ti])) {
-
-           var replce_dom=tar[ti].toString().replace(/^[#]/g, "");
-           var idd_m=document.getElementById(replce_dom);
-
-           if (_stk.has(idd_m)) {
-
-                    ar.push(idd_m);
-
-                }
-
-       } else if ((/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g).test(tar[ti])) {
-
-                var s_node =document;
-                var match_dom=tar[ti].toString().match(/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g, "");
-
-                if (match_dom.length==0) {
-
-               return false;
-
-           }
-
-                var main_class = match_dom[0].split(".");
-
-                if ((/\w/g).test(main_class[0])) {
-
-               cls_name=main_class[1];
-               cls_tag=main_class[0];
-
-           } else {
-
-               cls_name=main_class[1];
-               cls_tag="*";
-
-           }
-
-                if (s_node.getElementsByTagName(cls_tag)!=null && s_node.getElementsByTagName(cls_tag)!=undefined) {
-
-               var els = s_node.getElementsByTagName(cls_tag);
-
-               for (var i=0, j=els.length; i<j; i++) {
-
-                        var class_name_string = els[i].className;
-
-                        if (_stk.getTypeof(class_name_string) == "object") {
-
-                            // SVG classs interpreter
-                       if (_stk.has(class_name_string, "animVal")) {
-
-                                class_name_string = class_name_string.animVal;
-
-                            }
-
-                   }
-                        var r = new RegExp("(?:^| )(" + cls_name + ")(?: |$)"),
-			 m = (""+class_name_string).match(r);
-			 var var_return = !!m;
-
-			  if (var_return) {
-
-      ar.push(els[i]);
-
-  }
-
-                    }
-
-           }
-
-            } else {
-
-                if (_stk.has(node[ni].getElementsByTagName(tar[ti]))) {
-
-               var els = node[ni].getElementsByTagName(tar[ti]);
-
-               for (var i1=0, j1=els.length; i1<j1; i1++) {
-
-                        ar.push(els[i1]);
-
-                    }
-
-           }
-
-            }
-
-   }
-
-    }
-
-    _stk.each(tar_m_split, function (cek, cev) {
-
-        if (cek>0) {
-
-            findElement(cev, ar, bool);
-
-        }
-
-    });
-
-}
-
-/**
  * Class for dom
  *
  * @since 2.0.1
@@ -2381,11 +2604,13 @@ ElementTrigger.prototype.attr = attr;
 ElementTrigger.prototype.css = css;
 ElementTrigger.prototype.fade = fade;
 ElementTrigger.prototype.each = each;
+ElementTrigger.prototype.empty = empty;
 ElementTrigger.prototype.show = show;
 ElementTrigger.prototype.hide = hide;
 ElementTrigger.prototype.getIndexAttr = getIndexAttr;
 ElementTrigger.prototype.getDom = getDom;
 ElementTrigger.prototype.getLength = getLength;
+ElementTrigger.prototype.remove = remove;
 ElementTrigger.prototype.removeAttr = removeAttr;
 ElementTrigger.prototype.tagName = tagName;
 ElementTrigger.prototype.findElem = findElem;
@@ -2526,7 +2751,22 @@ for (var f6 in elementConfig.elemfade) {
 
 }
 
-function PsExtender () {}
+/**
+ * Check if object or value
+ *
+ * @since 1.0.1
+ * @category Seq
+ * @returns {Array|Object} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function PsExtender () {
+
+    // Dead code
+
+}
 
 PsExtender.prototype.extendElement= function (id) {
 
@@ -2596,69 +2836,6 @@ PsExtender.prototype.domQuerySelector= function (idss, ar) {
 
 };
 
-/**
- * Check if document is ready
- * @since 1.0.1
- * @category Seq
- * @param {Object} func The first number in an addition.
- * @example  documentReady(function(){})
- * @returns {Array|Object} Returns the total.
- * null
- */
-function documentReady (func) {
-
-    var root = window;
-
-    var dom_rdy_ctt=0;
-
-    if (dom_rdy_ctt===0) {
-
-        if (root.attachEvent) {
-
-            // DOMContentLoaded
-            root.attachEvent("onload", dom_load_ready);
-            root.attachEvent("onreadystatechange", dom_load_ready);
-
-        } else if (root.addEventListener) {
-
-            root.addEventListener("load", dom_load_ready, false);
-
-        }
-
-    }
-    var fails=false;
-
-    var dom_load_ready =function () {
-
-        if (document.readyState==="complete" && fails === false) {
-
-            func();
-            dom_rdy_ctt+=1;
-            fails=true;
-
-        }
-
-    };
-
-    var set_intr=null;
-
-    set_intr=setInterval(function () {
-
-        if (document.readyState==="complete" && fails === false) {
-
-            dom_rdy_ctt+=1;
-            fails=true;
-            clearInterval(set_intr);
-            func();
-
-        }
-
-    }, 100);
-
-    return null;
-
-}
-
 var domCoreAssign=function (id) {
 
     var doc_set=function (idss) {
@@ -2720,29 +2897,7 @@ var domCoreAssign=function (id) {
 
 };
 
-var globalConfig = {};
 
-window.globalConfig=globalConfig;
-
-/**
- * Check if HTML is rendered completed
- *
- * @since 2.0.1
- * @category DOM
- * @param {function} func The second number in an addition.
- * @returns {Object} Returns the total.
- * @example
- *
- * control(function(){})
- * // => null
- */
-function control (func) {
-
-    return documentReady(func);
-
-}
-
-window.control=control;
 
 /**
  * Check if object or value
@@ -2761,43 +2916,6 @@ function dom (element) {
     return domCoreAssign(element);
 
 }
-
-window.dom=dom;
-
-/**
- * Check if object or value
- *
- * @since 2.0.1
- * @category DOM
- * @returns {Object} Returns the total.
- * @example
- *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function element () {}
-
-window.element=element;
-
-/**
- * Compts JS plugin
- *
- * @since 2.0.1
- * @category DOM
- * @param {String} dom The second number in an addition.
- * @param {String} bascConfig The second number in an addition.
- * @returns {Object} Returns the total.
- * @example
- *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function extension (dom, bascConfig) {
-
-    alert(dom);
-
-}
-
-window.extension=extension;
+global.dom=dom;
 
 })(typeof window !== "undefined" ? window : this);

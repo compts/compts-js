@@ -17,4 +17,5 @@ function extension (dom, bascConfig) {
     alert(dom);
 
 }
-export default extension;
+module.exports=extension
+;
