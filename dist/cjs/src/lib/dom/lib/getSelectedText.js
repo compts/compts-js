@@ -23,5 +23,5 @@ function getSelectedText (bol) {
 
 }
 
-module.exports=getSelectedText
+exports.module=getSelectedText
 ;

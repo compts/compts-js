@@ -36,5 +36,5 @@ function setSelected (val) {
 
 }
 
-module.exports=setSelected
+exports.module=setSelected
 ;

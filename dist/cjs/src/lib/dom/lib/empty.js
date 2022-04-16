@@ -31,5 +31,5 @@ function empty () {
 
 }
 
-module.exports=empty
+exports.module=empty
 ;

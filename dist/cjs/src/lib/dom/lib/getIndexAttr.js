@@ -56,5 +56,5 @@ function getIndexAttr (attr) {
 
 }
 
-module.exports=getIndexAttr
+exports.module=getIndexAttr
 ;

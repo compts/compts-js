@@ -22,5 +22,5 @@ function on (event, fn) {
 
 }
 
-module.exports=on
+exports.module=on
 ;

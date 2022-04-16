@@ -39,5 +39,5 @@ function removeAttr (value) {
 
 }
 
-module.exports=removeAttr
+exports.module=removeAttr
 ;

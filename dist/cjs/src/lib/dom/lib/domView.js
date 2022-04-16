@@ -72,5 +72,5 @@ function domView (dom, htm) {
 
 }
 
-module.exports=domView
+exports.module=domView
 ;

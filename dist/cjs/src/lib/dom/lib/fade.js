@@ -89,5 +89,5 @@ function fade (typ, intrvl, func) {
 
 }
 
-module.exports=fade
+exports.module=fade
 ;

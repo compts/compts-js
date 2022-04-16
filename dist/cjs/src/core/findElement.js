@@ -28,7 +28,6 @@ function findElement (tar_m_sub, ar, bool) {
 
         var node=clone(ar);
 
-
 	   ar.splice(0, ar.length);
 
     } else {
@@ -54,7 +53,6 @@ function findElement (tar_m_sub, ar, bool) {
                 var fl_va_cntnt_all=[];
                 var fl_va_attr_all=[];
                 let replc_str=tar[ti].replace(/([a-zA-Z\-\_]{0,}|\*)\[([\w\s\d\=\_\-\[\]\'\"\;\:]{1,})\]/gm, function (m, m1, m2, m3) {
-
 
                const m2_split_count=m2.split(";");
 
@@ -91,9 +89,7 @@ function findElement (tar_m_sub, ar, bool) {
 
            });
 
-
                 let fl_m_tot=fl_m;
-
 
                 if (has(node[ni].getElementsByTagName(fl_m_tot))) {
 
@@ -144,7 +140,6 @@ function findElement (tar_m_sub, ar, bool) {
 
                             }
 
-
                    }
                         if (fl_type=="all") {
 
@@ -169,10 +164,8 @@ function findElement (tar_m_sub, ar, bool) {
 
        } else if ((/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g).test(tar[ti])) {
 
-
                 let s_node =document;
                 let match_dom=tar[ti].toString().match(/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g, "");
-
 
                 if (match_dom.length==0) {
 
@@ -181,7 +174,6 @@ function findElement (tar_m_sub, ar, bool) {
            }
 
                 let main_class = match_dom[0].split(".");
-
 
                 if ((/\w/g).test(main_class[0])) {
 
@@ -259,5 +251,5 @@ function findElement (tar_m_sub, ar, bool) {
 
 }
 
-module.exports=findElement
+exports.module=findElement
 ;

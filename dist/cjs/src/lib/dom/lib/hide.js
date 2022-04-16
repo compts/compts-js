@@ -32,5 +32,5 @@ function hide () {
 
 }
 
-module.exports=hide
+exports.module=hide
 ;

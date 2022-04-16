@@ -22,7 +22,6 @@ function domIOtype (type, dom, htmll) {
 
         return dom.value;
 
-
     }
     if ((/\b(html)\b/g).test(type)) {
 
@@ -62,5 +61,5 @@ function domIOtype (type, dom, htmll) {
     }
 
 }
-module.exports=domIOtype
+exports.module=domIOtype
 ;

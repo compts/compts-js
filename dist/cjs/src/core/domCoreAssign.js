@@ -58,12 +58,11 @@ const domCoreAssign=function (id) {
 
         return ps_ext.extendElement(domm);
 
-
     };
 
     return doc_set(id);
 
 };
 
-module.exports=domCoreAssign
+exports.module=domCoreAssign
 ;

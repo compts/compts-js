@@ -30,11 +30,9 @@ PsExtender.prototype.extendElement= function (id) {
 
     return ps_ob;
 
-
 };
 
 PsExtender.prototype.tag_value= function (tar, ar) {
-
 
     const tar_sub=tar.split("=>");
 
@@ -48,9 +46,7 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
 PsExtender.prototype.init= function (str, ar) {
 
-
     const ar_s=[];
-
 
     const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
@@ -96,5 +92,5 @@ PsExtender.prototype.domQuerySelector= function (idss, ar) {
 
 };
 
-module.exports=PsExtender
+exports.module=PsExtender
 ;

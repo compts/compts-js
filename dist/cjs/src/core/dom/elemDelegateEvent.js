@@ -34,5 +34,5 @@ function elemDelegateEvent (elem, evnt, func) {
 
 }
 
-module.exports=elemDelegateEvent
+exports.module=elemDelegateEvent
 ;

@@ -39,5 +39,5 @@ function getChildPosition () {
 
 }
 
-module.exports=getChildPosition
+exports.module=getChildPosition
 ;

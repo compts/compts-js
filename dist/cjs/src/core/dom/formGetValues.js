@@ -44,5 +44,5 @@ function formGetValues (self) {
 
 }
 
-module.exports=formGetValues
+exports.module=formGetValues
 ;

@@ -32,5 +32,5 @@ function getParent () {
 
 }
 
-module.exports=getParent
+exports.module=getParent
 ;

@@ -12,7 +12,6 @@ if (has(comptsWindow, "comptsControl") ===false) {
 
 }
 
-
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
     let var_elthis = elthis;
@@ -27,7 +26,6 @@ function eventListener (elthis, c1, c2, c3, func, act_bool) {
 	 return elthis;
 
      }
-
 
      comptsWindow.comptsControl.remove_list_action.push(elemm);
         return elthis;
@@ -59,7 +57,6 @@ function actionevent (elems11, ch, ie, mo, func) {
     } else {
 
         if (elems11.addEventListener) {
-
 
             (function (elems11, ff, mob) {
 
@@ -99,5 +96,5 @@ function actionevent (elems11, ch, ie, mo, func) {
 
 }
 
-module.exports=eventListener
+exports.module=eventListener
 ;

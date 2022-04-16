@@ -26,7 +26,6 @@ function parentchild (child_prnt, de, cnt) {
 
         }
 
-
     } else if (child_prnt==="last") {
 
         if (de.length-1===parseInt(cnt)) {
@@ -45,7 +44,6 @@ function parentchild (child_prnt, de, cnt) {
 
         }
 
-
     } else if (child_prnt==="hasChildNodes") {
 
         if (de[cnt].hasChildNodes()) {
@@ -53,7 +51,6 @@ function parentchild (child_prnt, de, cnt) {
             return true;
 
         }
-
 
     } else if (child_prnt==="odd" || child_prnt==="even") {
 
@@ -67,7 +64,6 @@ function parentchild (child_prnt, de, cnt) {
             return true;
 
         }
-
 
     } else if (child_prnt==="childNodes") {
 
@@ -83,5 +79,5 @@ function parentchild (child_prnt, de, cnt) {
 
 }
 
-module.exports=parentchild
+exports.module=parentchild
 ;

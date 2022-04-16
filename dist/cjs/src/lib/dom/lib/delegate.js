@@ -5,7 +5,6 @@ const dom =  require('../../dom/index');
 const {has} =  require('structkit'); 
 ;
 
-
 const comptsWindow = window;
 
 if (has(comptsWindow, "comptsControl") ===false) {
@@ -31,7 +30,6 @@ if (has(comptsWindow, "comptsControl") ===false) {
  */
 function delegate (evnt, target_element, func) {
 
-
     this.on("click,touchstart", function () {
 
         comptsWindow.comptsControl.delegation_record_list=[];
@@ -48,5 +46,5 @@ function delegate (evnt, target_element, func) {
 
 }
 
-module.exports=delegate
+exports.module=delegate
 ;

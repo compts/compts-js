@@ -32,5 +32,5 @@ function isDomNull () {
 
 }
 
-module.exports=isDomNull
+exports.module=isDomNull
 ;

@@ -2,8 +2,8 @@
   "name": "comptsjs",
   "version": "2.0.1",
   "description": "JS dom support",
-  "main": "dist/node.cjs.js",
-  "module": "dist/node.es.js",
+  "main": "dist/cjs/src/module/index.esm.js",
+  "module": "index.esm.js",
   "scripts": {
     "es_linter": "eslint dist/*.js test/*/*/*.js src/*/*/*.js src/core/*.js   --fix",
     "test_esm": "mocha -r esm test/esm/dom/*.test.js",
@@ -24,9 +24,11 @@
   },
   "homepage": "https://github.com/compts/compts-js#readme",
   "dependencies": {
+    "tsd": "^0.19.1",
     "structkit": "^1.3.1"
   },
   "devDependencies": {
+    "@types/node": "^17.0.22",
     "eslint": "^7.16.0",
     "eslint-config-strongloop": "^2.1.0",
     "eslint-plugin-import": "^2.22.1",

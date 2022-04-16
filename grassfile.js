@@ -7,13 +7,16 @@ const list_iife_js = [
     "src/module/*/index.js"
 ];
 
+const list_esm_file_js = [
+    "src/module/*/index.js"
+];
 
 exports.module=function (grassconf) {
 
     const grass_concat = grassconf.require("grass_concat");
 
     const packpier = grassconf.require("packpier");
-    const {cjsToEsmFileNameOnly, cjsToEsmconvertExportToRequire} = grassconf.require("pirate-pack-js");
+    const {esmFileNameOnlyImportOnly} = grassconf.require("pirate-pack-js");
 
     grassconf.load("cjs", function () {
 
@@ -31,6 +34,28 @@ exports.module=function (grassconf) {
         )
             .pipe(grassconf.dest("dist/cjs", {
                 "lsFileType": "path"
+            }));
+
+    });
+
+    grassconf.load("esm_only", function () {
+
+        return packpier(
+            grassconf.event(),
+            {
+                "input": {
+                    "path": list_esm_file_js
+                },
+                "output": {
+                    // Esm,cjs,iife,
+                    "type": "esm"
+                },
+                "plugin": [esmFileNameOnlyImportOnly()]
+
+            }
+        )
+            .pipe(grass_concat("index.esm.js", {
+                "istruncate": true
             }));
 
     });
@@ -64,8 +89,9 @@ exports.module=function (grassconf) {
 exports.execute=function (lib) {
 
     lib.default=function (strm) {
-
+        
         strm.series("web_iife");
+        strm.series("esm_only");
         strm.series("cjs");
 
     };

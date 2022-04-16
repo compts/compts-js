@@ -97,5 +97,5 @@ function domCSS (id, dList) {
 
 }
 
-module.exports=domCSS
+exports.module=domCSS
 ;

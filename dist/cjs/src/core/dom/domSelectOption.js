@@ -63,5 +63,5 @@ function domSelectOption (main, bol, type) {
 
 }
 
-module.exports=domSelectOption
+exports.module=domSelectOption
 ;

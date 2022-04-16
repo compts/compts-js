@@ -22,5 +22,5 @@ function getFormAttr () {
 
 }
 
-module.exports=getFormAttr
+exports.module=getFormAttr
 ;

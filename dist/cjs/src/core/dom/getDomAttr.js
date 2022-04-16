@@ -42,5 +42,5 @@ function getDomAttr (meth, d) {
 
 }
 
-module.exports=getDomAttr
+exports.module=getDomAttr
 ;

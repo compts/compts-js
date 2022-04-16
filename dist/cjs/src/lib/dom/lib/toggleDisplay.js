@@ -40,5 +40,5 @@ function toggleDisplay (display) {
 
 }
 
-module.exports=toggleDisplay
+exports.module=toggleDisplay
 ;

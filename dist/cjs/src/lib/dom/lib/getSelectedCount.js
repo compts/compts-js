@@ -23,5 +23,5 @@ function getSelectedCount (bol) {
 
 }
 
-module.exports=getSelectedCount
+exports.module=getSelectedCount
 ;

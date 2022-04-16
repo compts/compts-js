@@ -25,5 +25,5 @@ function findElem (elem) {
 
 }
 
-module.exports=findElem
+exports.module=findElem
 ;

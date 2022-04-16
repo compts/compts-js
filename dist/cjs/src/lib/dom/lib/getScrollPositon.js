@@ -5,7 +5,6 @@ const getScrollPosition =  require('../../../core/dom/getScrollPosition');
 const {count} =  require('structkit'); 
 ;
 
-
 /**
  * Get scrolll position
  *
@@ -35,7 +34,6 @@ function getScrollPositon () {
         arryElem.push({"left": elementLeft,
             "top": elementTop});
 
-
     });
 
     return count(arryElem)===1
@@ -44,5 +42,5 @@ function getScrollPositon () {
 
 }
 
-module.exports=getScrollPositon
+exports.module=getScrollPositon
 ;

@@ -61,5 +61,5 @@ function documentReady (func) {
 
 }
 
-module.exports=documentReady
+exports.module=documentReady
 ;

@@ -77,5 +77,5 @@ function attr (dl, bol) {
 
 }
 
-module.exports=attr
+exports.module=attr
 ;

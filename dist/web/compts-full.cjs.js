@@ -2,6 +2,7 @@
 var globalConfig = {};
 
 global.globalConfig=globalConfig;
+
 /**
  * Check if document is ready
  * @since 1.0.1
@@ -65,7 +66,8 @@ function documentReady (func) {
 
 }
 
-
+;
+;
 
 /**
  * Check if HTML is rendered completed
@@ -86,6 +88,7 @@ function control (func) {
 }
 global.control=control;
 
+
 /**
  * Check if object or value
  *
@@ -99,8 +102,9 @@ global.control=control;
  */
 function element () {}
 global.element=element;
-;
 
+;
+;
 /**
  * Check if object or value
  *
@@ -181,6 +185,10 @@ function parentchild (child_prnt, de, cnt) {
     return false;
 
 }
+
+;
+;
+;
 
 /**
  * Check if object or value
@@ -312,6 +320,11 @@ function assignElementDistinction (dom, assn, bools) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Check if object or value
  *
@@ -365,6 +378,9 @@ function getDomAttr (meth, domValue) {
     return globl;
 
 }
+
+;
+;
 
 /**
  * Check if object or value
@@ -614,6 +630,11 @@ function findElement (tar_m_sub, ar, bool) {
 
 }
 
+;
+;
+;
+;
+
 function CoreElementInit (dom) {
 
     this.element = dom.element;
@@ -645,6 +666,10 @@ CoreElementInit.prototype.each = function (func) {
     }
 
 };
+
+;
+;
+;
 
 function getDomAttr (meth, d) {
 
@@ -687,6 +712,8 @@ function getDomAttr (meth, d) {
 
 }
 
+;
+;
 function getElementExistAttr (res) {
 
     var attr_elem={};
@@ -702,6 +729,10 @@ function getElementExistAttr (res) {
     return attr_elem;
 
 }
+
+;
+;
+;
 
 /**
  * Search Sub element
@@ -773,6 +804,11 @@ function attr (dl, bol) {
 
 }
 
+;
+;
+;
+;
+
 function domGetCSS (ele, prop) {
 
     this.loopstyle=function (dom, style, intt) {
@@ -815,6 +851,11 @@ function domGetCSS (ele, prop) {
     return golb_ret;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Css core engine
@@ -910,6 +951,10 @@ function domCSS (id, dList) {
 
 }
 
+;
+;
+;
+
 /**
  * Search Sub element
  *
@@ -963,6 +1008,10 @@ function css (value, countValue) {
 
 }
 
+;
+;
+;
+
 /**
  * Get not Sub element
  *
@@ -982,6 +1031,10 @@ function each (func) {
     core.each(func);
 
 }
+
+;
+;
+;
 
 /**
  * Get the index of Element
@@ -1012,6 +1065,11 @@ function empty () {
     return this;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Get the index of Element
@@ -1048,6 +1106,10 @@ function getLength () {
 
 }
 
+;
+;
+;
+
 /**
  * Search Sub element
  *
@@ -1074,6 +1136,12 @@ function getDom () {
     return id_dm;
 
 }
+
+;
+;
+;
+;
+;
 
 /**
  * Get not Sub element
@@ -1126,6 +1194,11 @@ function getIndexAttr (attr) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Show Element in dom
  *
@@ -1153,6 +1226,11 @@ function show () {
     return this;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Hide Element in dom
@@ -1182,6 +1260,11 @@ function hide () {
     return this;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Remove Dom attribute
@@ -1218,6 +1301,11 @@ function removeAttr (value) {
     });
 
 }
+
+;
+;
+;
+;
 
 /**
  * Get the index of Element
@@ -1259,6 +1347,11 @@ function remove (doms) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Get tag name of element
  * @since 2.0.1
@@ -1287,6 +1380,11 @@ function tagName () {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Search Sub element
  *
@@ -1308,6 +1406,11 @@ function findElem (elem) {
     return this;
 
 }
+
+;
+;
+;
+;
 
 function domSelectOption (main, bol, type) {
 
@@ -1371,6 +1474,9 @@ function domSelectOption (main, bol, type) {
 
 }
 
+;
+;
+
 /**
  * Get not Sub element
  *
@@ -1391,6 +1497,12 @@ function getSelected (bol) {
 
 }
 
+;
+;
+;
+;
+;
+
 /**
  * Check if object or value
  *
@@ -1408,6 +1520,8 @@ function dom (element) {
     return domCoreAssign(element);
 
 }
+;
+;
 
 function formGetValues (self) {
 
@@ -1450,6 +1564,9 @@ function formGetValues (self) {
 
 }
 
+;
+;
+
 /**
  * Search Sub element
  *
@@ -1468,6 +1585,11 @@ function getFormAttr () {
     return formGetValues(core);
 
 }
+
+;
+;
+;
+;
 
 /**
  * Get not Sub element
@@ -1489,6 +1611,11 @@ function getSelectedCount (bol) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Get not Sub element
  *
@@ -1508,6 +1635,10 @@ function getSelectedText (bol) {
     return domSelectOption(core, bol, "text");
 
 }
+
+;
+;
+;
 
 /**
  * Show Element in dom
@@ -1544,6 +1675,12 @@ function setSelected (val) {
 
 }
 
+;
+;
+;
+;
+;
+
 /**
  * Toggle display show and hide
  *
@@ -1579,6 +1716,11 @@ function toggleDisplay (display) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Search Sub element
  *
@@ -1607,6 +1749,11 @@ function getParent () {
         :arry_pl;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Append element using insertAdjacentHTML
@@ -1657,6 +1804,11 @@ function insertHtml (com, htm) {
 
 }
 
+;
+;
+;
+;
+
 /**
  * Get the index of Element
  *
@@ -1684,6 +1836,10 @@ function index (doms) {
     return _stk.indexOf(arry_dm, doms);
 
 }
+
+;
+;
+;
 
 /**
  * Is Dom null
@@ -1715,6 +1871,11 @@ function isDomNull () {
     return bool;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Get Sub element
@@ -1751,6 +1912,11 @@ function getChildPosition () {
     return incrementi-1;
 
 }
+
+;
+;
+;
+;
 
 function domIOtype (type, dom, htmll) {
 
@@ -1812,6 +1978,9 @@ function domIOtype (type, dom, htmll) {
     }
 
 }
+;
+;
+;
 
 /**
  * Search Sub element
@@ -1879,6 +2048,10 @@ function domView (dom, htm) {
     return str;
 
 }
+
+;
+;
+;
 
 // Const remove_list_action= [];
 
@@ -1974,6 +2147,13 @@ function actionevent (elems11, ch, ie, mo, func) {
     }
 
 }
+
+;
+;
+;
+;
+;
+;
 
 /**
  * Search Sub element
@@ -2073,6 +2253,9 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
     }
 
 }
+;
+;
+;
 
 /**
  * Search Sub element
@@ -2156,6 +2339,9 @@ function fade (typ, intrvl, func) {
 
 }
 
+;
+;
+;
 /**
  * Search Sub element
  *
@@ -2179,6 +2365,10 @@ function getScrollPosition () {
     };
 
 }
+
+;
+;
+;
 
 /**
  * Get scrolll position
@@ -2217,6 +2407,9 @@ function getScrollPositon () {
 
 }
 
+;
+;
+;
 /**
  * Search Sub element
  *
@@ -2267,6 +2460,10 @@ function domOffset (_el) {
 
 }
 
+;
+;
+;
+
 /**
  * Is Dom null
  *
@@ -2295,6 +2492,11 @@ function getElementOffSet () {
         :arryElem;
 
 }
+
+;
+;
+;
+;
 
 /**
  * Is Dom null
@@ -2338,6 +2540,11 @@ function getElementDimension () {
 
 }
 
+;
+;
+
+;
+
 function domEventIniate (main, spltt, fn, bools) {
 
     for (var v=0; v<spltt.length; v++) {
@@ -2353,6 +2560,9 @@ function domEventIniate (main, spltt, fn, bools) {
     return main;
 
 }
+
+;
+;
 
 /**
  * Get Sub element
@@ -2375,6 +2585,10 @@ function on (event, fn) {
 
 }
 
+;
+;
+;
+
 /**
  * Get Sub element
  *
@@ -2395,6 +2609,11 @@ function off (event, fn) {
     return this;
 
 }
+
+;
+;
+;
+;
 
 var comptsWindow = window;
 
@@ -2426,6 +2645,11 @@ function elemDelegateEvent (elem, evnt, func) {
     });
 
 }
+
+;
+;
+;
+;
 
 var comptsWindow = window;
 
@@ -2467,6 +2691,9 @@ function delegate (evnt, target_element, func) {
     return this;
 
 }
+
+;
+;
 
 var elementConfig = {};
 
@@ -2579,6 +2806,9 @@ elementConfig.elemfade=[
     'fadeTo',
     'fadeToggle'
 ];
+
+;
+;
 
 /**
  * Class for dom
@@ -2751,6 +2981,9 @@ for (var f6 in elementConfig.elemfade) {
 
 }
 
+;
+;
+
 /**
  * Check if object or value
  *
@@ -2836,6 +3069,9 @@ PsExtender.prototype.domQuerySelector= function (idss, ar) {
 
 };
 
+;
+;
+
 var domCoreAssign=function (id) {
 
     var doc_set=function (idss) {
@@ -2897,7 +3133,8 @@ var domCoreAssign=function (id) {
 
 };
 
-
+;
+;
 
 /**
  * Check if object or value

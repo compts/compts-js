@@ -22,5 +22,5 @@ function getScrollPosition () {
 
 }
 
-module.exports=getScrollPosition
+exports.module=getScrollPosition
 ;

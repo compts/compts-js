@@ -21,5 +21,5 @@ function each (func) {
 
 }
 
-module.exports=each
+exports.module=each
 ;

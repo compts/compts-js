@@ -18,5 +18,5 @@ function dom (element) {
     return domCoreAssign(element);
 
 }
-module.exports=dom
+exports.module=dom
 ;

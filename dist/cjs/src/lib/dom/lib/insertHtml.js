@@ -52,5 +52,5 @@ function insertHtml (com, htm) {
 
 }
 
-module.exports=insertHtml
+exports.module=insertHtml
 ;

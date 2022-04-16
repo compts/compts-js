@@ -28,5 +28,5 @@ function getDom () {
 
 }
 
-module.exports=getDom
+exports.module=getDom
 ;

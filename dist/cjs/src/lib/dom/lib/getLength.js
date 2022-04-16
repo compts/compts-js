@@ -30,9 +30,7 @@ function getLength () {
 
             }
 
-
         }
-
 
     });
 
@@ -40,5 +38,5 @@ function getLength () {
 
 }
 
-module.exports=getLength
+exports.module=getLength
 ;

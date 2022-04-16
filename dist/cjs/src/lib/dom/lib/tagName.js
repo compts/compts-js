@@ -31,5 +31,5 @@ function tagName () {
 
 }
 
-module.exports=tagName
+exports.module=tagName
 ;

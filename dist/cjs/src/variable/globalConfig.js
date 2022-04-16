@@ -1,5 +1,4 @@
 const globalConfig = {};
 
-
-module.exports=globalConfig
+exports.module=globalConfig
 ;

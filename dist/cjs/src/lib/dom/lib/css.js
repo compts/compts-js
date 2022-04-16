@@ -60,5 +60,5 @@ function css (value, countValue) {
 
 }
 
-module.exports=css
+exports.module=css
 ;

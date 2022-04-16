@@ -19,7 +19,6 @@ function domOffset (_el) {
         target_height = target.offsetHeight,
         target_width = target.offsetWidth;
 
-
     const lcwps = function (_parent) {
 
         if (_parent===false) {
@@ -49,5 +48,5 @@ function domOffset (_el) {
 
 }
 
-module.exports=domOffset
+exports.module=domOffset
 ;

@@ -43,5 +43,5 @@ function remove (doms) {
 
 }
 
-module.exports=remove
+exports.module=remove
 ;

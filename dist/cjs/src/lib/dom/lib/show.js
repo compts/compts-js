@@ -31,5 +31,5 @@ function show () {
 
 }
 
-module.exports=show
+exports.module=show
 ;

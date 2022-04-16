@@ -3,7 +3,6 @@ const parentchild =  require('./parentchild');
 const {getTypeof, indexOf, ifUndefined} =  require('structkit'); 
 ;
 
-
 /**
  * Check if object or value
  *
@@ -104,7 +103,6 @@ function assignElementDistinction (dom, assn, bools) {
 
                 });
 
-
                 if (type_pos=="eq") {
 
                     glb[index_pos]=dom;
@@ -131,10 +129,9 @@ function assignElementDistinction (dom, assn, bools) {
 
     }
 
-
     return {};
 
 }
 
-module.exports=assignElementDistinction
+exports.module=assignElementDistinction
 ;

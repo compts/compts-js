@@ -23,5 +23,5 @@ function getSelected (bol) {
 
 }
 
-module.exports=getSelected
+exports.module=getSelected
 ;

@@ -110,5 +110,5 @@ elementConfig.elemfade=[
     'fadeToggle'
 ];
 
-module.exports=elementConfig
+exports.module=elementConfig
 ;

@@ -8,13 +8,11 @@ function CoreElementInit (dom) {
 
 }
 
-
 CoreElementInit.prototype.each = function (func) {
 
     let cnt=0;
     const ele_cnt=this.element;
     const prnt_chld=this.parent_child;
-
 
     const ass_elem=assignElementDistinction(this.element, prnt_chld, {});
 
@@ -35,5 +33,5 @@ CoreElementInit.prototype.each = function (func) {
 
 };
 
-module.exports=CoreElementInit
+exports.module=CoreElementInit
 ;

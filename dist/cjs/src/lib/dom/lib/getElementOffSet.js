@@ -34,5 +34,5 @@ function getElementOffSet () {
 
 }
 
-module.exports=getElementOffSet
+exports.module=getElementOffSet
 ;

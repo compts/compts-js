@@ -3,12 +3,10 @@ const {getTypeof} =  require('structkit');
 
 function domGetCSS (ele, prop) {
 
-
     this.loopstyle=function (dom, style, intt) {
 
         const golb={};
         let golb_st="";
-
 
         if (!window.getComputedStyle) {
 
@@ -25,7 +23,6 @@ function domGetCSS (ele, prop) {
         return golb_st;
 
     };
-
 
     if (getTypeof(prop)==="array") {
 
@@ -47,5 +44,5 @@ function domGetCSS (ele, prop) {
 
 }
 
-module.exports=domGetCSS
+exports.module=domGetCSS
 ;

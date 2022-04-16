@@ -18,5 +18,5 @@ function control (func) {
     return documentReady(func);
 
 }
-module.exports=control
+exports.module=control
 ;

@@ -27,10 +27,9 @@ function index (doms) {
 
     });
 
-
     return indexOf(arry_dm, doms);
 
 }
 
-module.exports=index
+exports.module=index
 ;

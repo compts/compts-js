@@ -71,7 +71,6 @@ const delegate =  require('./lib//delegate');
 const elementConfig =  require('../../variable/internalConfig'); 
 ;
 
-
 /**
  * Class for dom
  *
@@ -124,7 +123,6 @@ ElementTrigger.prototype.domView = domView;
 ElementTrigger.prototype.on = on;
 ElementTrigger.prototype.off = off;
 ElementTrigger.prototype.delegate = delegate;
-
 
 for (const f1 in elementConfig.eventListener) {
 
@@ -190,7 +188,6 @@ for (const f3 in elementConfig.appendhtml) {
 
 }
 
-
 for (const f4 in elementConfig.styletype) {
 
     if (has(elementConfig.styletype[f4])) {
@@ -245,5 +242,5 @@ for (const f6 in elementConfig.elemfade) {
 
 }
 
-module.exports=ElementTrigger
+exports.module=ElementTrigger
 ;

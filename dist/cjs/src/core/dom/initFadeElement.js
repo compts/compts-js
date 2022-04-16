@@ -101,5 +101,5 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
     }
 
 }
-module.exports=initFadeElement
+exports.module=initFadeElement
 ;

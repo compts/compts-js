@@ -45,5 +45,5 @@ function getElementDimension () {
 
 }
 
-module.exports=getElementDimension
+exports.module=getElementDimension
 ;
