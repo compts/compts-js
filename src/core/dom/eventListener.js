@@ -1,8 +1,9 @@
 import {indexOf, has} from 'structkit';
-
+import {getWindowFunction} from '../browserFunction';
 // Const remove_list_action= [];
 
-const comptsWindow = window;
+
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 

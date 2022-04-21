@@ -1,6 +1,5 @@
 
-const eventListener =  require('./eventListener'); 
-;
+const eventListener = require('./eventListener');
 
 function domEventIniate (main, spltt, fn, bools) {
 
@@ -18,5 +17,5 @@ function domEventIniate (main, spltt, fn, bools) {
 
 }
 
-exports.module=domEventIniate
+module.exports=domEventIniate
 ;

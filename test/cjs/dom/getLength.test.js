@@ -1,9 +1,10 @@
 
-import {dom} from "../../../src/module/index.esm";
-import {JSDOM} from "jsdom";
-import assert from 'assert';
+const {dom} = require("../../../dist/cjs/src/module/index.esm");
+const {JSDOM} =require("jsdom");
 
-describe('ESM:getLength method', function () {
+const assert = require('assert');
+
+describe('CJS:getLength method', function () {
 
     const dom1 = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
 

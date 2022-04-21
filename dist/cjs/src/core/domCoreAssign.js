@@ -1,7 +1,6 @@
-const {each, getTypeof, has} =  require('structkit'); 
-;
-const PsExtender =  require('./psExtender'); 
-;
+const {each, getTypeof, has} = require('structkit');
+
+const PsExtender = require('./psExtender');
 
 const domCoreAssign=function (id) {
 
@@ -64,5 +63,5 @@ const domCoreAssign=function (id) {
 
 };
 
-exports.module=domCoreAssign
+module.exports=domCoreAssign
 ;

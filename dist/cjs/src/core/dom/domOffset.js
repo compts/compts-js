@@ -48,5 +48,5 @@ function domOffset (_el) {
 
 }
 
-exports.module=domOffset
+module.exports=domOffset
 ;

@@ -1,5 +1,4 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
  * Is Dom null
@@ -32,5 +31,5 @@ function isDomNull () {
 
 }
 
-exports.module=isDomNull
+module.exports=isDomNull
 ;

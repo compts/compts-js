@@ -19,5 +19,5 @@ function eq (value) {
 
 }
 
-exports.module=eq
+module.exports=eq
 ;

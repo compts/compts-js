@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const findElement =  require('../../../core/findElement'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const findElement = require('../../../core/findElement');
 
 /**
  * Search Sub element
@@ -25,5 +24,5 @@ function findElem (elem) {
 
 }
 
-exports.module=findElem
+module.exports=findElem
 ;

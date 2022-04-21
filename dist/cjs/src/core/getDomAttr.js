@@ -1,5 +1,4 @@
-const {each, getTypeof, has} =  require('structkit'); 
-;
+const {each, getTypeof, has} = require('structkit');
 
 /**
  * Check if object or value
@@ -55,5 +54,5 @@ function getDomAttr (meth, domValue) {
 
 }
 
-exports.module=getDomAttr
+module.exports=getDomAttr
 ;

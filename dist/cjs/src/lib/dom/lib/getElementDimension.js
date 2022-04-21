@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {has, count, first} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {has, count, first} = require('structkit');
 
 /**
  * Is Dom null
@@ -45,5 +44,5 @@ function getElementDimension () {
 
 }
 
-exports.module=getElementDimension
+module.exports=getElementDimension
 ;

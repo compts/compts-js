@@ -1,5 +1,4 @@
-const {has} =  require('structkit'); 
-;
+const {has} = require('structkit');
 
 function domSelectOption (main, bol, type) {
 
@@ -63,5 +62,5 @@ function domSelectOption (main, bol, type) {
 
 }
 
-exports.module=domSelectOption
+module.exports=domSelectOption
 ;

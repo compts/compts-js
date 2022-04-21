@@ -1,12 +1,12 @@
-import control from './control/index.js';
+import {default as control_module} from './control/index';
 
-export const control=control;
 
-import element from './element/index.js';
+import {default as element_module} from './element/index';
 
-export const element=element;
 
-import dom from './dom/index.js';
+import {default as dom_module} from './dom/index';
 
-export const dom=dom;
+export const control=control_module;
+export const element=element_module;
+export const dom=dom_module;
 

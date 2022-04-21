@@ -1,9 +1,10 @@
-const {indexOf, has} =  require('structkit'); 
-;
+const {indexOf, has} = require('structkit');
+
+const {getWindowFunction} = require('../browserFunction');
 
 // Const remove_list_action= [];
 
-const comptsWindow = window;
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 
@@ -96,5 +97,5 @@ function actionevent (elems11, ch, ie, mo, func) {
 
 }
 
-exports.module=eventListener
+module.exports=eventListener
 ;

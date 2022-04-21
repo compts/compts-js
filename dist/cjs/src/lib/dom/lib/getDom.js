@@ -1,5 +1,4 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
  * Search Sub element
@@ -28,5 +27,5 @@ function getDom () {
 
 }
 
-exports.module=getDom
+module.exports=getDom
 ;

@@ -1,14 +1,17 @@
-const list_package_utility_js = ["src/*/*.js",
+const list_package_utility_js = [
+    "src/*.js",
+    "src/*/*.js",
     "src/*/*/*.js",
     "src/*/*/*/*.js"
 ];
 const list_iife_js = [
     "src/variable/globalConfig.js",
-    "src/module/*/index.js"
+    "src/module/*/*.js",
+    //"src/module/*.js"
 ];
 
 const list_esm_file_js = [
-    "src/module/*/index.js"
+    "src/module/index.esm.js"
 ];
 
 exports.module=function (grassconf) {
@@ -78,7 +81,7 @@ exports.module=function (grassconf) {
                 "plugin": []
             }
         )
-            .pipe(grass_concat("dist/web/compts-full.cjs.js", {
+            .pipe(grass_concat("dist/web/compts-full.js", {
                 "istruncate": true
             }));
 
@@ -89,9 +92,9 @@ exports.module=function (grassconf) {
 exports.execute=function (lib) {
 
     lib.default=function (strm) {
-        
+       strm.series("esm_only");
         strm.series("web_iife");
-        strm.series("esm_only");
+
         strm.series("cjs");
 
     };

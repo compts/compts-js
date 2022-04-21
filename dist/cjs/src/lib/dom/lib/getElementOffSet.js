@@ -1,9 +1,8 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domOffset =  require('../../../core/dom/domOffset'); 
-;
-const {count} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domOffset = require('../../../core/dom/domOffset');
+
+const {count} = require('structkit');
 
 /**
  * Is Dom null
@@ -34,5 +33,5 @@ function getElementOffSet () {
 
 }
 
-exports.module=getElementOffSet
+module.exports=getElementOffSet
 ;

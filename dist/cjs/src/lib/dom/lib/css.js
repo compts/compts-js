@@ -1,11 +1,10 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domGetCSS =  require('../../../core/dom/domGetCSS'); 
-;
-const domCSS =  require('../../../core/dom/domCSS'); 
-;
-const {getTypeof, has} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domGetCSS = require('../../../core/dom/domGetCSS');
+
+const domCSS = require('../../../core/dom/domCSS');
+
+const {getTypeof, has} = require('structkit');
 
 /**
  * Search Sub element
@@ -60,5 +59,5 @@ function css (value, countValue) {
 
 }
 
-exports.module=css
+module.exports=css
 ;

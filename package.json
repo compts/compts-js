@@ -8,6 +8,7 @@
   "scripts": {
     "es_linter": "eslint dist/*.js test/*/*/*.js src/*/*/*.js src/core/*.js   --fix",
     "test_esm": "mocha -r esm test/esm/dom/*.test.js",
+    "test_cjs": "mocha test/cjs/dom/*.test.js",
     "test": "echo \"Error: no test specified haha\" && exit 1",
     "pretest": "eslint --ignore-path .gitignore ."
   },

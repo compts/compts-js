@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domCSS =  require('../../../core/dom/domCSS'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domCSS = require('../../../core/dom/domCSS');
 
 /**
  * Hide Element in dom
@@ -32,5 +31,5 @@ function hide () {
 
 }
 
-exports.module=hide
+module.exports=hide
 ;

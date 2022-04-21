@@ -1,5 +1,4 @@
-const domEventIniate =  require('../../../core/dom/domEventIniate'); 
-;
+const domEventIniate = require('../../../core/dom/domEventIniate');
 
 /**
  * Get Sub element
@@ -22,5 +21,5 @@ function off (event, fn) {
 
 }
 
-exports.module=off
+module.exports=off
 ;

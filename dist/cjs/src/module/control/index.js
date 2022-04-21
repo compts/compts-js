@@ -1,5 +1,4 @@
-const documentReady =  require('../../core/documentReady'); 
-;
+const documentReady = require('../../core/documentReady');
 
 /**
  * Check if HTML is rendered completed
@@ -18,5 +17,5 @@ function control (func) {
     return documentReady(func);
 
 }
-exports.module=control
+module.exports=control
 ;

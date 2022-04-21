@@ -1,5 +1,4 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
  * Get not Sub element
@@ -21,5 +20,5 @@ function each (func) {
 
 }
 
-exports.module=each
+module.exports=each
 ;

@@ -1,9 +1,8 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const getDomAttr =  require('../../../core/dom/getDomAttr'); 
-;
-const {getKey, getTypeof, count, where} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const getDomAttr = require('../../../core/dom/getDomAttr');
+
+const {getKey, getTypeof, count, where} = require('structkit');
 
 /**
  * Get not Sub element
@@ -56,5 +55,5 @@ function getIndexAttr (attr) {
 
 }
 
-exports.module=getIndexAttr
+module.exports=getIndexAttr
 ;

@@ -1,11 +1,10 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domGetCSS =  require('../../../core/dom/domGetCSS'); 
-;
-const initFadeElement =  require('../../../core/dom/initFadeElement'); 
-;
-const {has, getTypeof} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domGetCSS = require('../../../core/dom/domGetCSS');
+
+const initFadeElement = require('../../../core/dom/initFadeElement');
+
+const {has, getTypeof} = require('structkit');
 
 /**
  * Search Sub element
@@ -89,5 +88,5 @@ function fade (typ, intrvl, func) {
 
 }
 
-exports.module=fade
+module.exports=fade
 ;

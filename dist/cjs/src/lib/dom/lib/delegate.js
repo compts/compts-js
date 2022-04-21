@@ -1,11 +1,12 @@
-const elemDelegateEvent =  require('../../../core/dom/elemDelegateEvent'); 
-;
-const dom =  require('../../dom/index'); 
-;
-const {has} =  require('structkit'); 
-;
+const elemDelegateEvent = require('../../../core/dom/elemDelegateEvent');
 
-const comptsWindow = window;
+const dom = require('../../dom/index');
+
+const {has} = require('structkit');
+
+const {getWindowFunction} = require('../../../core/browserFunction');
+
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 
@@ -46,5 +47,5 @@ function delegate (evnt, target_element, func) {
 
 }
 
-exports.module=delegate
+module.exports=delegate
 ;

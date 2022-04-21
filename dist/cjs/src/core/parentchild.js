@@ -79,5 +79,5 @@ function parentchild (child_prnt, de, cnt) {
 
 }
 
-exports.module=parentchild
+module.exports=parentchild
 ;

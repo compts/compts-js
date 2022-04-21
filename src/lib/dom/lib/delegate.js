@@ -1,9 +1,9 @@
 import elemDelegateEvent from '../../../core/dom/elemDelegateEvent';
 import dom from '../../dom/index';
 import {has} from 'structkit';
+import {getWindowFunction} from '../../../core/browserFunction';
 
-
-const comptsWindow = window;
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 

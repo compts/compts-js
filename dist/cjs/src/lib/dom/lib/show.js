@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domCSS =  require('../../../core/dom/domCSS'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domCSS = require('../../../core/dom/domCSS');
 
 /**
  * Show Element in dom
@@ -31,5 +30,5 @@ function show () {
 
 }
 
-exports.module=show
+module.exports=show
 ;

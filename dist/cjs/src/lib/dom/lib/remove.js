@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {has} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {has} = require('structkit');
 
 /**
  * Get the index of Element
@@ -43,5 +42,5 @@ function remove (doms) {
 
 }
 
-exports.module=remove
+module.exports=remove
 ;

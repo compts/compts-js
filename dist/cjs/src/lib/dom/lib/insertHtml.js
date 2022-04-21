@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {has} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {has} = require('structkit');
 
 /**
  * Append element using insertAdjacentHTML
@@ -52,5 +51,5 @@ function insertHtml (com, htm) {
 
 }
 
-exports.module=insertHtml
+module.exports=insertHtml
 ;

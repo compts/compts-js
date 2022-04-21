@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domSelectOption =  require('../../../core/dom/domSelectOption'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domSelectOption = require('../../../core/dom/domSelectOption');
 
 /**
  * Get not Sub element
@@ -23,5 +22,5 @@ function getSelectedCount (bol) {
 
 }
 
-exports.module=getSelectedCount
+module.exports=getSelectedCount
 ;

@@ -1,7 +1,6 @@
-const domCSS =  require('./domCSS'); 
-;
-const {has} =  require('structkit'); 
-;
+const domCSS = require('./domCSS');
+
+const {has} = require('structkit');
 
 /**
  * Search Sub element
@@ -101,5 +100,5 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
     }
 
 }
-exports.module=initFadeElement
+module.exports=initFadeElement
 ;

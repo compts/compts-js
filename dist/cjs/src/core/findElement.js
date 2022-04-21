@@ -1,7 +1,6 @@
-const {each, has, count, getKey, where, clone, getTypeof} =  require('structkit'); 
-;
-const getDomAttr =  require('./getDomAttr'); 
-;
+const {each, has, count, getKey, where, clone, getTypeof} = require('structkit');
+
+const getDomAttr = require('./getDomAttr');
 
 /**
  * Check if object or value
@@ -251,5 +250,5 @@ function findElement (tar_m_sub, ar, bool) {
 
 }
 
-exports.module=findElement
+module.exports=findElement
 ;

@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const formGetValues =  require('../../../core/dom/formGetValues'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const formGetValues = require('../../../core/dom/formGetValues');
 
 /**
  * Search Sub element
@@ -22,5 +21,5 @@ function getFormAttr () {
 
 }
 
-exports.module=getFormAttr
+module.exports=getFormAttr
 ;

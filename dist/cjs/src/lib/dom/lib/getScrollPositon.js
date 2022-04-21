@@ -1,9 +1,8 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const getScrollPosition =  require('../../../core/dom/getScrollPosition'); 
-;
-const {count} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const getScrollPosition = require('../../../core/dom/getScrollPosition');
+
+const {count} = require('structkit');
 
 /**
  * Get scrolll position
@@ -42,5 +41,5 @@ function getScrollPositon () {
 
 }
 
-exports.module=getScrollPositon
+module.exports=getScrollPositon
 ;

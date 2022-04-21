@@ -10,7 +10,8 @@ module.exports = {
         "exports": true,
         "it": true,
         "module": true,
-        "require": true
+        "require": true,
+        "window": true
 
     },
     "parserOptions": {

@@ -1,12 +1,4 @@
-import dom from './src/module/dom/index.js';
+import {default as control_module} from './src/module/index.esm.js';
 
-export const dom=dom;
-
-import control from './src/module/control/index.js';
-
-export const control=control;
-
-import element from './src/module/element/index.js';
-
-export const element=element;
+export const control=control_module;
 

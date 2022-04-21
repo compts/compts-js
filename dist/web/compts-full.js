@@ -67,8 +67,6 @@ function documentReady (func) {
 }
 
 ;
-;
-
 /**
  * Check if HTML is rendered completed
  *
@@ -88,8 +86,6 @@ function control (func) {
 }
 global.control=control;
 
-;
-;
 /**
  * Check if object or value
  *
@@ -172,9 +168,6 @@ function parentchild (child_prnt, de, cnt) {
 }
 
 ;
-;
-;
-
 /**
  * Check if object or value
  *
@@ -306,10 +299,6 @@ function assignElementDistinction (dom, assn, bools) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Check if object or value
  *
@@ -365,8 +354,6 @@ function getDomAttr (meth, domValue) {
 }
 
 ;
-;
-
 /**
  * Check if object or value
  *
@@ -616,10 +603,6 @@ function findElement (tar_m_sub, ar, bool) {
 }
 
 ;
-;
-;
-;
-
 function CoreElementInit (dom) {
 
     this.element = dom.element;
@@ -653,9 +636,6 @@ CoreElementInit.prototype.each = function (func) {
 };
 
 ;
-;
-;
-
 function getDomAttr (meth, d) {
 
     var attr_type=_stk.getTypeof(d)=="array"
@@ -698,7 +678,6 @@ function getDomAttr (meth, d) {
 }
 
 ;
-;
 function getElementExistAttr (res) {
 
     var attr_elem={};
@@ -716,9 +695,6 @@ function getElementExistAttr (res) {
 }
 
 ;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -790,10 +766,6 @@ function attr (dl, bol) {
 }
 
 ;
-;
-;
-;
-
 function domGetCSS (ele, prop) {
 
     this.loopstyle=function (dom, style, intt) {
@@ -838,10 +810,6 @@ function domGetCSS (ele, prop) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Css core engine
  *
@@ -937,9 +905,6 @@ function domCSS (id, dList) {
 }
 
 ;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -994,9 +959,6 @@ function css (value, countValue) {
 }
 
 ;
-;
-;
-
 /**
  * Get not Sub element
  *
@@ -1018,9 +980,6 @@ function each (func) {
 }
 
 ;
-;
-;
-
 /**
  * Get the index of Element
  *
@@ -1052,10 +1011,6 @@ function empty () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get the index of Element
  *
@@ -1092,9 +1047,6 @@ function getLength () {
 }
 
 ;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -1123,11 +1075,6 @@ function getDom () {
 }
 
 ;
-;
-;
-;
-;
-
 /**
  * Get not Sub element
  *
@@ -1180,10 +1127,6 @@ function getIndexAttr (attr) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Show Element in dom
  *
@@ -1213,10 +1156,6 @@ function show () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Hide Element in dom
  *
@@ -1247,10 +1186,6 @@ function hide () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Remove Dom attribute
  *
@@ -1288,10 +1223,6 @@ function removeAttr (value) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get the index of Element
  *
@@ -1333,10 +1264,6 @@ function remove (doms) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get tag name of element
  * @since 2.0.1
@@ -1366,10 +1293,6 @@ function tagName () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -1393,10 +1316,6 @@ function findElem (elem) {
 }
 
 ;
-;
-;
-;
-
 function domSelectOption (main, bol, type) {
 
     var opt;
@@ -1460,8 +1379,6 @@ function domSelectOption (main, bol, type) {
 }
 
 ;
-;
-
 /**
  * Get not Sub element
  *
@@ -1483,11 +1400,6 @@ function getSelected (bol) {
 }
 
 ;
-;
-;
-;
-;
-
 /**
  * Check if object or value
  *
@@ -1506,8 +1418,6 @@ function dom (element) {
 
 }
 ;
-;
-
 function formGetValues (self) {
 
     var list_elem = [
@@ -1550,8 +1460,6 @@ function formGetValues (self) {
 }
 
 ;
-;
-
 /**
  * Search Sub element
  *
@@ -1572,10 +1480,6 @@ function getFormAttr () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get not Sub element
  *
@@ -1597,10 +1501,6 @@ function getSelectedCount (bol) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get not Sub element
  *
@@ -1622,9 +1522,6 @@ function getSelectedText (bol) {
 }
 
 ;
-;
-;
-
 /**
  * Show Element in dom
  *
@@ -1661,11 +1558,6 @@ function setSelected (val) {
 }
 
 ;
-;
-;
-;
-;
-
 /**
  * Toggle display show and hide
  *
@@ -1702,10 +1594,6 @@ function toggleDisplay (display) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -1736,10 +1624,6 @@ function getParent () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Append element using insertAdjacentHTML
  *
@@ -1790,10 +1674,6 @@ function insertHtml (com, htm) {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get the index of Element
  *
@@ -1823,9 +1703,6 @@ function index (doms) {
 }
 
 ;
-;
-;
-
 /**
  * Is Dom null
  *
@@ -1858,10 +1735,6 @@ function isDomNull () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Get Sub element
  *
@@ -1899,10 +1772,6 @@ function getChildPosition () {
 }
 
 ;
-;
-;
-;
-
 function domIOtype (type, dom, htmll) {
 
     var main_dom=null;
@@ -1964,9 +1833,6 @@ function domIOtype (type, dom, htmll) {
 
 }
 ;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -2035,12 +1901,23 @@ function domView (dom, htm) {
 }
 
 ;
-;
-;
+var getWindowFunction = function () {
 
+    if (typeof window !== 'undefined') {
+
+        return window
+      
+    } else {
+
+        return {}
+
+      }
+}
+
+;
 // Const remove_list_action= [];
 
-var comptsWindow = window;
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2134,12 +2011,6 @@ function actionevent (elems11, ch, ie, mo, func) {
 }
 
 ;
-;
-;
-;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -2239,9 +2110,6 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
 
 }
 ;
-;
-;
-
 /**
  * Search Sub element
  *
@@ -2325,8 +2193,6 @@ function fade (typ, intrvl, func) {
 }
 
 ;
-;
-;
 /**
  * Search Sub element
  *
@@ -2352,9 +2218,6 @@ function getScrollPosition () {
 }
 
 ;
-;
-;
-
 /**
  * Get scrolll position
  *
@@ -2392,8 +2255,6 @@ function getScrollPositon () {
 
 }
 
-;
-;
 ;
 /**
  * Search Sub element
@@ -2446,9 +2307,6 @@ function domOffset (_el) {
 }
 
 ;
-;
-;
-
 /**
  * Is Dom null
  *
@@ -2479,10 +2337,6 @@ function getElementOffSet () {
 }
 
 ;
-;
-;
-;
-
 /**
  * Is Dom null
  *
@@ -2526,9 +2380,6 @@ function getElementDimension () {
 }
 
 ;
-;
-
-;
 
 function domEventIniate (main, spltt, fn, bools) {
 
@@ -2547,8 +2398,6 @@ function domEventIniate (main, spltt, fn, bools) {
 }
 
 ;
-;
-
 /**
  * Get Sub element
  *
@@ -2571,9 +2420,6 @@ function on (event, fn) {
 }
 
 ;
-;
-;
-
 /**
  * Get Sub element
  *
@@ -2596,11 +2442,7 @@ function off (event, fn) {
 }
 
 ;
-;
-;
-;
-
-var comptsWindow = window;
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2632,11 +2474,7 @@ function elemDelegateEvent (elem, evnt, func) {
 }
 
 ;
-;
-;
-;
-
-var comptsWindow = window;
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2678,8 +2516,6 @@ function delegate (evnt, target_element, func) {
 }
 
 ;
-;
-
 var elementConfig = {};
 
 elementConfig.appendhtml=[
@@ -2793,8 +2629,6 @@ elementConfig.elemfade=[
 ];
 
 ;
-;
-
 /**
  * Class for dom
  *
@@ -2967,8 +2801,6 @@ for (var f6 in elementConfig.elemfade) {
 }
 
 ;
-;
-
 /**
  * Check if object or value
  *
@@ -3055,8 +2887,6 @@ PsExtender.prototype.domQuerySelector= function (idss, ar) {
 };
 
 ;
-;
-
 var domCoreAssign=function (id) {
 
     var doc_set=function (idss) {
@@ -3119,8 +2949,6 @@ var domCoreAssign=function (id) {
 };
 
 ;
-;
-
 /**
  * Check if object or value
  *

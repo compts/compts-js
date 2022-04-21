@@ -1,9 +1,8 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domCSS =  require('../../../core/dom/domCSS'); 
-;
-const domGetCSS =  require('../../../core/dom/domGetCSS'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domCSS = require('../../../core/dom/domCSS');
+
+const domGetCSS = require('../../../core/dom/domGetCSS');
 
 /**
  * Toggle display show and hide
@@ -40,5 +39,5 @@ function toggleDisplay (display) {
 
 }
 
-exports.module=toggleDisplay
+module.exports=toggleDisplay
 ;

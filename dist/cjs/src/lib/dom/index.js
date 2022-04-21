@@ -1,75 +1,72 @@
-const {has} =  require('structkit'); 
-;
-const attr =  require('./lib/attr'); 
-;
-const css =  require('./lib/css'); 
-;
-const each =  require('./lib/each'); 
-;
-const empty =  require('./lib/empty'); 
-;
-const getLength =  require('./lib/getLength'); 
-;
-const getDom =  require('./lib/getDom'); 
-;
-const getIndexAttr =  require('./lib/getIndexAttr'); 
-;
-const show =  require('./lib/show'); 
-;
-const hide =  require('./lib/hide'); 
-;
-const removeAttr =  require('./lib/removeAttr'); 
-;
-const remove =  require('./lib/remove'); 
-;
-const tagName =  require('./lib/tagName'); 
-;
-const findElem =  require('./lib/findElem'); 
-;
-const getSelected =  require('./lib/getSelected'); 
-;
-const getFormAttr =  require('./lib/getFormAttr'); 
-;
-const getSelectedCount =  require('./lib/getSelectedCount'); 
-;
-const getSelectedText =  require('./lib/getSelectedText'); 
-;
-const setSelected =  require('./lib/setSelected'); 
-;
-const toggleDisplay =  require('./lib/toggleDisplay'); 
-;
-const getParent =  require('./lib/getParent'); 
-;
-const insertHtml =  require('./lib/insertHtml'); 
-;
-const index =  require('./lib/index'); 
-;
-const isDomNull =  require('./lib/isDomNull'); 
-;
-const getChildPosition =  require('./lib/getChildPosition'); 
-;
-const domView =  require('./lib/domView'); 
-;
-const eventListener =  require('../../core/dom/eventListener'); 
-;
-const fade =  require('./lib/fade'); 
-;
-const getScrollPositon =  require('./lib/getScrollPositon'); 
-;
-const getElementOffSet =  require('./lib/getElementOffSet'); 
-;
-const getElementDimension =  require('./lib/getElementDimension'); 
-;
+const {has} = require('structkit');
 
-const on =  require('./lib/on'); 
-;
-const off =  require('./lib//off'); 
-;
-const delegate =  require('./lib//delegate'); 
-;
+const attr = require('./lib/attr');
 
-const elementConfig =  require('../../variable/internalConfig'); 
-;
+const css = require('./lib/css');
+
+const each = require('./lib/each');
+
+const empty = require('./lib/empty');
+
+const getLength = require('./lib/getLength');
+
+const getDom = require('./lib/getDom');
+
+const getIndexAttr = require('./lib/getIndexAttr');
+
+const show = require('./lib/show');
+
+const hide = require('./lib/hide');
+
+const removeAttr = require('./lib/removeAttr');
+
+const remove = require('./lib/remove');
+
+const tagName = require('./lib/tagName');
+
+const findElem = require('./lib/findElem');
+
+const getSelected = require('./lib/getSelected');
+
+const getFormAttr = require('./lib/getFormAttr');
+
+const getSelectedCount = require('./lib/getSelectedCount');
+
+const getSelectedText = require('./lib/getSelectedText');
+
+const setSelected = require('./lib/setSelected');
+
+const toggleDisplay = require('./lib/toggleDisplay');
+
+const getParent = require('./lib/getParent');
+
+const insertHtml = require('./lib/insertHtml');
+
+const index = require('./lib/index');
+
+const isDomNull = require('./lib/isDomNull');
+
+const getChildPosition = require('./lib/getChildPosition');
+
+const domView = require('./lib/domView');
+
+const eventListener = require('../../core/dom/eventListener');
+
+const fade = require('./lib/fade');
+
+const getScrollPositon = require('./lib/getScrollPositon');
+
+const getElementOffSet = require('./lib/getElementOffSet');
+
+const getElementDimension = require('./lib/getElementDimension');
+
+const on = require('./lib/on');
+
+const off = require('./lib//off');
+
+const delegate = require('./lib//delegate');
+
+const elementConfig = require('../../variable/internalConfig');
 
 /**
  * Class for dom
@@ -242,5 +239,5 @@ for (const f6 in elementConfig.elemfade) {
 
 }
 
-exports.module=ElementTrigger
+module.exports=ElementTrigger
 ;

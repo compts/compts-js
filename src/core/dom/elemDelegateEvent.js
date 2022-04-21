@@ -1,7 +1,8 @@
 import {indexOf, has} from 'structkit';
 import dom from '../../module/dom/index';
+import {getWindowFunction} from '../browserFunction';
 
-const comptsWindow = window;
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 

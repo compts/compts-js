@@ -1,5 +1,4 @@
-const domCoreAssign =  require('../../core/domCoreAssign'); 
-;
+const domCoreAssign = require('../../core/domCoreAssign');
 
 /**
  * Check if object or value
@@ -18,5 +17,5 @@ function dom (element) {
     return domCoreAssign(element);
 
 }
-exports.module=dom
+module.exports=dom
 ;

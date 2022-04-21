@@ -1,10 +1,10 @@
 
-import {dom} from "../../../src/module/index.esm";
-import {JSDOM} from "jsdom";
+const {dom} = require("../../../dist/cjs/src/module/index.esm");
+const {JSDOM} =require("jsdom");
 
-import assert from 'assert';
+const assert = require('assert');
 
-describe('ESM:isDomNull method', function () {
+describe('CJS:isDomNull method', function () {
 
     const dom1 = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
 

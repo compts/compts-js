@@ -1,5 +1,4 @@
-const {each, getTypeof, has} =  require('structkit'); 
-;
+const {each, getTypeof, has} = require('structkit');
 
 function getDomAttr (meth, d) {
 
@@ -42,5 +41,5 @@ function getDomAttr (meth, d) {
 
 }
 
-exports.module=getDomAttr
+module.exports=getDomAttr
 ;

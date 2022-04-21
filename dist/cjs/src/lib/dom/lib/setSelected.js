@@ -1,5 +1,4 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
  * Show Element in dom
@@ -36,5 +35,5 @@ function setSelected (val) {
 
 }
 
-exports.module=setSelected
+module.exports=setSelected
 ;

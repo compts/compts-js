@@ -1,7 +1,6 @@
-const {arrayConcat} =  require('structkit'); 
-;
-const dom =  require('../../module/dom/index'); 
-;
+const {arrayConcat} = require('structkit');
+
+const dom = require('../../module/dom/index');
 
 function formGetValues (self) {
 
@@ -44,5 +43,5 @@ function formGetValues (self) {
 
 }
 
-exports.module=formGetValues
+module.exports=formGetValues
 ;

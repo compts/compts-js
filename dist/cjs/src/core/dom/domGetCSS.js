@@ -1,5 +1,4 @@
-const {getTypeof} =  require('structkit'); 
-;
+const {getTypeof} = require('structkit');
 
 function domGetCSS (ele, prop) {
 
@@ -44,5 +43,5 @@ function domGetCSS (ele, prop) {
 
 }
 
-exports.module=domGetCSS
+module.exports=domGetCSS
 ;

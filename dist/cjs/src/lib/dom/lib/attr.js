@@ -1,11 +1,10 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const getDomAttr =  require('../../../core/dom/getDomAttr'); 
-;
-const getElementExistAttr =  require('../../../core/dom/getElementExistAttr'); 
-;
-const {count, getTypeof, has} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const getDomAttr = require('../../../core/dom/getDomAttr');
+
+const getElementExistAttr = require('../../../core/dom/getElementExistAttr');
+
+const {count, getTypeof, has} = require('structkit');
 
 /**
  * Search Sub element
@@ -77,5 +76,5 @@ function attr (dl, bol) {
 
 }
 
-exports.module=attr
+module.exports=attr
 ;

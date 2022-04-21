@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {count} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {count} = require('structkit');
 
 /**
  * Search Sub element
@@ -32,5 +31,5 @@ function getParent () {
 
 }
 
-exports.module=getParent
+module.exports=getParent
 ;

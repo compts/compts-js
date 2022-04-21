@@ -1,7 +1,6 @@
-const parentchild =  require('./parentchild'); 
-;
-const {getTypeof, indexOf, ifUndefined} =  require('structkit'); 
-;
+const parentchild = require('./parentchild');
+
+const {getTypeof, indexOf, ifUndefined} = require('structkit');
 
 /**
  * Check if object or value
@@ -133,5 +132,5 @@ function assignElementDistinction (dom, assn, bools) {
 
 }
 
-exports.module=assignElementDistinction
+module.exports=assignElementDistinction
 ;

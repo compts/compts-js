@@ -1,11 +1,10 @@
-const {each, has} =  require('structkit'); 
-;
-const assignElementDistinction =  require('./assignElementDistinction'); 
-;
-const findElement =  require('./findElement'); 
-;
-const ElementTrigger =  require('../lib/dom/index'); 
-;
+const {each, has} = require('structkit');
+
+const assignElementDistinction = require('./assignElementDistinction');
+
+const findElement = require('./findElement');
+
+const ElementTrigger = require('../lib/dom/index');
 
 /**
  * Check if object or value
@@ -92,5 +91,5 @@ PsExtender.prototype.domQuerySelector= function (idss, ar) {
 
 };
 
-exports.module=PsExtender
+module.exports=PsExtender
 ;

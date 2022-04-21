@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {has} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {has} = require('structkit');
 
 /**
  * Get Sub element
@@ -39,5 +38,5 @@ function getChildPosition () {
 
 }
 
-exports.module=getChildPosition
+module.exports=getChildPosition
 ;

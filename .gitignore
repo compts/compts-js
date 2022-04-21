@@ -12,3 +12,5 @@ notes
 dist_reference/
 grassfile copy.js
 package-lock.json
+src/module/.DS_Store
+src/.DS_Store

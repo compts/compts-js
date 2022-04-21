@@ -1,9 +1,8 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const domIOtype =  require('../../../core/dom/domIOtype'); 
-;
-const {indexOf, has, getTypeof, count, ifUndefined} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const domIOtype = require('../../../core/dom/domIOtype');
+
+const {indexOf, has, getTypeof, count, ifUndefined} = require('structkit');
 
 /**
  * Search Sub element
@@ -72,5 +71,5 @@ function domView (dom, htm) {
 
 }
 
-exports.module=domView
+module.exports=domView
 ;

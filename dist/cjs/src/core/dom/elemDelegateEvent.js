@@ -1,9 +1,10 @@
-const {indexOf, has} =  require('structkit'); 
-;
-const dom =  require('../../module/dom/index'); 
-;
+const {indexOf, has} = require('structkit');
 
-const comptsWindow = window;
+const dom = require('../../module/dom/index');
+
+const {getWindowFunction} = require('../browserFunction');
+
+const comptsWindow = getWindowFunction();
 
 if (has(comptsWindow, "comptsControl") ===false) {
 
@@ -34,5 +35,5 @@ function elemDelegateEvent (elem, evnt, func) {
 
 }
 
-exports.module=elemDelegateEvent
+module.exports=elemDelegateEvent
 ;

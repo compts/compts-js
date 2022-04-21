@@ -1,5 +1,4 @@
-const assignElementDistinction =  require('./assignElementDistinction'); 
-;
+const assignElementDistinction = require('./assignElementDistinction');
 
 function CoreElementInit (dom) {
 
@@ -33,5 +32,5 @@ CoreElementInit.prototype.each = function (func) {
 
 };
 
-exports.module=CoreElementInit
+module.exports=CoreElementInit
 ;

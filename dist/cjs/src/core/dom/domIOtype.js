@@ -1,5 +1,4 @@
-const {has} =  require('structkit'); 
-;
+const {has} = require('structkit');
 
 function domIOtype (type, dom, htmll) {
 
@@ -61,5 +60,5 @@ function domIOtype (type, dom, htmll) {
     }
 
 }
-exports.module=domIOtype
+module.exports=domIOtype
 ;

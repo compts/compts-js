@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {count} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {count} = require('structkit');
 
 /**
  * Get tag name of element
@@ -31,5 +30,5 @@ function tagName () {
 
 }
 
-exports.module=tagName
+module.exports=tagName
 ;

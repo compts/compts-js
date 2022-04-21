@@ -1,5 +1,4 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
  * Get the index of Element
@@ -31,5 +30,5 @@ function empty () {
 
 }
 
-exports.module=empty
+module.exports=empty
 ;

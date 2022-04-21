@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {indexOf} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {indexOf} = require('structkit');
 
 /**
  * Get the index of Element
@@ -31,5 +30,5 @@ function index (doms) {
 
 }
 
-exports.module=index
+module.exports=index
 ;

@@ -18,5 +18,5 @@ function noteq (value) {
 
 }
 
-exports.module=noteq
+module.exports=noteq
 ;

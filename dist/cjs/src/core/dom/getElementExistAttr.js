@@ -14,5 +14,5 @@ function getElementExistAttr (res) {
 
 }
 
-exports.module=getElementExistAttr
+module.exports=getElementExistAttr
 ;

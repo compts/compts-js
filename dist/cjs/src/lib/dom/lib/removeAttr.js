@@ -1,7 +1,6 @@
-const CoreElementInit =  require('../../../core/coreElementInit'); 
-;
-const {getTypeof, each} =  require('structkit'); 
-;
+const CoreElementInit = require('../../../core/coreElementInit');
+
+const {getTypeof, each} = require('structkit');
 
 /**
  * Remove Dom attribute
@@ -39,5 +38,5 @@ function removeAttr (value) {
 
 }
 
-exports.module=removeAttr
+module.exports=removeAttr
 ;
