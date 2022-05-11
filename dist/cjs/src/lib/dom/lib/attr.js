@@ -7,7 +7,7 @@ const getElementExistAttr = require('../../../core/dom/getElementExistAttr');
 const {count, getTypeof, has} = require('structkit');
 
 /**
- * Search Sub element
+ * Get the element attribute
  *
  * @since 2.0.1
  * @category DOM
@@ -23,56 +23,87 @@ function attr (dl, bol) {
 
     const core = new CoreElementInit(this);
 
-    var cnt=0;
-	var globl={},globl_all=[];
-	var var_bol=bol||false;
+    let cnt=0;
+    const globl={},
+        globl_all=[];
+    const var_bol=bol||false;
 
-	var is_where_attr = has(dl);
-	
-	var	attr_type=((getTypeof(dl)=="array")?dl:[dl]);
+    const is_where_attr = has(dl);
 
-	var typeofs = getTypeof(dl) == "json"?false:true;
-	
-	core.each(function(meth,td){
+    const attr_type=getTypeof(dl)==="array"
+        ?dl
+        :[dl];
 
-			if(is_where_attr){
+    const typeofs = getTypeof(dl) !== "json";
 
-				if(typeofs){
-					var get_attr=getDomAttr(meth,attr_type);
-					if( var_bol==true){
-					
-					if(count(get_attr)>0 ){
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
-					}
-						}else{
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
+    core.each(function (meth) {
 
-						}
-				}else{
-					for(var v in dl){
-						var crte_elem=document.createAttribute(v);	
-							crte_elem.value = dl[v];
+        if (is_where_attr) {
 
-					if(meth.setAttribute)
-						meth.setAttribute(v,dl[v]);	
-					else
-						meth.setAttributeNode(crte_elem);
-					}
-				}		
-			}else{
-				globl_all.push(getElementExistAttr(meth));
-			}
-		});	
-			if( is_where_attr==true){
-				return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
-			}
-			else{
-				return count(globl_all)==0?-1:(count(globl_all)==1)?globl_all[0]:globl_all;
-			}	
+            if (typeofs) {
+
+                const get_attr=getDomAttr(meth, attr_type);
+
+                if (var_bol===true) {
+
+                    if (count(get_attr)>0) {
+
+                        globl[cnt]={};
+                        globl[cnt]=get_attr;
+                        cnt+=1;
+
+                    }
+
+                } else {
+
+                    globl[cnt]={};
+                    globl[cnt]=get_attr;
+                    cnt+=1;
+
+                }
+
+            } else {
+
+                for (const vk in dl) {
+
+                    if (has(dl, vk)) {
+
+                        const crte_elem=document.createAttribute(vk);
+
+                        crte_elem.value = dl[vk];
+
+                        if (meth.setAttribute) {
+
+                            meth.setAttribute(vk, dl[vk]);
+
+                        } else {
+
+                            meth.setAttributeNode(crte_elem);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            globl_all.push(getElementExistAttr(meth));
+
+        }
+
+    });
+
+    if (is_where_attr===true) {
+
+        return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
+
+    }
+         else{
+            return count(globl_all)==0?-1:(count(globl_all)==1)?globl_all[0]:globl_all;
+         }   
 
 }
 

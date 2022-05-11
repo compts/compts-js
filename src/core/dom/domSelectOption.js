@@ -1,8 +1,22 @@
 import {has} from 'structkit';
 
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} main The second number in an addition.
+ * @param {any} bol The second number in an addition.
+ * @param {any} type The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function domSelectOption (main, bol, type) {
 
-    let opt;
+    let opt = null;
     let sel_opt='';
     const sel_opt_ar=[];
     let opt_cnt=0;

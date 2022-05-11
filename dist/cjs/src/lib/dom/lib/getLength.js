@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const {getTypeof} = require('structkit');
 
 /**
- * Get the index of Element
+ * Get count of search element
  *
  * @since 2.0.1
  * @category DOM

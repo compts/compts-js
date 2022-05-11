@@ -7,7 +7,7 @@ const initFadeElement = require('../../../core/dom/initFadeElement');
 const {has, getTypeof} = require('structkit');
 
 /**
- * Search Sub element
+ * Set element fade
  *
  * @since 2.0.1
  * @category DOM

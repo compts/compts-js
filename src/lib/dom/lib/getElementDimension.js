@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import {has, count, first} from 'structkit';
 
 /**
- * Is Dom null
+ * Get the dimension of element
  *
  * @since 2.0.1
  * @category DOM

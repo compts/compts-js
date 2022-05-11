@@ -5,7 +5,7 @@ const getDomAttr = require('../../../core/dom/getDomAttr');
 const {getKey, getTypeof, count, where} = require('structkit');
 
 /**
- * Get not Sub element
+ * Get index attribute
  *
  * @since 2.0.1
  * @category DOM

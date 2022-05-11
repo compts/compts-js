@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import {has} from 'structkit';
 
 /**
- * Get Sub element
+ * Get child position index
  *
  * @since 2.0.1
  * @category DOM

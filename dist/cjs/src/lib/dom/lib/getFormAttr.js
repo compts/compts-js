@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const formGetValues = require('../../../core/dom/formGetValues');
 
 /**
- * Search Sub element
+ * Get the form attribute
  *
  * @since 2.0.1
  * @category DOM

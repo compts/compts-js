@@ -4,7 +4,7 @@ import domCSS from '../../../core/dom/domCSS';
 import {getTypeof, has} from 'structkit';
 
 /**
- * Search Sub element
+ * Get or set css element
  *
  * @since 2.0.1
  * @category DOM

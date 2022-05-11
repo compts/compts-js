@@ -3,7 +3,7 @@ import getDomAttr from '../../../core/dom/getDomAttr';
 import {getKey, getTypeof, count, where} from 'structkit';
 
 /**
- * Get not Sub element
+ * Get index attribute
  *
  * @since 2.0.1
  * @category DOM

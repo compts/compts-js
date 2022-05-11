@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const domSelectOption = require('../../../core/dom/domSelectOption');
 
 /**
- * Get not Sub element
+ * Get the selected option in select element
  *
  * @since 2.0.1
  * @category DOM

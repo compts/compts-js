@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import formGetValues from '../../../core/dom/formGetValues';
 
 /**
- * Search Sub element
+ * Get the form attribute
  *
  * @since 2.0.1
  * @category DOM

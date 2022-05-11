@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const findElement = require('../../../core/findElement');
 
 /**
- * Search Sub element
+ * Search for element in dom
  *
  * @since 2.0.1
  * @category DOM

@@ -2,13 +2,12 @@ const getWindowFunction = function () {
 
     if (typeof window !== 'undefined') {
 
-        return window
-      
-    } else {
+        return window;
 
-        return {}
+    }
 
-      }
+    return {};
+
 }
 
 exports.getWindowFunction=getWindowFunction

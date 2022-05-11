@@ -1,7 +1,7 @@
 import CoreElementInit from '../../../core/coreElementInit';
 
 /**
- * Get the index of Element
+ * Check if the element is empty or not
  *
  * @since 2.0.1
  * @category DOM

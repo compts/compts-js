@@ -1,7 +1,7 @@
 const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
- * Search Sub element
+ * Get element in dom
  *
  * @since 2.0.1
  * @category DOM

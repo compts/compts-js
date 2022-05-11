@@ -1,7 +1,7 @@
 const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
- * Show Element in dom
+ * Set selected value in option
  *
  * @since 2.0.1
  * @category DOM

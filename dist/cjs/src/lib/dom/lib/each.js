@@ -1,7 +1,7 @@
 const CoreElementInit = require('../../../core/coreElementInit');
 
 /**
- * Get not Sub element
+ * For loop for element
  *
  * @since 2.0.1
  * @category DOM

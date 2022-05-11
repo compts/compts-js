@@ -12,20 +12,35 @@ if (has(comptsWindow, "comptsControl") ===false) {
     comptsWindow.comptsControl.delegation_record_list=[];
 
 }
+
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} elem The second number in an addition.
+ * @param {any} evnt The second number in an addition.
+ * @param {any} func The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function elemDelegateEvent (elem, evnt, func) {
 
-    dom(elem).on(evnt, function (e) {
+    dom(elem).on(evnt, function (err) {
 
-        const self = this;
+        const main = this;
 
-        if (e.target) {
+        if (err.target) {
 
-            const elem_index = indexOf(comptsWindow.comptsControl.delegation_record_list, self);
+            const elem_index = indexOf(comptsWindow.comptsControl.delegation_record_list, main);
 
             if (elem_index===-1) {
 
-                func.call(this, e);
-                comptsWindow.comptsControl.delegation_record_list.push(self);
+                func.call(this, err);
+                comptsWindow.comptsControl.delegation_record_list.push(main);
 
             }
 

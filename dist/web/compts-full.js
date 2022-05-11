@@ -636,11 +636,24 @@ CoreElementInit.prototype.each = function (func) {
 };
 
 ;
-function getDomAttr (meth, d) {
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} meth The second number in an addition.
+ * @param {any} dk The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function getDomAttr (meth, dk) {
 
-    var attr_type=_stk.getTypeof(d)=="array"
-        ?d
-        :[d];
+    var attr_type=_stk.getTypeof(dk)==="array"
+        ?dk
+        :[dk];
     var globl={};
 
     if (_stk.has(meth)) {
@@ -678,6 +691,18 @@ function getDomAttr (meth, d) {
 }
 
 ;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} res The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function getElementExistAttr (res) {
 
     var attr_elem={};
@@ -696,7 +721,7 @@ function getElementExistAttr (res) {
 
 ;
 /**
- * Search Sub element
+ * Get the element attribute
  *
  * @since 2.0.1
  * @category DOM
@@ -713,95 +738,152 @@ function attr (dl, bol) {
     var core = new CoreElementInit(this);
 
     var cnt=0;
-	var globl={},globl_all=[];
-	var var_bol=bol||false;
+    var globl={},
+        globl_all=[];
+    var var_bol=bol||false;
 
-	var is_where_attr = _stk.has(dl);
-	
-	var	attr_type=((_stk.getTypeof(dl)=="array")?dl:[dl]);
+    var is_where_attr = _stk.has(dl);
 
-	var typeofs = _stk.getTypeof(dl) == "json"?false:true;
-	
-	core.each(function(meth,td){
+    var attr_type=_stk.getTypeof(dl)==="array"
+        ?dl
+        :[dl];
 
-			if(is_where_attr){
+    var typeofs = _stk.getTypeof(dl) !== "json";
 
-				if(typeofs){
-					var get_attr=getDomAttr(meth,attr_type);
-					if( var_bol==true){
-					
-					if(_stk.count(get_attr)>0 ){
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
-					}
-						}else{
-						globl[cnt]={};
-						globl[cnt]=get_attr;		
-								cnt++;
+    core.each(function (meth) {
 
-						}
-				}else{
-					for(var v in dl){
-						var crte_elem=document.createAttribute(v);	
-							crte_elem.value = dl[v];
+        if (is_where_attr) {
 
-					if(meth.setAttribute)
-						meth.setAttribute(v,dl[v]);	
-					else
-						meth.setAttributeNode(crte_elem);
-					}
-				}		
-			}else{
-				globl_all.push(getElementExistAttr(meth));
-			}
-		});	
-			if( is_where_attr==true){
-				return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
-			}
-			else{
-				return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
-			}	
+            if (typeofs) {
+
+                var get_attr=getDomAttr(meth, attr_type);
+
+                if (var_bol===true) {
+
+                    if (_stk.count(get_attr)>0) {
+
+                        globl[cnt]={};
+                        globl[cnt]=get_attr;
+                        cnt+=1;
+
+                    }
+
+                } else {
+
+                    globl[cnt]={};
+                    globl[cnt]=get_attr;
+                    cnt+=1;
+
+                }
+
+            } else {
+
+                for (var vk in dl) {
+
+                    if (_stk.has(dl, vk)) {
+
+                        var crte_elem=document.createAttribute(vk);
+
+                        crte_elem.value = dl[vk];
+
+                        if (meth.setAttribute) {
+
+                            meth.setAttribute(vk, dl[vk]);
+
+                        } else {
+
+                            meth.setAttributeNode(crte_elem);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        } else {
+
+            globl_all.push(getElementExistAttr(meth));
+
+        }
+
+    });
+
+    if (is_where_attr===true) {
+
+        return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
+
+    }
+         else{
+            return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
+         }   
 
 }
 
 ;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object} dom The second number in an addition.
+ * @param {number} style The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function loopstyle (dom, style) {
+
+    var golb={};
+    var golb_st="";
+
+    if (!window.getComputedStyle) {
+
+        golb[style] = dom.currentStyle[style];
+        golb_st= dom.currentStyle[style];
+
+    } else {
+
+        golb[style] = window.getComputedStyle(dom).getPropertyValue(style);
+        golb_st= window.getComputedStyle(dom).getPropertyValue(style);
+
+    }
+
+    return golb_st;
+
+};
+
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {Object} ele The second number in an addition.
+ * @param {Object} prop The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function domGetCSS (ele, prop) {
 
-    this.loopstyle=function (dom, style, intt) {
-
-        var golb={};
-        var golb_st="";
-
-        if (!window.getComputedStyle) {
-
-            golb[style] = dom.currentStyle[style];
-            golb_st= dom.currentStyle[style];
-
-        } else {
-
-            golb[style] = window.getComputedStyle(dom).getPropertyValue(style);
-            golb_st= window.getComputedStyle(dom).getPropertyValue(style);
-
-        }
-
-        return golb_st;
-
-    };
+    var golb_ret={};
 
     if (_stk.getTypeof(prop)==="array") {
 
-        var golb_ret={};
-
         for (var fn in prop) {
 
-            golb_ret[prop[fn]]=this.loopstyle(ele, prop[fn], "array");
+            golb_ret[prop[fn]]=loopstyle(ele, prop[fn]);
 
         }
 
     } else if (_stk.getTypeof(prop)==="string") {
 
-        golb_ret=this.loopstyle(ele, prop, "str");
+        golb_ret=loopstyle(ele, prop);
 
     }
 
@@ -906,7 +988,7 @@ function domCSS (id, dList) {
 
 ;
 /**
- * Search Sub element
+ * Get or set css element
  *
  * @since 2.0.1
  * @category DOM
@@ -960,7 +1042,7 @@ function css (value, countValue) {
 
 ;
 /**
- * Get not Sub element
+ * For loop for element
  *
  * @since 2.0.1
  * @category DOM
@@ -981,7 +1063,7 @@ function each (func) {
 
 ;
 /**
- * Get the index of Element
+ * Check if the element is empty or not
  *
  * @since 2.0.1
  * @category DOM
@@ -1012,7 +1094,7 @@ function empty () {
 
 ;
 /**
- * Get the index of Element
+ * Get count of search element
  *
  * @since 2.0.1
  * @category DOM
@@ -1048,7 +1130,7 @@ function getLength () {
 
 ;
 /**
- * Search Sub element
+ * Get element in dom
  *
  * @since 2.0.1
  * @category DOM
@@ -1076,7 +1158,7 @@ function getDom () {
 
 ;
 /**
- * Get not Sub element
+ * Get index attribute
  *
  * @since 2.0.1
  * @category DOM
@@ -1224,7 +1306,7 @@ function removeAttr (value) {
 
 ;
 /**
- * Get the index of Element
+ * Remove the specific element
  *
  * @since 2.0.1
  * @category DOM
@@ -1237,23 +1319,25 @@ function removeAttr (value) {
  */
 function remove (doms) {
 
-    var domSelector=_stk.has(doms)===false
-        ?"none"
-        :document.querySelector(doms);
-
     var core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
-        if (domSelector !=="none" ) {
+        if (_stk.has(doms)===false) {
 
-            elemm && elemm.parentNode && elemm.parentNode.removeChild(domSelector);
+            if (elemm && elemm.parentNode) {
 
-        }
-        else{
-    
-            
-            elemm && elemm.parentNode && elemm.parentNode.removeChild(elemm);
+                elemm.parentNode.removeChild(document.querySelector(doms));
+
+            }
+
+        } else {
+
+            if (elemm && elemm.parentNode) {
+
+                elemm.parentNode.removeChild(elemm);
+
+            }
 
         }
 
@@ -1294,7 +1378,7 @@ function tagName () {
 
 ;
 /**
- * Search Sub element
+ * Search for element in dom
  *
  * @since 2.0.1
  * @category DOM
@@ -1316,9 +1400,23 @@ function findElem (elem) {
 }
 
 ;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} main The second number in an addition.
+ * @param {any} bol The second number in an addition.
+ * @param {any} type The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function domSelectOption (main, bol, type) {
 
-    var opt;
+    var opt = null;
     var sel_opt='';
     var sel_opt_ar=[];
     var opt_cnt=0;
@@ -1380,7 +1478,7 @@ function domSelectOption (main, bol, type) {
 
 ;
 /**
- * Get not Sub element
+ * Get the selected option in select element
  *
  * @since 2.0.1
  * @category DOM
@@ -1418,6 +1516,18 @@ function dom (element) {
 
 }
 ;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} self The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function formGetValues (self) {
 
     var list_elem = [
@@ -1461,7 +1571,7 @@ function formGetValues (self) {
 
 ;
 /**
- * Search Sub element
+ * Get the form attribute
  *
  * @since 2.0.1
  * @category DOM
@@ -1481,7 +1591,7 @@ function getFormAttr () {
 
 ;
 /**
- * Get not Sub element
+ * Get selected option in multiple selection
  *
  * @since 2.0.1
  * @category DOM
@@ -1502,7 +1612,7 @@ function getSelectedCount (bol) {
 
 ;
 /**
- * Get not Sub element
+ * Get the selected option in select element it text only
  *
  * @since 2.0.1
  * @category DOM
@@ -1523,7 +1633,7 @@ function getSelectedText (bol) {
 
 ;
 /**
- * Show Element in dom
+ * Set selected value in option
  *
  * @since 2.0.1
  * @category DOM
@@ -1595,7 +1705,7 @@ function toggleDisplay (display) {
 
 ;
 /**
- * Search Sub element
+ * Get the parent element
  *
  * @since 2.0.1
  * @category DOM
@@ -1736,7 +1846,7 @@ function isDomNull () {
 
 ;
 /**
- * Get Sub element
+ * Get child position index
  *
  * @since 2.0.1
  * @category DOM
@@ -1772,9 +1882,21 @@ function getChildPosition () {
 }
 
 ;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} type The second number in an addition.
+ * @param {any} dom The second number in an addition.
+ * @param {any} htmll The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function domIOtype (type, dom, htmll) {
-
-    var main_dom=null;
 
     if ((/\b(val)\b/g).test(type)) {
 
@@ -1830,6 +1952,8 @@ function domIOtype (type, dom, htmll) {
         return dom.outerHTML;
 
     }
+
+    return null;
 
 }
 ;
@@ -1905,13 +2029,12 @@ var getWindowFunction = function () {
 
     if (typeof window !== 'undefined') {
 
-        return window
-      
-    } else {
+        return window;
 
-        return {}
+    }
 
-      }
+    return {};
+
 }
 
 ;
@@ -1926,6 +2049,23 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
 }
 
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} elthis The second number in an addition.
+ * @param {any} c1 The second number in an addition.
+ * @param {any} c2 The second number in an addition.
+ * @param {any} c3 The second number in an addition.
+ * @param {any} func The second number in an addition.
+ * @param {any} act_bool The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
     var var_elthis = elthis;
@@ -1950,6 +2090,22 @@ function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
 }
 
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} elems11 The second number in an addition.
+ * @param {any} ch The second number in an addition.
+ * @param {any} ie The second number in an addition.
+ * @param {any} mo The second number in an addition.
+ * @param {any} func The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function actionevent (elems11, ch, ie, mo, func) {
 
     if (elems11.attachEvent) {
@@ -2111,7 +2267,7 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
 }
 ;
 /**
- * Search Sub element
+ * Set element fade
  *
  * @since 2.0.1
  * @category DOM
@@ -2308,7 +2464,7 @@ function domOffset (_el) {
 
 ;
 /**
- * Is Dom null
+ * Get the offset of element
  *
  * @since 2.0.1
  * @category DOM
@@ -2338,7 +2494,7 @@ function getElementOffSet () {
 
 ;
 /**
- * Is Dom null
+ * Get the dimension of element
  *
  * @since 2.0.1
  * @category DOM
@@ -2381,15 +2537,30 @@ function getElementDimension () {
 
 ;
 
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} main The second number in an addition.
+ * @param {any} spltt The second number in an addition.
+ * @param {any} fn The second number in an addition.
+ * @param {any} bools The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function domEventIniate (main, spltt, fn, bools) {
 
-    for (var v=0; v<spltt.length; v++) {
+    for (var vk=0; vk<spltt.length; vk++) {
 
-        (function (main, m1, m2, m3, func) {
+        (function (main_sub, m1, m2, m3, func) {
 
-            eventListener(main, m1, m2, m3, func, bools);
+            eventListener(main_sub, m1, m2, m3, func, bools);
 
-        }(main, spltt[v]+'', 'on'+spltt[v]+'', 'none', fn));
+        }(main, spltt[vk]+'', 'on'+spltt[vk]+'', 'none', fn));
 
     }
 
@@ -2399,7 +2570,7 @@ function domEventIniate (main, spltt, fn, bools) {
 
 ;
 /**
- * Get Sub element
+ * Set event action is on
  *
  * @since 2.0.1
  * @category DOM
@@ -2450,20 +2621,35 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
     comptsWindow.comptsControl.delegation_record_list=[];
 
 }
+
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} elem The second number in an addition.
+ * @param {any} evnt The second number in an addition.
+ * @param {any} func The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
 function elemDelegateEvent (elem, evnt, func) {
 
-    dom(elem).on(evnt, function (e) {
+    dom(elem).on(evnt, function (err) {
 
-        var self = this;
+        var main = this;
 
-        if (e.target) {
+        if (err.target) {
 
-            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, self);
+            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, main);
 
             if (elem_index===-1) {
 
-                func.call(this, e);
-                comptsWindow.comptsControl.delegation_record_list.push(self);
+                func.call(this, err);
+                comptsWindow.comptsControl.delegation_record_list.push(main);
 
             }
 
@@ -2484,7 +2670,7 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
 }
 
 /**
- * Get not Sub element
+ * Set delegate event action
  *
  * @since 2.0.1
  * @category DOM

@@ -1,6 +1,6 @@
 
 /**
- * Get Sub element
+ * Set the index of children element
  *
  * @since 2.0.1
  * @category DOM

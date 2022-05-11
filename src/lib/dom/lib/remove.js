@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import {has} from 'structkit';
 
 /**
- * Get the index of Element
+ * Remove the specific element
  *
  * @since 2.0.1
  * @category DOM
@@ -15,23 +15,25 @@ import {has} from 'structkit';
  */
 function remove (doms) {
 
-    const domSelector=has(doms)===false
-        ?"none"
-        :document.querySelector(doms);
-
     const core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
-        if (domSelector !=="none" ) {
+        if (has(doms)===false) {
 
-            elemm && elemm.parentNode && elemm.parentNode.removeChild(domSelector);
+            if (elemm && elemm.parentNode) {
 
-        }
-        else{
-    
-            
-            elemm && elemm.parentNode && elemm.parentNode.removeChild(elemm);
+                elemm.parentNode.removeChild(document.querySelector(doms));
+
+            }
+
+        } else {
+
+            if (elemm && elemm.parentNode) {
+
+                elemm.parentNode.removeChild(elemm);
+
+            }
 
         }
 

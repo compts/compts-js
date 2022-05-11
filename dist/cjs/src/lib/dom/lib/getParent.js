@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const {count} = require('structkit');
 
 /**
- * Search Sub element
+ * Get the parent element
  *
  * @since 2.0.1
  * @category DOM

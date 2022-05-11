@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import findElement from '../../../core/findElement';
 
 /**
- * Search Sub element
+ * Search for element in dom
  *
  * @since 2.0.1
  * @category DOM

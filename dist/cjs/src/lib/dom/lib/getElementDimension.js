@@ -3,7 +3,7 @@ const CoreElementInit = require('../../../core/coreElementInit');
 const {has, count, first} = require('structkit');
 
 /**
- * Is Dom null
+ * Get the dimension of element
  *
  * @since 2.0.1
  * @category DOM

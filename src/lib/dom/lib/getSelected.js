@@ -2,7 +2,7 @@ import CoreElementInit from '../../../core/coreElementInit';
 import domSelectOption from '../../../core/dom/domSelectOption';
 
 /**
- * Get not Sub element
+ * Get the selected option in select element
  *
  * @since 2.0.1
  * @category DOM

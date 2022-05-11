@@ -7,7 +7,7 @@ const domCSS = require('../../../core/dom/domCSS');
 const {getTypeof, has} = require('structkit');
 
 /**
- * Search Sub element
+ * Get or set css element
  *
  * @since 2.0.1
  * @category DOM

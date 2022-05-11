@@ -16,7 +16,7 @@ if (has(comptsWindow, "comptsControl") ===false) {
 }
 
 /**
- * Get not Sub element
+ * Set delegate event action
  *
  * @since 2.0.1
  * @category DOM

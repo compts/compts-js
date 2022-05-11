@@ -4,7 +4,7 @@ import initFadeElement from '../../../core/dom/initFadeElement';
 import {has, getTypeof} from 'structkit';
 
 /**
- * Search Sub element
+ * Set element fade
  *
  * @since 2.0.1
  * @category DOM
