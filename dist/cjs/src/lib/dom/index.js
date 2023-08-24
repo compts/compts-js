@@ -16,6 +16,8 @@ const getIndexAttr = require('./lib/getIndexAttr');
 
 const show = require('./lib/show');
 
+const eq = require('./lib/eq');
+
 const hide = require('./lib/hide');
 
 const removeAttr = require('./lib/removeAttr');
@@ -101,6 +103,7 @@ ElementTrigger.prototype.getLength = getLength;
 ElementTrigger.prototype.remove = remove;
 ElementTrigger.prototype.removeAttr = removeAttr;
 ElementTrigger.prototype.tagName = tagName;
+ElementTrigger.prototype.eq = eq;
 ElementTrigger.prototype.findElem = findElem;
 ElementTrigger.prototype.getSelected = getSelected;
 ElementTrigger.prototype.index = index;

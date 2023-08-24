@@ -1,8 +1,124 @@
 (function(global){
 var globalConfig = {};
 
-global.globalConfig=globalConfig;
+;
 
+global.globalConfig=globalConfig
+var elementConfig = {};
+
+elementConfig.appendhtml=[
+    [
+        "after",
+        "afterend"
+    ],
+    [
+        "before",
+        "beforebegin"
+    ],
+    [
+        "prepend",
+        "afterbegin"
+    ],
+    [
+        "append",
+        "beforeend"
+    ]
+];
+
+elementConfig.eventListener=[
+    'scroll',
+    'focus',
+    'blur',
+    'change',
+    'abort',
+    'error',
+    'click',
+    'dblclick',
+    'mousemove',
+    'mouseout',
+    'mouseover',
+    'mousedown',
+    'mouseup',
+    'mouseenter',
+    'mouseleave',
+    'resize',
+    'keydown',
+    'keyup',
+    'keypress',
+    'touchstart',
+    'touchmove',
+    'touchend',
+    'contextmenu',
+    'drag',
+    'dragstart',
+    'dragend',
+    'dragover',
+    'dragenter',
+    'dragleave',
+    'drop'
+];
+
+elementConfig.styletype= [
+    'width',
+    'display',
+    'height',
+    'visible'
+];
+elementConfig.domview=[
+    'val',
+    'html',
+    'text',
+    'outerhtml'
+];
+
+elementConfig.child= [
+    [
+        "firstChild",
+        "first"
+    ],
+    [
+        "haschild",
+        "haschild"
+    ],
+    [
+        "hasChildNodes",
+        "hasChildNodes"
+    ],
+    [
+        "childNodes",
+        "hasChildNodes"
+    ],
+    [
+        "lastChild",
+        "last"
+    ],
+    [
+        "even",
+        "even"
+    ],
+    [
+        "odd",
+        "odd"
+    ]
+];
+
+elementConfig.styletype=[
+    'width',
+    'display',
+    'height',
+    'visible'
+];
+
+elementConfig.elemfade=[
+    'fadeIn',
+    'fadeOut',
+    'fadeTo',
+    'fadeToggle'
+];
+
+;
+
+global.elementConfig=elementConfig
 /**
  * Check if document is ready
  * @since 1.0.1
@@ -84,8 +200,9 @@ function control (func) {
     return documentReady(func);
 
 }
-global.control=control;
+;
 
+global.control=control
 /**
  * Check if object or value
  *
@@ -1238,6 +1355,28 @@ function show () {
 }
 
 ;
+
+/**
+ * Set the index of children element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {String} value The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function eq (value) {
+
+    this.parent_child="node::eq("+value+")";
+
+    return this;
+
+}
+
+;
 /**
  * Hide Element in dom
  *
@@ -1497,24 +1636,6 @@ function getSelected (bol) {
 
 }
 
-;
-/**
- * Check if object or value
- *
- * @since 2.0.1
- * @category DOM
- * @param {Object|String} element The second number in an addition.
- * @returns {Object} Returns the total.
- * @example
- *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function dom (element) {
-
-    return domCoreAssign(element);
-
-}
 ;
 /**
  * Get or set css element
@@ -2702,119 +2823,6 @@ function delegate (evnt, target_element, func) {
 }
 
 ;
-var elementConfig = {};
-
-elementConfig.appendhtml=[
-    [
-        "after",
-        "afterend"
-    ],
-    [
-        "before",
-        "beforebegin"
-    ],
-    [
-        "prepend",
-        "afterbegin"
-    ],
-    [
-        "append",
-        "beforeend"
-    ]
-];
-
-elementConfig.eventListener=[
-    'scroll',
-    'focus',
-    'blur',
-    'change',
-    'abort',
-    'error',
-    'click',
-    'dblclick',
-    'mousemove',
-    'mouseout',
-    'mouseover',
-    'mousedown',
-    'mouseup',
-    'mouseenter',
-    'mouseleave',
-    'resize',
-    'keydown',
-    'keyup',
-    'keypress',
-    'touchstart',
-    'touchmove',
-    'touchend',
-    'contextmenu',
-    'drag',
-    'dragstart',
-    'dragend',
-    'dragover',
-    'dragenter',
-    'dragleave',
-    'drop'
-];
-
-elementConfig.styletype= [
-    'width',
-    'display',
-    'height',
-    'visible'
-];
-elementConfig.domview=[
-    'val',
-    'html',
-    'text',
-    'outerhtml'
-];
-
-elementConfig.child= [
-    [
-        "firstChild",
-        "first"
-    ],
-    [
-        "haschild",
-        "haschild"
-    ],
-    [
-        "hasChildNodes",
-        "hasChildNodes"
-    ],
-    [
-        "childNodes",
-        "hasChildNodes"
-    ],
-    [
-        "lastChild",
-        "last"
-    ],
-    [
-        "even",
-        "even"
-    ],
-    [
-        "odd",
-        "odd"
-    ]
-];
-
-elementConfig.styletype=[
-    'width',
-    'display',
-    'height',
-    'visible'
-];
-
-elementConfig.elemfade=[
-    'fadeIn',
-    'fadeOut',
-    'fadeTo',
-    'fadeToggle'
-];
-
-;
 /**
  * Class for dom
  *
@@ -2848,6 +2856,7 @@ ElementTrigger.prototype.getLength = getLength;
 ElementTrigger.prototype.remove = remove;
 ElementTrigger.prototype.removeAttr = removeAttr;
 ElementTrigger.prototype.tagName = tagName;
+ElementTrigger.prototype.eq = eq;
 ElementTrigger.prototype.findElem = findElem;
 ElementTrigger.prototype.getSelected = getSelected;
 ElementTrigger.prototype.index = index;
@@ -3152,8 +3161,9 @@ function dom (element) {
     return domCoreAssign(element);
 
 }
-global.dom=dom;
+;
 
+global.dom=dom
 
 /**
  * Check if object or value
@@ -3167,6 +3177,8 @@ global.dom=dom;
  * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
  */
 function element () {}
-global.element=element;
+;
+
+global.element=element
 
 })(typeof window !== "undefined" ? window : this);

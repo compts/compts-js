@@ -5,7 +5,7 @@ const list_package_utility_js = [
     "src/*/*/*/*.js"
 ];
 const list_iife_js = [
-    "src/variable/globalConfig.js",
+    "src/variable/*.js",
     "src/module/*/*.js",
     //"src/module/*.js"
 ];
