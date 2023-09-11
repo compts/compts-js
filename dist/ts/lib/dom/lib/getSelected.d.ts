@@ -1,6 +1,6 @@
 export default getSelected;
 /**
- * Get not Sub element
+ * Get the selected option in select element
  *
  * @since 2.0.1
  * @category DOM

@@ -1,6 +1,6 @@
 export default fade;
 /**
- * Search Sub element
+ * Set element fade
  *
  * @since 2.0.1
  * @category DOM

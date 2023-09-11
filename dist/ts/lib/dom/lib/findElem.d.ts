@@ -1,6 +1,6 @@
 export default findElem;
 /**
- * Search Sub element
+ * Search for element in dom
  *
  * @since 2.0.1
  * @category DOM

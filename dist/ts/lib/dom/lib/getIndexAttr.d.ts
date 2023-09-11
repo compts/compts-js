@@ -1,6 +1,6 @@
 export default getIndexAttr;
 /**
- * Get not Sub element
+ * Get index attribute
  *
  * @since 2.0.1
  * @category DOM

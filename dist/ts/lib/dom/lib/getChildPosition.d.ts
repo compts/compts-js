@@ -1,6 +1,6 @@
 export default getChildPosition;
 /**
- * Get Sub element
+ * Get child position index
  *
  * @since 2.0.1
  * @category DOM

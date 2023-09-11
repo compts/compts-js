@@ -1,6 +1,6 @@
 export default css;
 /**
- * Search Sub element
+ * Get or set css element
  *
  * @since 2.0.1
  * @category DOM

@@ -1,6 +1,6 @@
 export default getParent;
 /**
- * Search Sub element
+ * Get the parent element
  *
  * @since 2.0.1
  * @category DOM

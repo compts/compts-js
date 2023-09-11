@@ -1,6 +1,6 @@
 export default remove;
 /**
- * Get the index of Element
+ * Remove the specific element
  *
  * @since 2.0.1
  * @category DOM

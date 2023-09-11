@@ -1,6 +1,6 @@
 export default getLength;
 /**
- * Get the index of Element
+ * Get count of search element
  *
  * @since 2.0.1
  * @category DOM

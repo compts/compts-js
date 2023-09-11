@@ -1,2 +1,17 @@
 export default domEventIniate;
-declare function domEventIniate(main: any, spltt: any, fn: any, bools: any): any;
+/**
+ * Get or set css element
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @param {any} main The second number in an addition.
+ * @param {any} spltt The second number in an addition.
+ * @param {any} fn The second number in an addition.
+ * @param {any} bools The second number in an addition.
+ * @returns {Class} Returns the total.
+ * @example
+ *
+ * dom("body").css()
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+declare function domEventIniate(main: any, spltt: any, fn: any, bools: any): Class;

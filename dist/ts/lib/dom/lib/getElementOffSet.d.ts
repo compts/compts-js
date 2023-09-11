@@ -1,6 +1,6 @@
 export default getElementOffSet;
 /**
- * Is Dom null
+ * Get the offset of element
  *
  * @since 2.0.1
  * @category DOM

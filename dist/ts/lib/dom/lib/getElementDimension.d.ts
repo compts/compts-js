@@ -1,6 +1,6 @@
 export default getElementDimension;
 /**
- * Is Dom null
+ * Get the dimension of element
  *
  * @since 2.0.1
  * @category DOM

@@ -1,6 +1,6 @@
 export default attr;
 /**
- * Search Sub element
+ * Get the element attribute
  *
  * @since 2.0.1
  * @category DOM

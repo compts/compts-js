@@ -1,6 +1,6 @@
 export default on;
 /**
- * Get Sub element
+ * Set event action is on
  *
  * @since 2.0.1
  * @category DOM

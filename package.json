@@ -2,9 +2,9 @@
   "name": "comptsjs",
   "version": "2.0.1",
   "description": "JS dom support",
-  "main": "src/module/node.esm.js",
-  "module": "dist/cjs/src/module/node.esm.js",
-  "types": "dist/ts/src/module/index.esm.d.ts",
+  "main": "dist/cjs/module/node.esm.js",
+  "module": "src/module/node.esm.js",
+  "types": "dist/ts/module/index.esm.d.ts",
   "scripts": {
     "es_linter": "eslint dist/*.js test/*/*/*.js src/*/*/*.js src/core/*.js   --fix",
     "test_esm": "mocha -r esm test/esm/dom/*.test.js",

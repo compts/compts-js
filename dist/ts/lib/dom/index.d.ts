@@ -41,6 +41,7 @@ declare class ElementTrigger {
     remove: typeof remove;
     removeAttr: typeof removeAttr;
     tagName: typeof tagName;
+    eq: typeof eq;
     findElem: typeof findElem;
     getSelected: typeof getSelected;
     index: typeof index;
@@ -74,6 +75,7 @@ import getLength from "./lib/getLength";
 import remove from "./lib/remove";
 import removeAttr from "./lib/removeAttr";
 import tagName from "./lib/tagName";
+import eq from "./lib/eq";
 import findElem from "./lib/findElem";
 import getSelected from "./lib/getSelected";
 import index from "./lib/index";
