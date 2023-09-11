@@ -1,9 +1,9 @@
 {
-  "name": "comptsjs",
+  "name": "compts-js",
   "version": "2.0.1",
   "description": "JS dom support",
-  "main": "dist/cjs/module/node.esm.js",
-  "module": "src/module/node.esm.js",
+  "main": "dist/cjs/module/index.esm.js",
+  "module": "src/module/index.esm.js",
   "types": "dist/ts/module/index.esm.d.ts",
   "scripts": {
     "es_linter": "eslint dist/*.js test/*/*/*.js src/*/*/*.js src/core/*.js   --fix",

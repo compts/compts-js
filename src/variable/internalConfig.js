@@ -17,6 +17,11 @@ elementConfig.appendhtml=[
         "append",
         "beforeend"
     ]
+    ,
+    [
+        "appendChild",
+        "appendChild"
+    ]
 ];
 
 elementConfig.eventListener=[
