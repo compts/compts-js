@@ -8,7 +8,7 @@ const getWindowFunction = function () {
 
     return {};
 
-}
+};
 
 exports.getWindowFunction=getWindowFunction
 ;

@@ -1,4 +1,4 @@
-const {each, getTypeof, has} = require('structkit');
+const {each, getTypeof, has, toString} = require('structkit');
 
 const PsExtender = require('./psExtender');
 
@@ -33,7 +33,7 @@ const domCoreAssign=function (id) {
 
             } else {
 
-                const doc_loop=idss.toString().split(",");
+                const doc_loop=toString(idss).split(",");
 
                 for (const tKey in doc_loop) {
 
