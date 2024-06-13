@@ -83,6 +83,19 @@ exports.module=function (grassconf) {
         )
             .pipe(grass_concat("dist/web/compts-full.js", {
                 "istruncate": true
+            }))
+            .pipe(grassconf.streamPipe(function (data) {
+
+                let getData = data.readData();
+
+                getData = getData.replace("(function(global){\n", "const global=exports\n");
+                getData = getData.replace('})(typeof window !== "undefined" ? window : this);', "");
+                data.writeData(getData);
+                data.done();
+
+            }))
+            .pipe(grass_concat("dist/cjs/compts-full.cjs.js", {
+                "istruncate": true
             }));
 
     });
@@ -92,7 +105,8 @@ exports.module=function (grassconf) {
 exports.execute=function (lib) {
 
     lib.default=function (strm) {
-       strm.series("esm_only");
+
+        strm.series("esm_only");
         strm.series("web_iife");
 
         strm.series("cjs");

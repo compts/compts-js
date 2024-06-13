@@ -1,4 +1,4 @@
-import {each, getTypeof, has} from 'structkit';
+import {each, getTypeof, has, toString} from 'structkit';
 import PsExtender from './psExtender';
 
 const domCoreAssign=function (id) {
@@ -32,7 +32,7 @@ const domCoreAssign=function (id) {
 
             } else {
 
-                const doc_loop=idss.toString().split(",");
+                const doc_loop=toString(idss).split(",");
 
                 for (const tKey in doc_loop) {
 
@@ -43,8 +43,6 @@ const domCoreAssign=function (id) {
                     }
 
                 }
-
-                ps_ext.domQuerySelector(doc_loop, domm);
 
             }
 

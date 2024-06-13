@@ -16,6 +16,10 @@ elementConfig.appendhtml=[
     [
         "append",
         "beforeend"
+    ],
+    [
+        "appendChild",
+        "appendChild"
     ]
 ];
 

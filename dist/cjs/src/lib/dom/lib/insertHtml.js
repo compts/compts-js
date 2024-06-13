@@ -21,7 +21,6 @@ function insertHtml (com, htm) {
         "after": "afterend",
         "afterbegin": "afterbegin",
         "afterend": "afterend",
-        "append": "beforeend",
         "before": "beforebegin",
         "beforebegin": "beforebegin",
         "beforeend": "beforeend",
@@ -37,6 +36,13 @@ function insertHtml (com, htm) {
 
                 meth.insertAdjacentHTML(lst_adj[com], htm);
 
+            } else {
+                if (com === "beforeend"){
+                    meth.append(htm);
+                }
+                if (com === "appendChild"){
+                    meth.appendChild(htm);
+                }
             }
 
         } catch (exception) {

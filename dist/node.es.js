@@ -1,4 +1,5 @@
-const documentReady =  require("../../core/documentReady") 
+const documentReady = require("../../core/documentReady")
+
 ;
 
 /**
@@ -18,9 +19,9 @@ function control (func) {
     return documentReady(func);
 
 }
-module.exports=control
-;
-const domCoreAssign =  require('../../core/domCoreAssign') 
+module.exports=control;
+const domCoreAssign = require('../../core/domCoreAssign')
+
 ;
 
 /**
@@ -76,5 +77,5 @@ function extension (dom, bascConfig) {
     alert(dom);
 
 }
-module.exports=extension
-;
+module.exports=extension;
+

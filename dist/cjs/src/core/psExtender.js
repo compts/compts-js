@@ -61,35 +61,5 @@ PsExtender.prototype.init= function (str, ar) {
 
 };
 
-PsExtender.prototype.domQuerySelector= function (idss, ar) {
-
-    if (ar.length ===0 && has(document.querySelectorAll)) {
-
-        for (const tKey in idss) {
-
-            if (has(idss[tKey])) {
-
-                const str_sub=idss[tKey].split("=>");
-
-                const dataElem = document.querySelectorAll(str_sub[0]);
-
-                for (const key in dataElem) {
-
-                    if (has(dataElem[key])) {
-
-                        ar.push(dataElem[key]);
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    }
-
-};
-
 module.exports=PsExtender
 ;

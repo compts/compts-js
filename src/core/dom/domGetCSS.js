@@ -33,7 +33,7 @@ function loopstyle (dom, style) {
 
     return golb_st;
 
-};
+}
 
 /**
  * Get or set css element

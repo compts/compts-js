@@ -1,4 +1,4 @@
-(function(global){
+const global=exports
 var globalConfig = {};
 
 ;
@@ -3290,4 +3290,3 @@ function dom (element) {
 
 global.dom=dom
 
-})(typeof window !== "undefined" ? window : this);

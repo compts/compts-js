@@ -8,6 +8,6 @@ const getWindowFunction = function () {
 
     return {};
 
-}
+};
 
 export {getWindowFunction};

@@ -45,8 +45,6 @@ const domCoreAssign=function (id) {
 
                 }
 
-                ps_ext.domQuerySelector(doc_loop, domm);
-
             }
 
         } catch (error) {

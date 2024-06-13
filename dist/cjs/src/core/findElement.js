@@ -1,4 +1,4 @@
-const {each, has, count, getKey, where, clone, getTypeof} = require('structkit');
+const {each, has, isEmpty, isExact, indexOfExist, count, first, indexOf, clone} = require('structkit');
 
 const getDomAttr = require('./getDomAttr');
 
@@ -19,19 +19,18 @@ const getDomAttr = require('./getDomAttr');
 function findElement (tar_m_sub, ar, bool) {
 
     const tar_m_split=tar_m_sub.split("=>");
-    const tar_m=(tar_m_split.length==0
+    const tar_m=(tar_m_split.length === 0
         ?tar_m_sub
         :tar_m_split[0]).trim();
 
+    let node=[];
+
     if (bool) {
 
-        var node=clone(ar);
-
-	   ar.splice(0, ar.length);
+        node=clone(ar);
+        ar.splice(0, ar.length);
 
     } else {
-
-        var node=[];
 
         node.push(document);
 
@@ -41,200 +40,19 @@ function findElement (tar_m_sub, ar, bool) {
 
     for (const ni in node) {
 
-	   for (const ti in tar_m) {
+        if (has(node, ni)) {
 
-       if ((/\[/g).test(tar[ti])) {
+            for (const ti in tar_m) {
 
-                var fl_m="";
-                var fl_type="where";
-                var fl_va=[];
-                var fl_va_cntnt={};
-                var fl_va_cntnt_all=[];
-                var fl_va_attr_all=[];
-                let replc_str=tar[ti].replace(/([a-zA-Z\-\_]{0,}|\*)\[([\w\s\d\=\_\-\[\]\'\"\;\:]{1,})\]/gm, function (m, m1, m2, m3) {
+                if (has(tar, ti)) {
 
-               const m2_split_count=m2.split(";");
-
-               each(m2_split_count, function (sck, scv) {
-
-                        const m2_split_cnt=scv.split("=");
-
-                        if (count(m2_split_cnt)==1) {
-
-                       fl_va_attr_all.push(m2_split_cnt[0].trim());
-
-                   }
-                        if (count(m2_split_cnt)>=2) {
-
-                       fl_va.push(m2_split_cnt[0].trim());
-                       if (has(m2_split_cnt[1].trim())) {
-
-                                fl_va_cntnt[m2_split_cnt[0].trim()]=m2_split_cnt[1].trim().replace(/[\'\"]{0,}/g, "");
-
-                            } else {
-
-                                fl_va_cntnt_all.push(m2_split_cnt[1].trim());
-
-                            }
-
-                   }
-
-                    });
-               fl_type="where";
-
-               fl_m=m1;
-
-               return "asd";
-
-           });
-
-                let fl_m_tot=fl_m;
-
-                if (has(node[ni].getElementsByTagName(fl_m_tot))) {
-
-               const node_elem=node[ni].getElementsByTagName(fl_m_tot);
-
-               for (var i=0, j=node_elem.length; i<j; i++) {
-
-                        if (fl_type=="where") {
-
-                       if (count(fl_va_cntnt)>0 || count(fl_va_cntnt_all)>0 || count(fl_va_attr_all)>0) {
-
-                                var get_attr=getDomAttr(node_elem[i], fl_va);
-
-                                if (count(fl_va_cntnt_all)>0) {
-
-                               const get_attr_key=getKey(get_attr);
-
-                               if (count(get_attr_key)==count(fl_va_cntnt_all) && count(where(get_attr, fl_va_cntnt))>0) {
-
-                                        ar.push(node_elem[i]);
-
-                                    }
-
-                           } else {
-
-                               if (count(where(get_attr, fl_va_cntnt))>0) {
-
-                                        ar.push(node_elem[i]);
-
-                                    }
-
-                           }
-                                if (count(fl_va_attr_all)>0) {
-
-                               for (const kl in fl_va_attr_all) {
-
-                                        var get_attr=getDomAttr(node_elem[i], fl_va_attr_all[kl]);
-
-                                        if (has(get_attr, fl_va_attr_all[kl])) {
-
-                                       ar.push(node_elem[i]);
-
-                                   }
-
-                                    }
-
-                           }
-
-                            }
-
-                   }
-                        if (fl_type=="all") {
-
-                       ar.push(node_elem[i]);
-
-                   }
-
-                    }
-
-           }
-
-            } else if ((/#/g).test(tar[ti])) {
-
-           const replce_dom=tar[ti].toString().replace(/^[#]/g, "");
-           const idd_m=document.getElementById(replce_dom);
-
-           if (has(idd_m)) {
-
-                    ar.push(idd_m);
+                    searchElement(tar[ti], node[ni], ar);
 
                 }
 
-       } else if ((/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g).test(tar[ti])) {
-
-                let s_node =document;
-                let match_dom=tar[ti].toString().match(/([a-zA-Z\-\_]{0,}\.[a-zA-Z0-9_\-]{1,})/g, "");
-
-                if (match_dom.length==0) {
-
-               return false;
-
-           }
-
-                let main_class = match_dom[0].split(".");
-
-                if ((/\w/g).test(main_class[0])) {
-
-               cls_name=main_class[1];
-               cls_tag=main_class[0];
-
-           } else {
-
-               cls_name=main_class[1];
-               cls_tag="*";
-
-           }
-
-                if (s_node.getElementsByTagName(cls_tag)!=null && s_node.getElementsByTagName(cls_tag)!=undefined) {
-
-               var els = s_node.getElementsByTagName(cls_tag);
-
-               for (var i=0, j=els.length; i<j; i++) {
-
-                        let class_name_string = els[i].className;
-
-                        if (getTypeof(class_name_string) == "object") {
-
-                            // SVG classs interpreter
-                       if (has(class_name_string, "animVal")) {
-
-                                class_name_string = class_name_string.animVal;
-
-                            }
-
-                   }
-                        const r = new RegExp("(?:^| )(" + cls_name + ")(?: |$)"),
-			 m = (""+class_name_string).match(r);
-			 const var_return = !!m;
-
-			  if (var_return) {
-
-      ar.push(els[i]);
-
-  }
-
-                    }
-
-           }
-
-            } else {
-
-                if (has(node[ni].getElementsByTagName(tar[ti]))) {
-
-               var els = node[ni].getElementsByTagName(tar[ti]);
-
-               for (let i1=0, j1=els.length; i1<j1; i1++) {
-
-                        ar.push(els[i1]);
-
-                    }
-
-           }
-
             }
 
-   }
+        }
 
     }
 
@@ -250,5 +68,318 @@ function findElement (tar_m_sub, ar, bool) {
 
 }
 
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category Seq
+ * @param {string} element The first number in an addition.
+ * @param {any} node The first number in an addition.
+ * @param {Object} ar The second number in an addition.
+ * @returns {void} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function searchElement (element, node, ar) {
+
+    const cls_list = [];
+    const attr_list = [];
+    let tag_name = "*";
+
+    if ((/#/g).test(element)) {
+
+        const replce_dom=element.toString().replace(/^[#]/g, "");
+        const idd_m=node.getElementById(replce_dom);
+
+        if (has(idd_m)) {
+
+            ar.push(idd_m);
+
+        }
+
+    } else {
+
+        const attrRet = element.replaceAll(/\[(.*?)\]/g, function (wrd, s1) {
+
+            const listAttrToLook = s1.replace(/^(\[)/g, "")
+                .replace(/(\])$/g, "")
+                .split(",");
+
+            each(listAttrToLook, function (__, val) {
+
+                attr_list.push(val);
+
+            });
+
+            return "";
+
+        });
+
+        const classRet = attrRet.replaceAll(/\.([a-zA-Z0-9-]{1,})/g, function (wrd, s1) {
+
+            cls_list.push(s1);
+
+            return "";
+
+        });
+
+        if (!isEmpty(classRet)) {
+
+            tag_name = classRet;
+
+        }
+
+        if (has(node.getElementsByTagName(tag_name))) {
+
+            const listElementTags = node.getElementsByTagName(tag_name);
+
+            for (let ii=0, jj=listElementTags.length; ii<jj;) {
+
+                if (has(listElementTags, ii)) {
+
+                    let isValidDom = false;
+
+                    const elementTag = listElementTags[ii];
+
+                    if (has(elementTag.className)) {
+
+                        const elementClass = elementTag.className.split(/\s{1,}/);
+
+                        if (isEmpty(elementClass) && isEmpty(cls_list)) {
+
+                            isValidDom = true;
+
+                        } else {
+
+                            if (isExact(cls_list, elementClass)) {
+
+                                isValidDom = true;
+
+                            }
+
+                        }
+
+                    }
+
+                    if (!isEmpty(attr_list)) {
+
+                        const attrListCount = count(attr_list);
+                        let counterValidType = 0;
+
+                        each(attr_list, function (__, val) {
+
+                            const getAttrAt = getAttrTypeValue(val);
+                            const getAttrVal = getDomAttr(elementTag, getAttrAt.name);
+
+                            if (!isEmpty(getAttrVal)) {
+
+                                if (validateTypeValue(getAttrAt.value, getAttrVal[getAttrAt.name], getAttrAt.type)) {
+
+                                    counterValidType += 1;
+
+                                }
+
+                            }
+
+                        });
+
+                        isValidDom = counterValidType === attrListCount;
+
+                    }
+
+                    if (isValidDom) {
+
+                        ar.push(elementTag);
+
+                    }
+
+                }
+
+                ii += 1;
+
+            }
+
+        }
+
+    }
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category Seq
+ * @param {string} value The first number in an addition.
+ * @returns {any} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function getAttrTypeValue (value) {
+
+    const splitEq = value.split(/\b(=)\b/g);
+
+    if (count(splitEq) === 3) {
+
+        return {
+            "name": splitEq[0],
+            "type": "eq",
+            "value": splitEq[2]
+        };
+
+    }
+
+    const splitCongruent = value.split(/\b(~=)\b/g);
+
+    if (count(splitCongruent) === 3) {
+
+        return {
+            "name": splitCongruent[0],
+            "type": "congruent",
+            "value": splitCongruent[2]
+        };
+
+    }
+
+    const splitStart = value.split(/\b(\^=)\b/g);
+
+    if (count(splitStart) === 3) {
+
+        return {
+            "name": splitStart[0],
+            "type": "startWith",
+            "value": splitStart[2]
+        };
+
+    }
+
+    const splitEnd = value.split(/\b(\$=)\b/g);
+
+    if (count(splitEnd) === 3) {
+
+        return {
+            "name": splitEnd[0],
+            "type": "endWith",
+            "value": splitEnd[2]
+        };
+
+    }
+
+    const splitMatch = value.split(/\b(\*=)\b/g);
+
+    if (count(splitMatch) === 3) {
+
+        return {
+            "name": splitMatch[0],
+            "type": "match",
+            "value": splitMatch[2]
+        };
+
+    }
+
+    const splitStarting = value.split(/\b(\|=)\b/g);
+
+    if (count(splitStarting) === 3) {
+
+        return {
+            "name": splitStarting[0],
+            "type": "starting",
+            "value": splitStarting[2]
+        };
+
+    }
+
+    const splitNotIn = value.split(/\b(!=)\b/g);
+
+    if (count(splitNotIn) === 3) {
+
+        return {
+            "name": splitNotIn[0],
+            "type": "notin",
+            "value": splitNotIn[2]
+        };
+
+    }
+
+    return {
+        "name": "",
+        "type": "invalid",
+        "value": ""
+    };
+
+}
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category Seq
+ * @param {string} value The first number in an addition.
+ * @param {string} value1 The first number in an addition.
+ * @param {string} type The first number in an addition.
+ * @returns {any} Returns the total.
+ * @example
+ *
+ * parentchild("first",element,1)
+ * // => {'as':2}
+ */
+function validateTypeValue (value, value1, type) {
+
+    if (type === "eq") {
+
+        return value === value1;
+
+    }
+    if (type === "notin") {
+
+        return value !== value1;
+
+    }
+    if (type === "startWith") {
+
+        const regexp = new RegExp("^("+value+")", "g");
+
+        return regexp.test(value1);
+
+    }
+    if (type === "endWith") {
+
+        const regexp = new RegExp("("+value+")$", "g");
+
+        return regexp.test(value1);
+
+    }
+
+    if (type === "match") {
+
+        const regexp = new RegExp("("+value+")", "g");
+
+        return regexp.test(value1);
+
+    }
+
+    if (type === "congruent") {
+
+        const regexp = value.split(/[\s]{1,}/);
+
+        return indexOfExist(regexp, value1);
+
+    }
+
+    if (type === "starting") {
+
+        const regexp = value1.split(/[_-]/);
+
+        return indexOf(regexp, value) === 0;
+
+    }
+
+    return false;
+
+}
 module.exports=findElement
 ;
