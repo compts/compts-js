@@ -1,4 +1,4 @@
-import {each, getTypeof, has, toString} from 'structkit';
+import {each, getTypeof, has, toString, count} from 'structkit';
 import PsExtender from './psExtender';
 
 const domCoreAssign=function (id) {
@@ -12,7 +12,19 @@ const domCoreAssign=function (id) {
 
             if (getTypeof(idss)==="object") {
 
-                domm.push(idss);
+                if (count(idss) === 0) {
+
+                    domm.push(idss);
+
+                } else {
+
+                    each(idss, function (__, val) {
+
+                        domm.push(val);
+
+                    });
+
+                }
 
             } else if (getTypeof(idss)==="array") {
 

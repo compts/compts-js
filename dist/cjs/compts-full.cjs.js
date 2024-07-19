@@ -3220,7 +3220,19 @@ var domCoreAssign=function (id) {
 
             if (_stk.getTypeof(idss)==="object") {
 
-                domm.push(idss);
+                if (_stk.count(idss) === 0) {
+
+                    domm.push(idss);
+
+                } else {
+
+                    _stk.each(idss, function (__, val) {
+
+                        domm.push(val);
+
+                    });
+
+                }
 
             } else if (_stk.getTypeof(idss)==="array") {
 

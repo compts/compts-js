@@ -1,4 +1,4 @@
-const {each, getTypeof, has, toString} = require('structkit');
+const {each, getTypeof, has, toString, count ,isEmpty} = require('structkit');
 
 const PsExtender = require('./psExtender');
 
@@ -13,7 +13,19 @@ const domCoreAssign=function (id) {
 
             if (getTypeof(idss)==="object") {
 
-                domm.push(idss);
+                if (count(idss) === 0) {
+
+                    domm.push(idss);
+
+                } else {
+
+                    each(idss, function (__, val) {
+
+                        domm.push(val);
+
+                    });
+
+                }
 
             } else if (getTypeof(idss)==="array") {
 

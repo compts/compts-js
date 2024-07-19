@@ -99,9 +99,8 @@ function attr (dl, bol) {
         return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
 
     }
-         else{
-            return count(globl_all)==0?-1:(count(globl_all)==1)?globl_all[0]:globl_all;
-         }   
+
+    return count(globl_all)==0?-1:(count(globl_all)==1)?globl_all[0]:globl_all;
 
 }
 
