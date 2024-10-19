@@ -10,8 +10,8 @@ import {has} from 'structkit';
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").remove()
+ * // => [ELEMENT]
  */
 function remove (doms) {
 

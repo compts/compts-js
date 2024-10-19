@@ -9,8 +9,8 @@ const CoreElementInit = require('../../../core/coreElementInit');
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").empty()
+ * // => ''
  */
 function empty () {
 

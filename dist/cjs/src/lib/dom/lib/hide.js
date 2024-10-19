@@ -12,7 +12,7 @@ const domCSS = require('../../../core/dom/domCSS');
  * @example
  *
  * dom("div").hide()
- * // => null
+ * // => [ELEMENT]
  */
 function hide () {
 

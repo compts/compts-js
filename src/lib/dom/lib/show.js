@@ -11,7 +11,7 @@ import domCSS from '../../../core/dom/domCSS';
  * @example
  *
  * dom("div").show()
- * // => null
+ * // => [ELEMENT]
  */
 function show () {
 

@@ -13,7 +13,7 @@ const {has} = require('structkit');
  * @example
  *
  * dom("div").insertHtml()
- * // => 1
+ * // => [ELEMENT]
  */
 function insertHtml (com, htm) {
 

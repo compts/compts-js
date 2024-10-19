@@ -124,6 +124,9 @@ ElementTrigger.prototype.on = on;
 ElementTrigger.prototype.off = off;
 ElementTrigger.prototype.delegate = delegate;
 
+const zero = 0;
+const one = 1;
+
 for (const f1 in elementConfig.eventListener) {
 
     if (has(elementConfig.eventListener[f1])) {
@@ -162,7 +165,7 @@ for (const f2 in elementConfig.child) {
 
             };
 
-        }(elementConfig.child[f2][0], elementConfig.child[f2][1]));
+        }(elementConfig.child[f2][zero], elementConfig.child[f2][one]));
 
     }
 
@@ -182,7 +185,7 @@ for (const f3 in elementConfig.appendhtml) {
 
             };
 
-        }(elementConfig.appendhtml[f3][0], elementConfig.appendhtml[f3][1]));
+        }(elementConfig.appendhtml[f3][zero], elementConfig.appendhtml[f3][one]));
 
     }
 

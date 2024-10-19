@@ -1,10 +1,10 @@
 const global=exports
-var globalConfig = {};
+const globalConfig = {};
 
 ;
 
-global.globalConfig=globalConfig
-var elementConfig = {};
+global.globalConfig=globalConfig;
+const elementConfig = {};
 
 elementConfig.appendhtml=[
     [
@@ -122,7 +122,7 @@ elementConfig.elemfade=[
 
 ;
 
-global.elementConfig=elementConfig
+global.elementConfig=elementConfig;
 /**
  * Check if document is ready
  * @since 1.0.1
@@ -134,9 +134,9 @@ global.elementConfig=elementConfig
  */
 function documentReady (func) {
 
-    var root = window;
+    const root = window;
 
-    var dom_rdy_ctt=0;
+    let dom_rdy_ctt=0;
 
     if (dom_rdy_ctt===0) {
 
@@ -153,9 +153,9 @@ function documentReady (func) {
         }
 
     }
-    var fails=false;
+    let fails=false;
 
-    var dom_load_ready =function () {
+    const dom_load_ready =function () {
 
         if (document.readyState==="complete" && fails === false) {
 
@@ -167,7 +167,7 @@ function documentReady (func) {
 
     };
 
-    var set_intr=null;
+    let set_intr=null;
 
     set_intr=setInterval(function () {
 
@@ -206,23 +206,7 @@ function control (func) {
 }
 ;
 
-global.control=control
-
-/**
- * Check if object or value
- *
- * @since 2.0.1
- * @category DOM
- * @returns {Object} Returns the total.
- * @example
- *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
- */
-function element () {}
-;
-
-global.element=element
+global.control=control;
 /**
  * Check if object or value
  *
@@ -279,7 +263,7 @@ function parentchild (child_prnt, de, cnt) {
 
     } else if (child_prnt==="odd" || child_prnt==="even") {
 
-        var sel={
+        const sel={
             "even": 0,
             "odd": 1
         };
@@ -350,13 +334,13 @@ function glgFuncAssign (bools, glb, key, valu) {
  */
 function assignElementDistinction (dom, assn, bools) {
 
-    var assn_splt=_stk.ifUndefined(assn, "").split("::");
+    const assn_splt=_stk.ifUndefined(assn, "").split("::");
 
-    var glb=bools;
+    const glb=bools;
 
     if (assn_splt.length===1) {
 
-        for (var td in dom) {
+        for (const td in dom) {
 
             glgFuncAssign(bools, glb, td, dom);
 
@@ -366,9 +350,9 @@ function assignElementDistinction (dom, assn, bools) {
 
     } else if (assn_splt.length==2) {
 
-        var spl2=assn_splt[1];
+        const spl2=assn_splt[1];
 
-        var fltr=[
+        const fltr=[
             "first",
             "haschild",
             "hasChildNodes",
@@ -376,9 +360,9 @@ function assignElementDistinction (dom, assn, bools) {
             "even",
             "odd"
         ];
-        var cnt=0;
+        let cnt=0;
 
-        for (var td1 in dom) {
+        for (const td1 in dom) {
 
             if (dom.length>cnt) {
 
@@ -393,12 +377,12 @@ function assignElementDistinction (dom, assn, bools) {
                 }
 
             }
-            var type_pos="";
-            var index_pos="";
+            let type_pos="";
+            let index_pos="";
 
             if ((/([\w\-\_]{1,})(\(\d\))/g).test(spl2)) {
 
-                var replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
+                const replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
 
                     type_pos=g1;
                     index_pos=g2;
@@ -451,10 +435,10 @@ function assignElementDistinction (dom, assn, bools) {
  */
 function getDomAttr (meth, domValue) {
 
-    var attr_type=_stk.getTypeof(domValue)==="array"
+    const attr_type=_stk.getTypeof(domValue)==="array"
         ?domValue
         :[domValue];
-    var globl={};
+    const globl={};
 
     if (_stk.has(meth)) {
 
@@ -507,12 +491,12 @@ function getDomAttr (meth, domValue) {
  */
 function findElement (tar_m_sub, ar, bool) {
 
-    var tar_m_split=tar_m_sub.split("=>");
-    var tar_m=(tar_m_split.length === 0
+    const tar_m_split=tar_m_sub.split("=>");
+    const tar_m=(tar_m_split.length === 0
         ?tar_m_sub
         :tar_m_split[0]).trim();
 
-    var node=[];
+    let node=[];
 
     if (bool) {
 
@@ -525,13 +509,13 @@ function findElement (tar_m_sub, ar, bool) {
 
     }
 
-    var tar=tar_m.split(",");
+    const tar=tar_m.split(",");
 
-    for (var ni in node) {
+    for (const ni in node) {
 
         if (_stk.has(node, ni)) {
 
-            for (var ti in tar_m) {
+            for (const ti in tar_m) {
 
                 if (_stk.has(tar, ti)) {
 
@@ -573,14 +557,14 @@ function findElement (tar_m_sub, ar, bool) {
  */
 function searchElement (element, node, ar) {
 
-    var cls_list = [];
-    var attr_list = [];
-    var tag_name = "*";
+    const cls_list = [];
+    const attr_list = [];
+    let tag_name = "*";
 
     if ((/#/g).test(element)) {
 
-        var replce_dom=element.toString().replace(/^[#]/g, "");
-        var idd_m=node.getElementById(replce_dom);
+        const replce_dom=element.toString().replace(/^[#]/g, "");
+        const idd_m=node.getElementById(replce_dom);
 
         if (_stk.has(idd_m)) {
 
@@ -590,9 +574,9 @@ function searchElement (element, node, ar) {
 
     } else {
 
-        var attrRet = element.replaceAll(/\[(.*?)\]/g, function (wrd, s1) {
+        const attrRet = element.replaceAll(/\[(.*?)\]/g, function (wrd, s1) {
 
-            var listAttrToLook = s1.replace(/^(\[)/g, "")
+            const listAttrToLook = s1.replace(/^(\[)/g, "")
                 .replace(/(\])$/g, "")
                 .split(",");
 
@@ -606,7 +590,7 @@ function searchElement (element, node, ar) {
 
         });
 
-        var classRet = attrRet.replaceAll(/\.([a-zA-Z0-9-]{1,})/g, function (wrd, s1) {
+        const classRet = attrRet.replaceAll(/\.([a-zA-Z0-9-]{1,})/g, function (wrd, s1) {
 
             cls_list.push(s1);
 
@@ -622,19 +606,19 @@ function searchElement (element, node, ar) {
 
         if (_stk.has(node.getElementsByTagName(tag_name))) {
 
-            var listElementTags = node.getElementsByTagName(tag_name);
+            const listElementTags = node.getElementsByTagName(tag_name);
 
-            for (var ii=0, jj=listElementTags.length; ii<jj;) {
+            for (let ii=0, jj=listElementTags.length; ii<jj;) {
 
                 if (_stk.has(listElementTags, ii)) {
 
-                    var isValidDom = false;
+                    let isValidDom = false;
 
-                    var elementTag = listElementTags[ii];
+                    const elementTag = listElementTags[ii];
 
                     if (_stk.has(elementTag.className)) {
 
-                        var elementClass = elementTag.className.split(/\s{1,}/);
+                        const elementClass = elementTag.className.split(/\s{1,}/);
 
                         if (_stk.isEmpty(elementClass) && _stk.isEmpty(cls_list)) {
 
@@ -654,13 +638,13 @@ function searchElement (element, node, ar) {
 
                     if (!_stk.isEmpty(attr_list)) {
 
-                        var attrListCount = _stk.count(attr_list);
-                        var counterValidType = 0;
+                        const attrListCount = _stk.count(attr_list);
+                        let counterValidType = 0;
 
                         _stk.each(attr_list, function (__, val) {
 
-                            var getAttrAt = getAttrTypeValue(val);
-                            var getAttrVal = getDomAttr(elementTag, getAttrAt.name);
+                            const getAttrAt = getAttrTypeValue(val);
+                            const getAttrVal = getDomAttr(elementTag, getAttrAt.name);
 
                             if (!_stk.isEmpty(getAttrVal)) {
 
@@ -710,7 +694,7 @@ function searchElement (element, node, ar) {
  */
 function getAttrTypeValue (value) {
 
-    var splitEq = value.split(/\b(=)\b/g);
+    const splitEq = value.split(/\b(=)\b/g);
 
     if (_stk.count(splitEq) === 3) {
 
@@ -722,7 +706,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitCongruent = value.split(/\b(~=)\b/g);
+    const splitCongruent = value.split(/\b(~=)\b/g);
 
     if (_stk.count(splitCongruent) === 3) {
 
@@ -734,7 +718,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitStart = value.split(/\b(\^=)\b/g);
+    const splitStart = value.split(/\b(\^=)\b/g);
 
     if (_stk.count(splitStart) === 3) {
 
@@ -746,7 +730,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitEnd = value.split(/\b(\$=)\b/g);
+    const splitEnd = value.split(/\b(\$=)\b/g);
 
     if (_stk.count(splitEnd) === 3) {
 
@@ -758,7 +742,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitMatch = value.split(/\b(\*=)\b/g);
+    const splitMatch = value.split(/\b(\*=)\b/g);
 
     if (_stk.count(splitMatch) === 3) {
 
@@ -770,7 +754,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitStarting = value.split(/\b(\|=)\b/g);
+    const splitStarting = value.split(/\b(\|=)\b/g);
 
     if (_stk.count(splitStarting) === 3) {
 
@@ -782,7 +766,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    var splitNotIn = value.split(/\b(!=)\b/g);
+    const splitNotIn = value.split(/\b(!=)\b/g);
 
     if (_stk.count(splitNotIn) === 3) {
 
@@ -830,14 +814,14 @@ function validateTypeValue (value, value1, type) {
     }
     if (type === "startWith") {
 
-        var regexp = new RegExp("^("+value+")", "g");
+        const regexp = new RegExp("^("+value+")", "g");
 
         return regexp.test(value1);
 
     }
     if (type === "endWith") {
 
-        var regexp = new RegExp("("+value+")$", "g");
+        const regexp = new RegExp("("+value+")$", "g");
 
         return regexp.test(value1);
 
@@ -845,7 +829,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "match") {
 
-        var regexp = new RegExp("("+value+")", "g");
+        const regexp = new RegExp("("+value+")", "g");
 
         return regexp.test(value1);
 
@@ -853,7 +837,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "congruent") {
 
-        var regexp = value.split(/[\s]{1,}/);
+        const regexp = value.split(/[\s]{1,}/);
 
         return _stk.indexOfExist(regexp, value1);
 
@@ -861,7 +845,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "starting") {
 
-        var regexp = value1.split(/[_-]/);
+        const regexp = value1.split(/[_-]/);
 
         return _stk.indexOf(regexp, value) === 0;
 
@@ -880,13 +864,13 @@ function CoreElementInit (dom) {
 
 CoreElementInit.prototype.each = function (func) {
 
-    var cnt=0;
-    var ele_cnt=this.element;
-    var prnt_chld=this.parent_child;
+    let cnt=0;
+    const ele_cnt=this.element;
+    const prnt_chld=this.parent_child;
 
-    var ass_elem=assignElementDistinction(this.element, prnt_chld, {});
+    const ass_elem=assignElementDistinction(this.element, prnt_chld, {});
 
-    for (var td in ass_elem) {
+    for (const td in ass_elem) {
 
         (function (func, d, m) {
 
@@ -919,10 +903,10 @@ CoreElementInit.prototype.each = function (func) {
  */
 function getDomAttr (meth, dk) {
 
-    var attr_type=_stk.getTypeof(dk)==="array"
+    const attr_type=_stk.getTypeof(dk)==="array"
         ?dk
         :[dk];
-    var globl={};
+    const globl={};
 
     if (_stk.has(meth)) {
 
@@ -973,13 +957,15 @@ function getDomAttr (meth, dk) {
  */
 function getElementExistAttr (res) {
 
-    var attr_elem={};
+    const attr_elem={};
 
-    for (var att, i = 0, atts = res.attributes, n = atts.length; i < n; i++) {
+    for (var att, i = 0, atts = res.attributes, n = atts.length; i < n;) {
 
         att = atts[i];
 
         attr_elem[att.nodeName]=att.nodeValue;
+
+        i += 1;
 
     }
 
@@ -998,25 +984,25 @@ function getElementExistAttr (res) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body").css()
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").attr()
+ * // => [ELEMENT]
  */
 function attr (dl, bol) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var cnt=0;
-    var globl={},
+    let cnt=0;
+    const globl={},
         globl_all=[];
-    var var_bol=bol||false;
+    const var_bol=bol||false;
 
-    var is_where_attr = _stk.has(dl);
+    const is_where_attr = _stk.has(dl);
 
-    var attr_type=_stk.getTypeof(dl)==="array"
+    const attr_type=_stk.getTypeof(dl)==="array"
         ?dl
         :[dl];
 
-    var typeofs = _stk.getTypeof(dl) !== "json";
+    const typeofs = _stk.getTypeof(dl) !== "json";
 
     core.each(function (meth) {
 
@@ -1024,7 +1010,7 @@ function attr (dl, bol) {
 
             if (typeofs) {
 
-                var get_attr=getDomAttr(meth, attr_type);
+                const get_attr=getDomAttr(meth, attr_type);
 
                 if (var_bol===true) {
 
@@ -1046,11 +1032,11 @@ function attr (dl, bol) {
 
             } else {
 
-                for (var vk in dl) {
+                for (const vk in dl) {
 
                     if (_stk.has(dl, vk)) {
 
-                        var crte_elem=document.createAttribute(vk);
+                        const crte_elem=document.createAttribute(vk);
 
                         crte_elem.value = dl[vk];
 
@@ -1083,9 +1069,8 @@ function attr (dl, bol) {
         return typeofs==false ? this : ((cnt==1 || cnt==0)?((attr_type.length==1)?((typeof(globl[0])==="undefined")?"undefined":globl[0][dl]):globl[0]):globl);
 
     }
-         else{
-            return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
-         }   
+
+    return _stk.count(globl_all)==0?-1:(_stk.count(globl_all)==1)?globl_all[0]:globl_all;
 
 }
 
@@ -1105,8 +1090,8 @@ function attr (dl, bol) {
  */
 function loopstyle (dom, style) {
 
-    var golb={};
-    var golb_st="";
+    const golb={};
+    let golb_st="";
 
     if (!window.getComputedStyle) {
 
@@ -1139,11 +1124,11 @@ function loopstyle (dom, style) {
  */
 function domGetCSS (ele, prop) {
 
-    var golb_ret={};
+    let golb_ret={};
 
     if (_stk.getTypeof(prop)==="array") {
 
-        for (var fn in prop) {
+        for (const fn in prop) {
 
             golb_ret[prop[fn]]=loopstyle(ele, prop[fn]);
 
@@ -1175,22 +1160,22 @@ function domGetCSS (ele, prop) {
  */
 function domCSS (id, dList) {
 
-    var elem_str_class="";
-    var get_attr=_stk.has(getDomAttr(id, ['style']).style)
+    let elem_str_class="";
+    const get_attr=_stk.has(getDomAttr(id, ['style']).style)
         ?getDomAttr(id, ['style']).style
         :"";
-    var split_style=get_attr.toString().split(";");
+    const split_style=get_attr.toString().split(";");
 
     _stk.each(split_style, function (spk, spv) {
 
-        var elem_d=spv.split(":");
+        const elem_d=spv.split(":");
 
         if (_stk.count(elem_d)>0 && _stk.has(spv)) {
 
             if (!_stk.has(dList, elem_d[0]) && _stk.has(elem_d[1])) {
 
-                var ele_key=elem_d[0].replace(/\s/, "");
-                var ele_val=elem_d[1].replace(/\s/, "");
+                const ele_key=elem_d[0].replace(/\s/, "");
+                const ele_val=elem_d[1].replace(/\s/, "");
 
                 if (!_stk.has(dList[ele_key])) {
 
@@ -1204,7 +1189,7 @@ function domCSS (id, dList) {
 
     });
 
-    for (var vK in dList) {
+    for (const vK in dList) {
 
         if (_stk.has(dList, vK)) {
 
@@ -1237,7 +1222,7 @@ function domCSS (id, dList) {
 
             if (_stk.has(id.setAttributeNode)) {
 
-                var creat_elem=document.createAttribute("style");
+                const creat_elem=document.createAttribute("style");
 
                 creat_elem.value=elem_str_class;
                 id.setAttributeNode(creat_elem);
@@ -1266,19 +1251,19 @@ function domCSS (id, dList) {
  * @example
  *
  * dom("body").css()
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => {"z-index": 1}
  */
 function css (value, countValue) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var typeofs = _stk.getTypeof(value) === "json";
+    const typeofs = _stk.getTypeof(value) === "json";
 
-    var cntt=_stk.has(countValue) === false
+    const cntt=_stk.has(countValue) === false
         ?0
         :countValue-1;
 
-    var val_g = {};
+    const val_g = {};
 
     core.each(function (meth, td) {
 
@@ -1298,7 +1283,7 @@ function css (value, countValue) {
 
     });
 
-    var returnValue = cntt===0
+    const returnValue = cntt===0
         ?val_g[0]
         :val_g;
 
@@ -1318,12 +1303,12 @@ function css (value, countValue) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").each((data) =>{})
+ * // => [ELEMENT]
  */
 function each (func) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(func);
 
@@ -1339,12 +1324,12 @@ function each (func) {
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").empty()
+ * // => ''
  */
 function empty () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
@@ -1374,9 +1359,9 @@ function empty () {
  */
 function getLength () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var cnt_i=0;
+    let cnt_i=0;
 
     core.each(function (meth) {
 
@@ -1405,14 +1390,14 @@ function getLength () {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").getDom()
+ * // => [ELEMENT]
  */
 function getDom () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var id_dm=[];
+    const id_dm=[];
 
     core.each(function (meth) {
 
@@ -1435,14 +1420,14 @@ function getDom () {
  * @example
  *
  * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function getIndexAttr (attr) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var cnt=0;
-    var globl=[];
+    let cnt=0;
+    const globl=[];
 
     if (_stk.getTypeof(attr)!=="json") {
 
@@ -1450,13 +1435,13 @@ function getIndexAttr (attr) {
 
     }
 
-    var getkey=_stk.getKey(attr);
+    const getkey=_stk.getKey(attr);
 
     core.each(function (meth) {
 
-        var get_attr=getDomAttr(meth,getkey);
+        const get_attr=getDomAttr(meth,getkey);
 
-        var where_count=_stk.where(get_attr,attr);
+        const where_count=_stk.where(get_attr,attr);
 
         if (_stk.count(where_count)>0) {
 
@@ -1487,11 +1472,11 @@ function getIndexAttr (attr) {
  * @example
  *
  * dom("div").show()
- * // => null
+ * // => [ELEMENT]
  */
 function show () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -1538,11 +1523,11 @@ function eq (value) {
  * @example
  *
  * dom("div").hide()
- * // => null
+ * // => [ELEMENT]
  */
 function hide () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -1567,14 +1552,14 @@ function hide () {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").removeAttr()
+ * // => [ELEMENT]
  */
 function removeAttr (value) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var attr_type = _stk.getTypeof(value) === "array"
+    const attr_type = _stk.getTypeof(value) === "array"
         ?value
         :new Array(value);
 
@@ -1609,7 +1594,7 @@ function removeAttr (value) {
  */
 function remove (doms) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
@@ -1650,9 +1635,9 @@ function remove (doms) {
  */
 function tagName () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arry_pl=[];
+    const arry_pl=[];
 
     core.each(function (meth) {
 
@@ -1677,11 +1662,11 @@ function tagName () {
  * @example
  *
  * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function findElem (elem) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     findElement(elem, core.element, true);
 
@@ -1706,19 +1691,19 @@ function findElem (elem) {
  */
 function domSelectOption (main, bol, type) {
 
-    var opt = null;
-    var sel_opt='';
-    var sel_opt_ar=[];
-    var opt_cnt=0;
-    var select_count=0;
-    var booln=bol||false;
+    let opt = null;
+    let sel_opt='';
+    const sel_opt_ar=[];
+    let opt_cnt=0;
+    let select_count=0;
+    const booln=bol||false;
 
     main.each(function (td, meth) {
 
         if (_stk.has(meth[td])) {
 
             opt=meth[td].options;
-            for (var i=0; i<opt.length; i++) {
+            for (let i=0; i<opt.length; i++) {
 
                 if (opt[i].selected==true) {
 
@@ -1776,12 +1761,12 @@ function domSelectOption (main, bol, type) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").getSelected("1")
+ * // => true
  */
 function getSelected (bol) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "value");
 
@@ -1802,23 +1787,23 @@ function getSelected (bol) {
  */
 function formGetValues (self) {
 
-    var list_elem = [
+    const list_elem = [
         "input",
         "select",
         "textarea"
     ];
-    var ret_value = [];
+    let ret_value = [];
 
     self.each(function (html_form, td) {
 
-        for (var key in list_elem) {
+        for (const key in list_elem) {
 
             if (list_elem[key] == "select") {
 
                 dom(html_form).findElem(list_elem[key])
                     .each(function (k, v) {
 
-                        var get_attr = dom(k).attr();
+                        const get_attr = dom(k).attr();
 
                         get_attr.value=dom(k).val();
                         get_attr.type="select";
@@ -1851,11 +1836,11 @@ function formGetValues (self) {
  * @example
  *
  * dom("body").getFormAttr("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function getFormAttr () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     return formGetValues(core);
 
@@ -1871,12 +1856,12 @@ function getFormAttr () {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").getSelectedCount(1)
+ * // => [ELEMENT]
  */
 function getSelectedCount (bol) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "count");
 
@@ -1892,12 +1877,12 @@ function getSelectedCount (bol) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").getSelectedText()
+ * // => "TEST"
  */
 function getSelectedText (bol) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "text");
 
@@ -1918,14 +1903,14 @@ function getSelectedText (bol) {
  */
 function setSelected (val) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var opt = null;
+    let opt = null;
 
     core.each(function (meth) {
 
         opt=meth.options;
-        for (var inc =0; inc<opt.length;) {
+        for (let inc =0; inc<opt.length;) {
 
             opt[inc].selected = opt[inc].value===val;
 
@@ -1950,17 +1935,17 @@ function setSelected (val) {
  * @example
  *
  * dom("body").toggleDisplay()
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function toggleDisplay (display) {
 
-    var d_var=display||"";
+    const d_var=display||"";
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
-        var elem=meth.style.display||domGetCSS(meth, "display");
+        const elem=meth.style.display||domGetCSS(meth, "display");
 
         domCSS(meth, {
             "display": elem==="none"
@@ -1985,13 +1970,13 @@ function toggleDisplay (display) {
  * @example
  *
  * dom("body").getParent("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function getParent () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arry_pl=[];
+    const arry_pl=[];
 
     core.each(function (meth) {
 
@@ -2017,11 +2002,11 @@ function getParent () {
  * @example
  *
  * dom("div").insertHtml()
- * // => 1
+ * // => [ELEMENT]
  */
 function insertHtml (com, htm) {
 
-    var lst_adj={
+    const lst_adj={
         "after": "afterend",
         "afterbegin": "afterbegin",
         "afterend": "afterend",
@@ -2030,7 +2015,7 @@ function insertHtml (com, htm) {
         "beforeend": "beforeend",
         "prepend": "afterbegin"
     };
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -2076,9 +2061,9 @@ function insertHtml (com, htm) {
  */
 function index (doms) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arry_dm = [];
+    const arry_dm = [];
 
     core.each(function (elemm) {
 
@@ -2104,9 +2089,9 @@ function index (doms) {
  */
 function isDomNull () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var bool=false;
+    let bool=false;
 
     core.each(function (elemm) {
 
@@ -2136,11 +2121,11 @@ function isDomNull () {
  */
 function getChildPosition () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var incrementi = 1;
+    let incrementi = 1;
 
-    var node=_stk.has(core.element[0])===false
+    let node=_stk.has(core.element[0])===false
         ?core.element
         :core.element[0];
 
@@ -2178,7 +2163,7 @@ function domIOtype (type, dom, htmll) {
 
     if ((/\b(val)\b/g).test(type)) {
 
-        var alt_val=this.get_attr(dom, "ps_alt_value");
+        const alt_val=this.get_attr(dom, "ps_alt_value");
 
         if (_stk.has(htmll)) {
 
@@ -2246,20 +2231,20 @@ function domIOtype (type, dom, htmll) {
  * @example
  *
  * dom("body").css()
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function domView (dom, htm) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var domee=this.getLength();
-    var str=domee>1
+    const domee=this.getLength();
+    let str=domee>1
         ?[]
         :"";
 
     core.each(function (meth) {
 
-        var dom_type = _stk.indexOf([
+        const dom_type = _stk.indexOf([
             "checkbox",
             "radio"
         ], _stk.ifUndefined(meth.type, "-")) > -1
@@ -2303,7 +2288,7 @@ function domView (dom, htm) {
 }
 
 ;
-var getWindowFunction = function () {
+const getWindowFunction = function () {
 
     if (typeof window !== 'undefined') {
 
@@ -2318,7 +2303,7 @@ var getWindowFunction = function () {
 ;
 // Const remove_list_action= [];
 
-var comptsWindow = getWindowFunction();
+const comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2346,7 +2331,7 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
  */
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
-    var var_elthis = elthis;
+    let var_elthis = elthis;
 
 	 elthis.each(function (elemm, td) {
 
@@ -2481,13 +2466,13 @@ function fadefun (meth, fade) {
  */
 function initFadeElement (meth, typ_s, intrvl_s, func) {
 
-    var ot={"fadein": 100,
+    const ot={"fadein": 100,
         "fadeout": 0,
         "fadeto": 100};
-    var timetofade={"fadein": "ot-20",
+    const timetofade={"fadein": "ot-20",
         "fadeout": "ot+20",
         "fadeto": "100"};
-    var timetoequal={"fadein": "ot<10",
+    const timetoequal={"fadein": "ot<10",
         "fadeout": "ot>90",
         "fadeto": "ot==100"};
 
@@ -2508,9 +2493,9 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
 
     } else {
 
-        var intval=setInterval(function () {
+        const intval=setInterval(function () {
 
-            var func_check=new Function("ot", "return "+timetoequal[typ_s]);
+            const func_check=new Function("ot", "return "+timetoequal[typ_s]);
 
             if (func_check(ot[typ_s])) {
 
@@ -2534,7 +2519,7 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
                 fadefun(meth, ot[typ_s]);
 
             }
-            var func_ot=new Function("ot", "return "+timetofade[typ_s]);
+            const func_ot=new Function("ot", "return "+timetofade[typ_s]);
 
             ot[typ_s]=func_ot(ot[typ_s]);
 
@@ -2555,16 +2540,16 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body").findElem("div")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").fade("slow")
+ * // => [ELEMENT]
  */
 function fade (typ, intrvl, func) {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var typ_s="";
+    let typ_s="";
 
-    var intrvl_s={};
+    const intrvl_s={};
 
     if (_stk.getTypeof(intrvl)==="json") {
 
@@ -2583,7 +2568,7 @@ function fade (typ, intrvl, func) {
         }
         if (_stk.getTypeof(intrvl) === "string") {
 
-            var jsn_spd_type=
+            const jsn_spd_type=
                 {
                     "fast": 200,
                     "faster": 100,
@@ -2661,22 +2646,22 @@ function getScrollPosition () {
  * @example
  *
  * dom("div").getScrollPositon()
- * // => false
+ * // => {left: 0, top: 0}
  */
 function getScrollPositon () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arryElem=[];
+    const arryElem=[];
 
     core.each(function (element) {
 
-        var rect = element.getBoundingClientRect();
-        var scrollTop = getScrollPosition().top;
+        const rect = element.getBoundingClientRect();
+        const scrollTop = getScrollPosition().top;
 
-        var scrollLeft = getScrollPosition().left;
-        var elementTop = rect.top+scrollTop;
-        var elementLeft = rect.left+scrollLeft;
+        const scrollLeft = getScrollPosition().left;
+        const elementTop = rect.top+scrollTop;
+        const elementLeft = rect.left+scrollLeft;
 
         arryElem.push({"left": elementLeft,
             "top": elementTop});
@@ -2704,14 +2689,14 @@ function getScrollPositon () {
  */
 function domOffset (_el) {
 
-    var gleft = 0,
+    let gleft = 0,
         gtop = 0,
         rect = {};
-    var target = _el,
+    const target = _el,
         target_height = target.offsetHeight,
         target_width = target.offsetWidth;
 
-    var lcwps = function (_parent) {
+    const lcwps = function (_parent) {
 
         if (_parent===false) {
 
@@ -2750,13 +2735,13 @@ function domOffset (_el) {
  * @example
  *
  * dom("div").getElementOffSet()
- * // => false
+ * // => {"bottom":896,"left":0,"right":1920,"top":0}
  */
 function getElementOffSet () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arryElem=[];
+    const arryElem=[];
 
     core.each(function (elemm) {
 
@@ -2779,20 +2764,20 @@ function getElementOffSet () {
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").isDomNull()
- * // => false
+ * dom("div").getElementDimension()
+ * // => {"bottom":896.328125,"height":896.328125,"left":0,"right":1920,"top":0,"width":1920}
  */
 function getElementDimension () {
 
-    var core = new CoreElementInit(this);
+    const core = new CoreElementInit(this);
 
-    var arryElem=[];
+    const arryElem=[];
 
     core.each(function (elemm) {
 
         if (_stk.has(elemm.getBoundingClientRect())) {
 
-            var gtrect=elemm.getBoundingClientRect();
+            const gtrect=elemm.getBoundingClientRect();
 
             arryElem.push({
                 "bottom": gtrect.bottom,
@@ -2832,7 +2817,7 @@ function getElementDimension () {
  */
 function domEventIniate (main, spltt, fn, bools) {
 
-    for (var vk=0; vk<spltt.length; vk++) {
+    for (let vk=0; vk<spltt.length; vk++) {
 
         (function (main_sub, m1, m2, m3, func) {
 
@@ -2858,7 +2843,7 @@ function domEventIniate (main, spltt, fn, bools) {
  * @example
  *
  * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function on (event, fn) {
 
@@ -2880,7 +2865,7 @@ function on (event, fn) {
  * @example
  *
  * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 function off (event, fn) {
 
@@ -2891,7 +2876,7 @@ function off (event, fn) {
 }
 
 ;
-var comptsWindow = getWindowFunction();
+const comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2918,11 +2903,11 @@ function elemDelegateEvent (elem, evnt, func) {
 
     dom(elem).on(evnt, function (err) {
 
-        var main = this;
+        const main = this;
 
         if (err.target) {
 
-            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, main);
+            const elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, main);
 
             if (elem_index===-1) {
 
@@ -2938,7 +2923,7 @@ function elemDelegateEvent (elem, evnt, func) {
 }
 
 ;
-var comptsWindow = getWindowFunction();
+const comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2958,8 +2943,8 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
  * @returns {Class} Returns the total.
  * @example
  *
- * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * dom("body").delegate("click", ()=>{})
+ * // => [ELEMENT]
  */
 function delegate (evnt, target_element, func) {
 
@@ -3034,11 +3019,14 @@ ElementTrigger.prototype.on = on;
 ElementTrigger.prototype.off = off;
 ElementTrigger.prototype.delegate = delegate;
 
-for (var f1 in elementConfig.eventListener) {
+const zero = 0;
+const one = 1;
+
+for (const f1 in elementConfig.eventListener) {
 
     if (_stk.has(elementConfig.eventListener[f1])) {
 
-        var check_mobile=(/(touchstart|touchmove|touchend)/).test(elementConfig.eventListener[f1])
+        const check_mobile=(/(touchstart|touchmove|touchend)/).test(elementConfig.eventListener[f1])
             ?elementConfig.eventListener[f1]
             :"none";
 
@@ -3058,7 +3046,7 @@ for (var f1 in elementConfig.eventListener) {
 
 }
 
-for (var f2 in elementConfig.child) {
+for (const f2 in elementConfig.child) {
 
     if (_stk.has(elementConfig.child[f2])) {
 
@@ -3072,13 +3060,13 @@ for (var f2 in elementConfig.child) {
 
             };
 
-        }(elementConfig.child[f2][0], elementConfig.child[f2][1]));
+        }(elementConfig.child[f2][zero], elementConfig.child[f2][one]));
 
     }
 
 }
 
-for (var f3 in elementConfig.appendhtml) {
+for (const f3 in elementConfig.appendhtml) {
 
     if (_stk.has(elementConfig.appendhtml[f3])) {
 
@@ -3092,13 +3080,13 @@ for (var f3 in elementConfig.appendhtml) {
 
             };
 
-        }(elementConfig.appendhtml[f3][0], elementConfig.appendhtml[f3][1]));
+        }(elementConfig.appendhtml[f3][zero], elementConfig.appendhtml[f3][one]));
 
     }
 
 }
 
-for (var f4 in elementConfig.styletype) {
+for (const f4 in elementConfig.styletype) {
 
     if (_stk.has(elementConfig.styletype[f4])) {
 
@@ -3116,7 +3104,7 @@ for (var f4 in elementConfig.styletype) {
 
 }
 
-for (var f5 in elementConfig.domview) {
+for (const f5 in elementConfig.domview) {
 
     if (_stk.has(elementConfig.domview[f5])) {
 
@@ -3134,7 +3122,7 @@ for (var f5 in elementConfig.domview) {
 
 }
 
-for (var f6 in elementConfig.elemfade) {
+for (const f6 in elementConfig.elemfade) {
 
     if (_stk.has(elementConfig.elemfade[f6])) {
 
@@ -3172,7 +3160,7 @@ function PsExtender () {
 
 PsExtender.prototype.extendElement= function (id) {
 
-    var ps_ob=new ElementTrigger(id);
+    const ps_ob=new ElementTrigger(id);
 
     return ps_ob;
 
@@ -3180,7 +3168,7 @@ PsExtender.prototype.extendElement= function (id) {
 
 PsExtender.prototype.tag_value= function (tar, ar) {
 
-    var tar_sub=tar.split("=>");
+    const tar_sub=tar.split("=>");
 
     _stk.each(tar_sub, function (eck, ecv) {
 
@@ -3192,9 +3180,9 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
 PsExtender.prototype.init= function (str, ar) {
 
-    var ar_s=[];
+    const ar_s=[];
 
-    var chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
+    const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
     if (chd_dom===null) {
 
@@ -3209,12 +3197,12 @@ PsExtender.prototype.init= function (str, ar) {
 };
 
 ;
-var domCoreAssign=function (id) {
+const domCoreAssign=function (id) {
 
-    var doc_set=function (idss) {
+    const doc_set=function (idss) {
 
-        var domm=[];
-        var ps_ext=new PsExtender();
+        const domm=[];
+        const ps_ext=new PsExtender();
 
         try {
 
@@ -3252,9 +3240,9 @@ var domCoreAssign=function (id) {
 
             } else {
 
-                var doc_loop=_stk.toString(idss).split(",");
+                const doc_loop=_stk.toString(idss).split(",");
 
-                for (var tKey in doc_loop) {
+                for (const tKey in doc_loop) {
 
                     if (_stk.has(doc_loop[tKey])) {
 
@@ -3300,5 +3288,21 @@ function dom (element) {
 }
 ;
 
-global.dom=dom
+global.dom=dom;
+
+/**
+ * Check if object or value
+ *
+ * @since 2.0.1
+ * @category DOM
+ * @returns {Object} Returns the total.
+ * @example
+ *
+ * dom("body")
+ * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ */
+function element () {}
+;
+
+global.element=element;
 

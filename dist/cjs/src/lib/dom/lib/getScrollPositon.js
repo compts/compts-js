@@ -13,7 +13,7 @@ const {count} = require('structkit');
  * @example
  *
  * dom("div").getScrollPositon()
- * // => false
+ * // => {left: 0, top: 0}
  */
 function getScrollPositon () {
 

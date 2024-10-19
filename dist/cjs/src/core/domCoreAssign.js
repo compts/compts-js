@@ -1,4 +1,4 @@
-const {each, getTypeof, has, toString, count ,isEmpty} = require('structkit');
+const {each, getTypeof, has, toString, count} = require('structkit');
 
 const PsExtender = require('./psExtender');
 
