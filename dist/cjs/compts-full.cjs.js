@@ -2163,16 +2163,9 @@ function domIOtype (type, dom, htmll) {
 
     if ((/\b(val)\b/g).test(type)) {
 
-        const alt_val=this.get_attr(dom, "ps_alt_value");
-
         if (_stk.has(htmll)) {
 
             dom.value=htmll;
-
-        }
-        if (_stk.has(alt_val, "ps_alt_value") && dom.value.trim().length==0) {
-
-            return alt_val.ps_alt_value;
 
         }
 
