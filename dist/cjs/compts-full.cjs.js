@@ -1589,8 +1589,8 @@ function removeAttr (value) {
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").remove()
+ * // => [ELEMENT]
  */
 function remove (doms) {
 
@@ -3306,3 +3306,5 @@ function element () {}
 
 global.element=element;
 
+
+ //end of file

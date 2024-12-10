@@ -20,6 +20,7 @@ exports.module=function (grassconf) {
 
     const packpier = grassconf.require("packpier");
     const {esmFileNameOnlyImportOnly} = grassconf.require("pirate-pack-js");
+    const {convertIifeFunction} = grassconf.require("pack-extract");
 
     grassconf.load("cjs", function () {
 
@@ -80,21 +81,34 @@ exports.module=function (grassconf) {
             },
                 "plugin": []
             }
-        )
-            .pipe(grass_concat("dist/web/compts-full.js", {
+        ).pipe(grassconf.streamPipe(function (data) {
+
+            let getData = data.readData();
+
+
+            getData = getData.replace("(function(global){\n", "const global=exports\n");
+
+            getData = getData.replace('})(typeof window !== "undefined" ? window : this);', "\n //end of file");
+            data.writeData(getData);
+            data.done();
+
+        }))
+            .pipe(grass_concat("dist/cjs/compts-full.cjs.js", {
                 "istruncate": true
             }))
             .pipe(grassconf.streamPipe(function (data) {
 
                 let getData = data.readData();
 
-                getData = getData.replace("(function(global){\n", "const global=exports\n");
-                getData = getData.replace('})(typeof window !== "undefined" ? window : this);', "");
+                getData = convertIifeFunction(getData, true);
+                getData = getData.replace("const global=exports\n", "(function(global){\n");
+                getData = getData.replace("//end of file", '})(typeof window !== "undefined" ? window : this);');
+                getData = getData.replace(/([\s\n\r\t]{0,})(const|let)\s{1,}/g, "$1var ");
                 data.writeData(getData);
                 data.done();
 
             }))
-            .pipe(grass_concat("dist/cjs/compts-full.cjs.js", {
+            .pipe(grass_concat("dist/web/compts-full.js", {
                 "istruncate": true
             }));
 

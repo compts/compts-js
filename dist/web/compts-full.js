@@ -1,10 +1,10 @@
 (function(global){
-const globalConfig = {};
+var globalConfig = {};
 
 ;
 
 global.globalConfig=globalConfig;
-const elementConfig = {};
+var elementConfig = {};
 
 elementConfig.appendhtml=[
     [
@@ -134,9 +134,9 @@ global.elementConfig=elementConfig;
  */
 function documentReady (func) {
 
-    const root = window;
+    var root = window;
 
-    let dom_rdy_ctt=0;
+    var dom_rdy_ctt=0;
 
     if (dom_rdy_ctt===0) {
 
@@ -153,9 +153,9 @@ function documentReady (func) {
         }
 
     }
-    let fails=false;
+    var fails=false;
 
-    const dom_load_ready =function () {
+    var dom_load_ready =function () {
 
         if (document.readyState==="complete" && fails === false) {
 
@@ -167,7 +167,7 @@ function documentReady (func) {
 
     };
 
-    let set_intr=null;
+    var set_intr=null;
 
     set_intr=setInterval(function () {
 
@@ -263,7 +263,7 @@ function parentchild (child_prnt, de, cnt) {
 
     } else if (child_prnt==="odd" || child_prnt==="even") {
 
-        const sel={
+        var sel={
             "even": 0,
             "odd": 1
         };
@@ -334,13 +334,13 @@ function glgFuncAssign (bools, glb, key, valu) {
  */
 function assignElementDistinction (dom, assn, bools) {
 
-    const assn_splt=_stk.ifUndefined(assn, "").split("::");
+    var assn_splt=_stk.ifUndefined(assn, "").split("::");
 
-    const glb=bools;
+    var glb=bools;
 
     if (assn_splt.length===1) {
 
-        for (const td in dom) {
+        for (var td in dom) {
 
             glgFuncAssign(bools, glb, td, dom);
 
@@ -350,9 +350,9 @@ function assignElementDistinction (dom, assn, bools) {
 
     } else if (assn_splt.length==2) {
 
-        const spl2=assn_splt[1];
+        var spl2=assn_splt[1];
 
-        const fltr=[
+        var fltr=[
             "first",
             "haschild",
             "hasChildNodes",
@@ -360,9 +360,9 @@ function assignElementDistinction (dom, assn, bools) {
             "even",
             "odd"
         ];
-        let cnt=0;
+        var cnt=0;
 
-        for (const td1 in dom) {
+        for (var td1 in dom) {
 
             if (dom.length>cnt) {
 
@@ -377,12 +377,12 @@ function assignElementDistinction (dom, assn, bools) {
                 }
 
             }
-            let type_pos="";
-            let index_pos="";
+            var type_pos="";
+            var index_pos="";
 
             if ((/([\w\-\_]{1,})(\(\d\))/g).test(spl2)) {
 
-                const replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
+                var replc=spl2.replace(/([\w\-\_]{1,})\((\d)\)/g, function (g, g1, g2) {
 
                     type_pos=g1;
                     index_pos=g2;
@@ -435,10 +435,10 @@ function assignElementDistinction (dom, assn, bools) {
  */
 function getDomAttr (meth, domValue) {
 
-    const attr_type=_stk.getTypeof(domValue)==="array"
+    var attr_type=_stk.getTypeof(domValue)==="array"
         ?domValue
         :[domValue];
-    const globl={};
+    var globl={};
 
     if (_stk.has(meth)) {
 
@@ -491,12 +491,12 @@ function getDomAttr (meth, domValue) {
  */
 function findElement (tar_m_sub, ar, bool) {
 
-    const tar_m_split=tar_m_sub.split("=>");
-    const tar_m=(tar_m_split.length === 0
+    var tar_m_split=tar_m_sub.split("=>");
+    var tar_m=(tar_m_split.length === 0
         ?tar_m_sub
         :tar_m_split[0]).trim();
 
-    let node=[];
+    var node=[];
 
     if (bool) {
 
@@ -509,13 +509,13 @@ function findElement (tar_m_sub, ar, bool) {
 
     }
 
-    const tar=tar_m.split(",");
+    var tar=tar_m.split(",");
 
-    for (const ni in node) {
+    for (var ni in node) {
 
         if (_stk.has(node, ni)) {
 
-            for (const ti in tar_m) {
+            for (var ti in tar_m) {
 
                 if (_stk.has(tar, ti)) {
 
@@ -557,14 +557,14 @@ function findElement (tar_m_sub, ar, bool) {
  */
 function searchElement (element, node, ar) {
 
-    const cls_list = [];
-    const attr_list = [];
-    let tag_name = "*";
+    var cls_list = [];
+    var attr_list = [];
+    var tag_name = "*";
 
     if ((/#/g).test(element)) {
 
-        const replce_dom=element.toString().replace(/^[#]/g, "");
-        const idd_m=node.getElementById(replce_dom);
+        var replce_dom=element.toString().replace(/^[#]/g, "");
+        var idd_m=node.getElementById(replce_dom);
 
         if (_stk.has(idd_m)) {
 
@@ -574,9 +574,9 @@ function searchElement (element, node, ar) {
 
     } else {
 
-        const attrRet = element.replaceAll(/\[(.*?)\]/g, function (wrd, s1) {
+        var attrRet = element.replaceAll(/\[(.*?)\]/g, function (wrd, s1) {
 
-            const listAttrToLook = s1.replace(/^(\[)/g, "")
+            var listAttrToLook = s1.replace(/^(\[)/g, "")
                 .replace(/(\])$/g, "")
                 .split(",");
 
@@ -590,7 +590,7 @@ function searchElement (element, node, ar) {
 
         });
 
-        const classRet = attrRet.replaceAll(/\.([a-zA-Z0-9-]{1,})/g, function (wrd, s1) {
+        var classRet = attrRet.replaceAll(/\.([a-zA-Z0-9-]{1,})/g, function (wrd, s1) {
 
             cls_list.push(s1);
 
@@ -606,19 +606,19 @@ function searchElement (element, node, ar) {
 
         if (_stk.has(node.getElementsByTagName(tag_name))) {
 
-            const listElementTags = node.getElementsByTagName(tag_name);
+            var listElementTags = node.getElementsByTagName(tag_name);
 
-            for (let ii=0, jj=listElementTags.length; ii<jj;) {
+            for (var ii=0, jj=listElementTags.length; ii<jj;) {
 
                 if (_stk.has(listElementTags, ii)) {
 
-                    let isValidDom = false;
+                    var isValidDom = false;
 
-                    const elementTag = listElementTags[ii];
+                    var elementTag = listElementTags[ii];
 
                     if (_stk.has(elementTag.className)) {
 
-                        const elementClass = elementTag.className.split(/\s{1,}/);
+                        var elementClass = elementTag.className.split(/\s{1,}/);
 
                         if (_stk.isEmpty(elementClass) && _stk.isEmpty(cls_list)) {
 
@@ -638,13 +638,13 @@ function searchElement (element, node, ar) {
 
                     if (!_stk.isEmpty(attr_list)) {
 
-                        const attrListCount = _stk.count(attr_list);
-                        let counterValidType = 0;
+                        var attrListCount = _stk.count(attr_list);
+                        var counterValidType = 0;
 
                         _stk.each(attr_list, function (__, val) {
 
-                            const getAttrAt = getAttrTypeValue(val);
-                            const getAttrVal = getDomAttr(elementTag, getAttrAt.name);
+                            var getAttrAt = getAttrTypeValue(val);
+                            var getAttrVal = getDomAttr(elementTag, getAttrAt.name);
 
                             if (!_stk.isEmpty(getAttrVal)) {
 
@@ -694,7 +694,7 @@ function searchElement (element, node, ar) {
  */
 function getAttrTypeValue (value) {
 
-    const splitEq = value.split(/\b(=)\b/g);
+    var splitEq = value.split(/\b(=)\b/g);
 
     if (_stk.count(splitEq) === 3) {
 
@@ -706,7 +706,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitCongruent = value.split(/\b(~=)\b/g);
+    var splitCongruent = value.split(/\b(~=)\b/g);
 
     if (_stk.count(splitCongruent) === 3) {
 
@@ -718,7 +718,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitStart = value.split(/\b(\^=)\b/g);
+    var splitStart = value.split(/\b(\^=)\b/g);
 
     if (_stk.count(splitStart) === 3) {
 
@@ -730,7 +730,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitEnd = value.split(/\b(\$=)\b/g);
+    var splitEnd = value.split(/\b(\$=)\b/g);
 
     if (_stk.count(splitEnd) === 3) {
 
@@ -742,7 +742,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitMatch = value.split(/\b(\*=)\b/g);
+    var splitMatch = value.split(/\b(\*=)\b/g);
 
     if (_stk.count(splitMatch) === 3) {
 
@@ -754,7 +754,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitStarting = value.split(/\b(\|=)\b/g);
+    var splitStarting = value.split(/\b(\|=)\b/g);
 
     if (_stk.count(splitStarting) === 3) {
 
@@ -766,7 +766,7 @@ function getAttrTypeValue (value) {
 
     }
 
-    const splitNotIn = value.split(/\b(!=)\b/g);
+    var splitNotIn = value.split(/\b(!=)\b/g);
 
     if (_stk.count(splitNotIn) === 3) {
 
@@ -814,14 +814,14 @@ function validateTypeValue (value, value1, type) {
     }
     if (type === "startWith") {
 
-        const regexp = new RegExp("^("+value+")", "g");
+        var regexp = new RegExp("^("+value+")", "g");
 
         return regexp.test(value1);
 
     }
     if (type === "endWith") {
 
-        const regexp = new RegExp("("+value+")$", "g");
+        var regexp = new RegExp("("+value+")$", "g");
 
         return regexp.test(value1);
 
@@ -829,7 +829,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "match") {
 
-        const regexp = new RegExp("("+value+")", "g");
+        var regexp = new RegExp("("+value+")", "g");
 
         return regexp.test(value1);
 
@@ -837,7 +837,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "congruent") {
 
-        const regexp = value.split(/[\s]{1,}/);
+        var regexp = value.split(/[\s]{1,}/);
 
         return _stk.indexOfExist(regexp, value1);
 
@@ -845,7 +845,7 @@ function validateTypeValue (value, value1, type) {
 
     if (type === "starting") {
 
-        const regexp = value1.split(/[_-]/);
+        var regexp = value1.split(/[_-]/);
 
         return _stk.indexOf(regexp, value) === 0;
 
@@ -864,13 +864,13 @@ function CoreElementInit (dom) {
 
 CoreElementInit.prototype.each = function (func) {
 
-    let cnt=0;
-    const ele_cnt=this.element;
-    const prnt_chld=this.parent_child;
+    var cnt=0;
+    var ele_cnt=this.element;
+    var prnt_chld=this.parent_child;
 
-    const ass_elem=assignElementDistinction(this.element, prnt_chld, {});
+    var ass_elem=assignElementDistinction(this.element, prnt_chld, {});
 
-    for (const td in ass_elem) {
+    for (var td in ass_elem) {
 
         (function (func, d, m) {
 
@@ -903,10 +903,10 @@ CoreElementInit.prototype.each = function (func) {
  */
 function getDomAttr (meth, dk) {
 
-    const attr_type=_stk.getTypeof(dk)==="array"
+    var attr_type=_stk.getTypeof(dk)==="array"
         ?dk
         :[dk];
-    const globl={};
+    var globl={};
 
     if (_stk.has(meth)) {
 
@@ -957,7 +957,7 @@ function getDomAttr (meth, dk) {
  */
 function getElementExistAttr (res) {
 
-    const attr_elem={};
+    var attr_elem={};
 
     for (var att, i = 0, atts = res.attributes, n = atts.length; i < n;) {
 
@@ -989,20 +989,20 @@ function getElementExistAttr (res) {
  */
 function attr (dl, bol) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let cnt=0;
-    const globl={},
+    var cnt=0;
+    var globl={},
         globl_all=[];
-    const var_bol=bol||false;
+    var var_bol=bol||false;
 
-    const is_where_attr = _stk.has(dl);
+    var is_where_attr = _stk.has(dl);
 
-    const attr_type=_stk.getTypeof(dl)==="array"
+    var attr_type=_stk.getTypeof(dl)==="array"
         ?dl
         :[dl];
 
-    const typeofs = _stk.getTypeof(dl) !== "json";
+    var typeofs = _stk.getTypeof(dl) !== "json";
 
     core.each(function (meth) {
 
@@ -1010,7 +1010,7 @@ function attr (dl, bol) {
 
             if (typeofs) {
 
-                const get_attr=getDomAttr(meth, attr_type);
+                var get_attr=getDomAttr(meth, attr_type);
 
                 if (var_bol===true) {
 
@@ -1032,11 +1032,11 @@ function attr (dl, bol) {
 
             } else {
 
-                for (const vk in dl) {
+                for (var vk in dl) {
 
                     if (_stk.has(dl, vk)) {
 
-                        const crte_elem=document.createAttribute(vk);
+                        var crte_elem=document.createAttribute(vk);
 
                         crte_elem.value = dl[vk];
 
@@ -1090,8 +1090,8 @@ function attr (dl, bol) {
  */
 function loopstyle (dom, style) {
 
-    const golb={};
-    let golb_st="";
+    var golb={};
+    var golb_st="";
 
     if (!window.getComputedStyle) {
 
@@ -1124,11 +1124,11 @@ function loopstyle (dom, style) {
  */
 function domGetCSS (ele, prop) {
 
-    let golb_ret={};
+    var golb_ret={};
 
     if (_stk.getTypeof(prop)==="array") {
 
-        for (const fn in prop) {
+        for (var fn in prop) {
 
             golb_ret[prop[fn]]=loopstyle(ele, prop[fn]);
 
@@ -1160,22 +1160,22 @@ function domGetCSS (ele, prop) {
  */
 function domCSS (id, dList) {
 
-    let elem_str_class="";
-    const get_attr=_stk.has(getDomAttr(id, ['style']).style)
+    var elem_str_class="";
+    var get_attr=_stk.has(getDomAttr(id, ['style']).style)
         ?getDomAttr(id, ['style']).style
         :"";
-    const split_style=get_attr.toString().split(";");
+    var split_style=get_attr.toString().split(";");
 
     _stk.each(split_style, function (spk, spv) {
 
-        const elem_d=spv.split(":");
+        var elem_d=spv.split(":");
 
         if (_stk.count(elem_d)>0 && _stk.has(spv)) {
 
             if (!_stk.has(dList, elem_d[0]) && _stk.has(elem_d[1])) {
 
-                const ele_key=elem_d[0].replace(/\s/, "");
-                const ele_val=elem_d[1].replace(/\s/, "");
+                var ele_key=elem_d[0].replace(/\s/, "");
+                var ele_val=elem_d[1].replace(/\s/, "");
 
                 if (!_stk.has(dList[ele_key])) {
 
@@ -1189,7 +1189,7 @@ function domCSS (id, dList) {
 
     });
 
-    for (const vK in dList) {
+    for (var vK in dList) {
 
         if (_stk.has(dList, vK)) {
 
@@ -1222,7 +1222,7 @@ function domCSS (id, dList) {
 
             if (_stk.has(id.setAttributeNode)) {
 
-                const creat_elem=document.createAttribute("style");
+                var creat_elem=document.createAttribute("style");
 
                 creat_elem.value=elem_str_class;
                 id.setAttributeNode(creat_elem);
@@ -1255,15 +1255,15 @@ function domCSS (id, dList) {
  */
 function css (value, countValue) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const typeofs = _stk.getTypeof(value) === "json";
+    var typeofs = _stk.getTypeof(value) === "json";
 
-    const cntt=_stk.has(countValue) === false
+    var cntt=_stk.has(countValue) === false
         ?0
         :countValue-1;
 
-    const val_g = {};
+    var val_g = {};
 
     core.each(function (meth, td) {
 
@@ -1283,7 +1283,7 @@ function css (value, countValue) {
 
     });
 
-    const returnValue = cntt===0
+    var returnValue = cntt===0
         ?val_g[0]
         :val_g;
 
@@ -1308,7 +1308,7 @@ function css (value, countValue) {
  */
 function each (func) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(func);
 
@@ -1329,7 +1329,7 @@ function each (func) {
  */
 function empty () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
@@ -1359,9 +1359,9 @@ function empty () {
  */
 function getLength () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let cnt_i=0;
+    var cnt_i=0;
 
     core.each(function (meth) {
 
@@ -1395,9 +1395,9 @@ function getLength () {
  */
 function getDom () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const id_dm=[];
+    var id_dm=[];
 
     core.each(function (meth) {
 
@@ -1424,10 +1424,10 @@ function getDom () {
  */
 function getIndexAttr (attr) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let cnt=0;
-    const globl=[];
+    var cnt=0;
+    var globl=[];
 
     if (_stk.getTypeof(attr)!=="json") {
 
@@ -1435,13 +1435,13 @@ function getIndexAttr (attr) {
 
     }
 
-    const getkey=_stk.getKey(attr);
+    var getkey=_stk.getKey(attr);
 
     core.each(function (meth) {
 
-        const get_attr=getDomAttr(meth,getkey);
+        var get_attr=getDomAttr(meth,getkey);
 
-        const where_count=_stk.where(get_attr,attr);
+        var where_count=_stk.where(get_attr,attr);
 
         if (_stk.count(where_count)>0) {
 
@@ -1476,7 +1476,7 @@ function getIndexAttr (attr) {
  */
 function show () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -1527,7 +1527,7 @@ function eq (value) {
  */
 function hide () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -1557,9 +1557,9 @@ function hide () {
  */
 function removeAttr (value) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const attr_type = _stk.getTypeof(value) === "array"
+    var attr_type = _stk.getTypeof(value) === "array"
         ?value
         :new Array(value);
 
@@ -1589,12 +1589,12 @@ function removeAttr (value) {
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").remove()
+ * // => [ELEMENT]
  */
 function remove (doms) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (elemm) {
 
@@ -1635,9 +1635,9 @@ function remove (doms) {
  */
 function tagName () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arry_pl=[];
+    var arry_pl=[];
 
     core.each(function (meth) {
 
@@ -1666,7 +1666,7 @@ function tagName () {
  */
 function findElem (elem) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     findElement(elem, core.element, true);
 
@@ -1691,19 +1691,19 @@ function findElem (elem) {
  */
 function domSelectOption (main, bol, type) {
 
-    let opt = null;
-    let sel_opt='';
-    const sel_opt_ar=[];
-    let opt_cnt=0;
-    let select_count=0;
-    const booln=bol||false;
+    var opt = null;
+    var sel_opt='';
+    var sel_opt_ar=[];
+    var opt_cnt=0;
+    var select_count=0;
+    var booln=bol||false;
 
     main.each(function (td, meth) {
 
         if (_stk.has(meth[td])) {
 
             opt=meth[td].options;
-            for (let i=0; i<opt.length; i++) {
+            for (var i=0; i<opt.length; i++) {
 
                 if (opt[i].selected==true) {
 
@@ -1766,7 +1766,7 @@ function domSelectOption (main, bol, type) {
  */
 function getSelected (bol) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "value");
 
@@ -1787,23 +1787,23 @@ function getSelected (bol) {
  */
 function formGetValues (self) {
 
-    const list_elem = [
+    var list_elem = [
         "input",
         "select",
         "textarea"
     ];
-    let ret_value = [];
+    var ret_value = [];
 
     self.each(function (html_form, td) {
 
-        for (const key in list_elem) {
+        for (var key in list_elem) {
 
             if (list_elem[key] == "select") {
 
                 dom(html_form).findElem(list_elem[key])
                     .each(function (k, v) {
 
-                        const get_attr = dom(k).attr();
+                        var get_attr = dom(k).attr();
 
                         get_attr.value=dom(k).val();
                         get_attr.type="select";
@@ -1840,7 +1840,7 @@ function formGetValues (self) {
  */
 function getFormAttr () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     return formGetValues(core);
 
@@ -1861,7 +1861,7 @@ function getFormAttr () {
  */
 function getSelectedCount (bol) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "count");
 
@@ -1882,7 +1882,7 @@ function getSelectedCount (bol) {
  */
 function getSelectedText (bol) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     return domSelectOption(core, bol, "text");
 
@@ -1903,14 +1903,14 @@ function getSelectedText (bol) {
  */
 function setSelected (val) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let opt = null;
+    var opt = null;
 
     core.each(function (meth) {
 
         opt=meth.options;
-        for (let inc =0; inc<opt.length;) {
+        for (var inc =0; inc<opt.length;) {
 
             opt[inc].selected = opt[inc].value===val;
 
@@ -1939,13 +1939,13 @@ function setSelected (val) {
  */
 function toggleDisplay (display) {
 
-    const d_var=display||"";
+    var d_var=display||"";
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
-        const elem=meth.style.display||domGetCSS(meth, "display");
+        var elem=meth.style.display||domGetCSS(meth, "display");
 
         domCSS(meth, {
             "display": elem==="none"
@@ -1974,9 +1974,9 @@ function toggleDisplay (display) {
  */
 function getParent () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arry_pl=[];
+    var arry_pl=[];
 
     core.each(function (meth) {
 
@@ -2006,7 +2006,7 @@ function getParent () {
  */
 function insertHtml (com, htm) {
 
-    const lst_adj={
+    var lst_adj={
         "after": "afterend",
         "afterbegin": "afterbegin",
         "afterend": "afterend",
@@ -2015,7 +2015,7 @@ function insertHtml (com, htm) {
         "beforeend": "beforeend",
         "prepend": "afterbegin"
     };
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
     core.each(function (meth) {
 
@@ -2061,9 +2061,9 @@ function insertHtml (com, htm) {
  */
 function index (doms) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arry_dm = [];
+    var arry_dm = [];
 
     core.each(function (elemm) {
 
@@ -2089,9 +2089,9 @@ function index (doms) {
  */
 function isDomNull () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let bool=false;
+    var bool=false;
 
     core.each(function (elemm) {
 
@@ -2121,11 +2121,11 @@ function isDomNull () {
  */
 function getChildPosition () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let incrementi = 1;
+    var incrementi = 1;
 
-    let node=_stk.has(core.element[0])===false
+    var node=_stk.has(core.element[0])===false
         ?core.element
         :core.element[0];
 
@@ -2163,7 +2163,7 @@ function domIOtype (type, dom, htmll) {
 
     if ((/\b(val)\b/g).test(type)) {
 
-        const alt_val=this.get_attr(dom, "ps_alt_value");
+        var alt_val=this.get_attr(dom, "ps_alt_value");
 
         if (_stk.has(htmll)) {
 
@@ -2235,16 +2235,16 @@ function domIOtype (type, dom, htmll) {
  */
 function domView (dom, htm) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const domee=this.getLength();
-    let str=domee>1
+    var domee=this.getLength();
+    var str=domee>1
         ?[]
         :"";
 
     core.each(function (meth) {
 
-        const dom_type = _stk.indexOf([
+        var dom_type = _stk.indexOf([
             "checkbox",
             "radio"
         ], _stk.ifUndefined(meth.type, "-")) > -1
@@ -2288,7 +2288,7 @@ function domView (dom, htm) {
 }
 
 ;
-const getWindowFunction = function () {
+var getWindowFunction = function () {
 
     if (typeof window !== 'undefined') {
 
@@ -2303,7 +2303,7 @@ const getWindowFunction = function () {
 ;
 // Const remove_list_action= [];
 
-const comptsWindow = getWindowFunction();
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2331,7 +2331,7 @@ if (_stk.has(comptsWindow, "comptsControl") ===false) {
  */
 function eventListener (elthis, c1, c2, c3, func, act_bool) {
 
-    let var_elthis = elthis;
+    var var_elthis = elthis;
 
 	 elthis.each(function (elemm, td) {
 
@@ -2466,13 +2466,13 @@ function fadefun (meth, fade) {
  */
 function initFadeElement (meth, typ_s, intrvl_s, func) {
 
-    const ot={"fadein": 100,
+    var ot={"fadein": 100,
         "fadeout": 0,
         "fadeto": 100};
-    const timetofade={"fadein": "ot-20",
+    var timetofade={"fadein": "ot-20",
         "fadeout": "ot+20",
         "fadeto": "100"};
-    const timetoequal={"fadein": "ot<10",
+    var timetoequal={"fadein": "ot<10",
         "fadeout": "ot>90",
         "fadeto": "ot==100"};
 
@@ -2493,9 +2493,9 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
 
     } else {
 
-        const intval=setInterval(function () {
+        var intval=setInterval(function () {
 
-            const func_check=new Function("ot", "return "+timetoequal[typ_s]);
+            var func_check=new Function("ot", "return "+timetoequal[typ_s]);
 
             if (func_check(ot[typ_s])) {
 
@@ -2519,7 +2519,7 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
                 fadefun(meth, ot[typ_s]);
 
             }
-            const func_ot=new Function("ot", "return "+timetofade[typ_s]);
+            var func_ot=new Function("ot", "return "+timetofade[typ_s]);
 
             ot[typ_s]=func_ot(ot[typ_s]);
 
@@ -2545,11 +2545,11 @@ function initFadeElement (meth, typ_s, intrvl_s, func) {
  */
 function fade (typ, intrvl, func) {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    let typ_s="";
+    var typ_s="";
 
-    const intrvl_s={};
+    var intrvl_s={};
 
     if (_stk.getTypeof(intrvl)==="json") {
 
@@ -2568,7 +2568,7 @@ function fade (typ, intrvl, func) {
         }
         if (_stk.getTypeof(intrvl) === "string") {
 
-            const jsn_spd_type=
+            var jsn_spd_type=
                 {
                     "fast": 200,
                     "faster": 100,
@@ -2650,18 +2650,18 @@ function getScrollPosition () {
  */
 function getScrollPositon () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arryElem=[];
+    var arryElem=[];
 
     core.each(function (element) {
 
-        const rect = element.getBoundingClientRect();
-        const scrollTop = getScrollPosition().top;
+        var rect = element.getBoundingClientRect();
+        var scrollTop = getScrollPosition().top;
 
-        const scrollLeft = getScrollPosition().left;
-        const elementTop = rect.top+scrollTop;
-        const elementLeft = rect.left+scrollLeft;
+        var scrollLeft = getScrollPosition().left;
+        var elementTop = rect.top+scrollTop;
+        var elementLeft = rect.left+scrollLeft;
 
         arryElem.push({"left": elementLeft,
             "top": elementTop});
@@ -2689,14 +2689,14 @@ function getScrollPositon () {
  */
 function domOffset (_el) {
 
-    let gleft = 0,
+    var gleft = 0,
         gtop = 0,
         rect = {};
-    const target = _el,
+    var target = _el,
         target_height = target.offsetHeight,
         target_width = target.offsetWidth;
 
-    const lcwps = function (_parent) {
+    var lcwps = function (_parent) {
 
         if (_parent===false) {
 
@@ -2739,9 +2739,9 @@ function domOffset (_el) {
  */
 function getElementOffSet () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arryElem=[];
+    var arryElem=[];
 
     core.each(function (elemm) {
 
@@ -2769,15 +2769,15 @@ function getElementOffSet () {
  */
 function getElementDimension () {
 
-    const core = new CoreElementInit(this);
+    var core = new CoreElementInit(this);
 
-    const arryElem=[];
+    var arryElem=[];
 
     core.each(function (elemm) {
 
         if (_stk.has(elemm.getBoundingClientRect())) {
 
-            const gtrect=elemm.getBoundingClientRect();
+            var gtrect=elemm.getBoundingClientRect();
 
             arryElem.push({
                 "bottom": gtrect.bottom,
@@ -2817,7 +2817,7 @@ function getElementDimension () {
  */
 function domEventIniate (main, spltt, fn, bools) {
 
-    for (let vk=0; vk<spltt.length; vk++) {
+    for (var vk=0; vk<spltt.length; vk++) {
 
         (function (main_sub, m1, m2, m3, func) {
 
@@ -2876,7 +2876,7 @@ function off (event, fn) {
 }
 
 ;
-const comptsWindow = getWindowFunction();
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -2903,11 +2903,11 @@ function elemDelegateEvent (elem, evnt, func) {
 
     dom(elem).on(evnt, function (err) {
 
-        const main = this;
+        var main = this;
 
         if (err.target) {
 
-            const elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, main);
+            var elem_index = _stk.indexOf(comptsWindow.comptsControl.delegation_record_list, main);
 
             if (elem_index===-1) {
 
@@ -2923,7 +2923,7 @@ function elemDelegateEvent (elem, evnt, func) {
 }
 
 ;
-const comptsWindow = getWindowFunction();
+var comptsWindow = getWindowFunction();
 
 if (_stk.has(comptsWindow, "comptsControl") ===false) {
 
@@ -3019,14 +3019,14 @@ ElementTrigger.prototype.on = on;
 ElementTrigger.prototype.off = off;
 ElementTrigger.prototype.delegate = delegate;
 
-const zero = 0;
-const one = 1;
+var zero = 0;
+var one = 1;
 
-for (const f1 in elementConfig.eventListener) {
+for (var f1 in elementConfig.eventListener) {
 
     if (_stk.has(elementConfig.eventListener[f1])) {
 
-        const check_mobile=(/(touchstart|touchmove|touchend)/).test(elementConfig.eventListener[f1])
+        var check_mobile=(/(touchstart|touchmove|touchend)/).test(elementConfig.eventListener[f1])
             ?elementConfig.eventListener[f1]
             :"none";
 
@@ -3046,7 +3046,7 @@ for (const f1 in elementConfig.eventListener) {
 
 }
 
-for (const f2 in elementConfig.child) {
+for (var f2 in elementConfig.child) {
 
     if (_stk.has(elementConfig.child[f2])) {
 
@@ -3066,7 +3066,7 @@ for (const f2 in elementConfig.child) {
 
 }
 
-for (const f3 in elementConfig.appendhtml) {
+for (var f3 in elementConfig.appendhtml) {
 
     if (_stk.has(elementConfig.appendhtml[f3])) {
 
@@ -3086,7 +3086,7 @@ for (const f3 in elementConfig.appendhtml) {
 
 }
 
-for (const f4 in elementConfig.styletype) {
+for (var f4 in elementConfig.styletype) {
 
     if (_stk.has(elementConfig.styletype[f4])) {
 
@@ -3104,7 +3104,7 @@ for (const f4 in elementConfig.styletype) {
 
 }
 
-for (const f5 in elementConfig.domview) {
+for (var f5 in elementConfig.domview) {
 
     if (_stk.has(elementConfig.domview[f5])) {
 
@@ -3122,7 +3122,7 @@ for (const f5 in elementConfig.domview) {
 
 }
 
-for (const f6 in elementConfig.elemfade) {
+for (var f6 in elementConfig.elemfade) {
 
     if (_stk.has(elementConfig.elemfade[f6])) {
 
@@ -3160,7 +3160,7 @@ function PsExtender () {
 
 PsExtender.prototype.extendElement= function (id) {
 
-    const ps_ob=new ElementTrigger(id);
+    var ps_ob=new ElementTrigger(id);
 
     return ps_ob;
 
@@ -3168,7 +3168,7 @@ PsExtender.prototype.extendElement= function (id) {
 
 PsExtender.prototype.tag_value= function (tar, ar) {
 
-    const tar_sub=tar.split("=>");
+    var tar_sub=tar.split("=>");
 
     _stk.each(tar_sub, function (eck, ecv) {
 
@@ -3180,9 +3180,9 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
 PsExtender.prototype.init= function (str, ar) {
 
-    const ar_s=[];
+    var ar_s=[];
 
-    const chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
+    var chd_dom=str.toString().match(/^[#.\w]{0,1}/g);
 
     if (chd_dom===null) {
 
@@ -3197,12 +3197,12 @@ PsExtender.prototype.init= function (str, ar) {
 };
 
 ;
-const domCoreAssign=function (id) {
+var domCoreAssign=function (id) {
 
-    const doc_set=function (idss) {
+    var doc_set=function (idss) {
 
-        const domm=[];
-        const ps_ext=new PsExtender();
+        var domm=[];
+        var ps_ext=new PsExtender();
 
         try {
 
@@ -3240,9 +3240,9 @@ const domCoreAssign=function (id) {
 
             } else {
 
-                const doc_loop=_stk.toString(idss).split(",");
+                var doc_loop=_stk.toString(idss).split(",");
 
-                for (const tKey in doc_loop) {
+                for (var tKey in doc_loop) {
 
                     if (_stk.has(doc_loop[tKey])) {
 
@@ -3306,4 +3306,5 @@ function element () {}
 
 global.element=element;
 
-})(typeof window !== "undefined" ? window : this);
+
+ })(typeof window !== "undefined" ? window : this);
