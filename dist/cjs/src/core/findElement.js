@@ -1,4 +1,4 @@
-const {each, has, isEmpty, isExact, indexOfExist, count, first, indexOf, clone} = require('structkit');
+const {each, has, isEmpty, isExact, indexOfExist, count, indexOf, clone} = require('structkit');
 
 const getDomAttr = require('./getDomAttr');
 
@@ -56,7 +56,7 @@ function findElement (tar_m_sub, ar, bool) {
 
     }
 
-    each(tar_m_split, function (cek, cev) {
+    each(tar_m_split, function (cev, cek) {
 
         if (cek>0) {
 
@@ -107,7 +107,7 @@ function searchElement (element, node, ar) {
                 .replace(/(\])$/g, "")
                 .split(",");
 
-            each(listAttrToLook, function (__, val) {
+            each(listAttrToLook, function (val) {
 
                 attr_list.push(val);
 
@@ -168,7 +168,7 @@ function searchElement (element, node, ar) {
                         const attrListCount = count(attr_list);
                         let counterValidType = 0;
 
-                        each(attr_list, function (__, val) {
+                        each(attr_list, function (val) {
 
                             const getAttrAt = getAttrTypeValue(val);
                             const getAttrVal = getDomAttr(elementTag, getAttrAt.name);

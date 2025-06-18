@@ -7,6 +7,8 @@
   "types": "./dist/ts/module/index.esm.d.ts",
   "exports": {
     ".": {
+      "require": "./src/index.js",
+      "import": "./es/index.js",
       "types": {
         "require": "./dist/ts/module/index.esm.d.ts",
         "default": "./dist/ts/module/index.esm.d.ts"
@@ -44,7 +46,7 @@
   "homepage": "https://github.com/compts/compts-js#readme",
   "dependencies": {
     "tsd": "^0.19.1",
-    "structkit": "^1.4.7"
+    "structkit": "^1.4.871"
   },
   "devDependencies": {
     "@types/node": "^17.0.22",

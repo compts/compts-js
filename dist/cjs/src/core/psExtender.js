@@ -1,4 +1,4 @@
-const {each, has} = require('structkit');
+const {each} = require('structkit');
 
 const assignElementDistinction = require('./assignElementDistinction');
 
@@ -35,7 +35,7 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
     const tar_sub=tar.split("=>");
 
-    each(tar_sub, function (eck, ecv) {
+    each(tar_sub, function (ecv, eck) {
 
         findElement(ecv, ar, eck>0);
 

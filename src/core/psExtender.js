@@ -1,4 +1,4 @@
-import {each, has} from 'structkit';
+import {each} from 'structkit';
 import assignElementDistinction from './assignElementDistinction';
 import findElement from './findElement';
 import ElementTrigger from '../lib/dom/index';
@@ -34,7 +34,7 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
     const tar_sub=tar.split("=>");
 
-    each(tar_sub, function (eck, ecv) {
+    each(tar_sub, function (ecv, eck) {
 
         findElement(ecv, ar, eck>0);
 

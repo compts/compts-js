@@ -26,7 +26,7 @@ function removeAttr (value) {
 
         if (meth.removeAttribute) {
 
-            each(attr_type, function (ky, vl) {
+            each(attr_type, function (vl) {
 
                 meth.removeAttribute(vl);
 

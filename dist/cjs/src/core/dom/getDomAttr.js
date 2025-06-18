@@ -24,7 +24,7 @@ function getDomAttr (meth, dk) {
 
         if (has(meth.getAttributeNode)) {
 
-            each(attr_type, function (ky, vl) {
+            each(attr_type, function (vl) {
 
                 if (meth.getAttributeNode(vl)) {
 
@@ -36,7 +36,7 @@ function getDomAttr (meth, dk) {
 
         } else {
 
-            each(attr_type, function (ky, vl) {
+            each(attr_type, function (vl) {
 
                 if (meth.getAttribute) {
 

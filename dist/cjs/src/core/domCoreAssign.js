@@ -19,7 +19,7 @@ const domCoreAssign=function (id) {
 
                 } else {
 
-                    each(idss, function (__, val) {
+                    each(idss, function (val) {
 
                         domm.push(val);
 
@@ -29,7 +29,7 @@ const domCoreAssign=function (id) {
 
             } else if (getTypeof(idss)==="array") {
 
-                each(idss, function (key, val) {
+                each(idss, function (val) {
 
                     if (getTypeof(val)==="object") {
 

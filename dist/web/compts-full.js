@@ -444,7 +444,7 @@ function getDomAttr (meth, domValue) {
 
         if (_stk.has(meth.getAttributeNode)) {
 
-            _stk.each(attr_type, function (ky, vl) {
+            _stk.each(attr_type, function (vl) {
 
                 if (meth.getAttributeNode(vl)) {
 
@@ -456,7 +456,7 @@ function getDomAttr (meth, domValue) {
 
         } else {
 
-            _stk.each(attr_type, function (ky, vl) {
+            _stk.each(attr_type, function (vl) {
 
                 if (meth.getAttribute) {
 
@@ -529,7 +529,7 @@ function findElement (tar_m_sub, ar, bool) {
 
     }
 
-    _stk.each(tar_m_split, function (cek, cev) {
+    _stk.each(tar_m_split, function (cev, cek) {
 
         if (cek>0) {
 
@@ -580,7 +580,7 @@ function searchElement (element, node, ar) {
                 .replace(/(\])$/g, "")
                 .split(",");
 
-            _stk.each(listAttrToLook, function (__, val) {
+            _stk.each(listAttrToLook, function (val) {
 
                 attr_list.push(val);
 
@@ -641,7 +641,7 @@ function searchElement (element, node, ar) {
                         var attrListCount = _stk.count(attr_list);
                         var counterValidType = 0;
 
-                        _stk.each(attr_list, function (__, val) {
+                        _stk.each(attr_list, function (val) {
 
                             var getAttrAt = getAttrTypeValue(val);
                             var getAttrVal = getDomAttr(elementTag, getAttrAt.name);
@@ -912,7 +912,7 @@ function getDomAttr (meth, dk) {
 
         if (_stk.has(meth.getAttributeNode)) {
 
-            _stk.each(attr_type, function (ky, vl) {
+            _stk.each(attr_type, function (vl) {
 
                 if (meth.getAttributeNode(vl)) {
 
@@ -924,7 +924,7 @@ function getDomAttr (meth, dk) {
 
         } else {
 
-            _stk.each(attr_type, function (ky, vl) {
+            _stk.each(attr_type, function (vl) {
 
                 if (meth.getAttribute) {
 
@@ -1567,7 +1567,7 @@ function removeAttr (value) {
 
         if (meth.removeAttribute) {
 
-            _stk.each(attr_type, function (ky, vl) {
+            _stk.each(attr_type, function (vl) {
 
                 meth.removeAttribute(vl);
 
@@ -3163,7 +3163,7 @@ PsExtender.prototype.tag_value= function (tar, ar) {
 
     var tar_sub=tar.split("=>");
 
-    _stk.each(tar_sub, function (eck, ecv) {
+    _stk.each(tar_sub, function (ecv, eck) {
 
         findElement(ecv, ar, eck>0);
 
@@ -3207,7 +3207,7 @@ var domCoreAssign=function (id) {
 
                 } else {
 
-                    _stk.each(idss, function (__, val) {
+                    _stk.each(idss, function (val) {
 
                         domm.push(val);
 
@@ -3217,7 +3217,7 @@ var domCoreAssign=function (id) {
 
             } else if (_stk.getTypeof(idss)==="array") {
 
-                _stk.each(idss, function (key, val) {
+                _stk.each(idss, function (val) {
 
                     if (_stk.getTypeof(val)==="object") {
 
