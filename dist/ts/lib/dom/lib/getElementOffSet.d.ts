@@ -8,6 +8,6 @@ export default getElementOffSet;
  * @example
  *
  * dom("div").getElementOffSet()
- * // => false
+ * // => {"bottom":896,"left":0,"right":1920,"top":0}
  */
 declare function getElementOffSet(): any;

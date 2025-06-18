@@ -15,6 +15,5 @@ declare class PsExtender {
     extendElement(id: any): ElementTrigger;
     tag_value(tar: any, ar: any): void;
     init(str: any, ar: any): any;
-    domQuerySelector(idss: any, ar: any): void;
 }
 import ElementTrigger from "../lib/dom/index";

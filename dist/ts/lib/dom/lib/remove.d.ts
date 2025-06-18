@@ -8,7 +8,7 @@ export default remove;
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").remove()
+ * // => [ELEMENT]
  */
 declare function remove(doms: any): any;

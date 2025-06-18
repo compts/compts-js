@@ -10,6 +10,6 @@ export default insertHtml;
  * @example
  *
  * dom("div").insertHtml()
- * // => 1
+ * // => [ELEMENT]
  */
 declare function insertHtml(com: any, htm: any): any;

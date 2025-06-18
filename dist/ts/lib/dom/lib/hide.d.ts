@@ -9,6 +9,6 @@ export default hide;
  * @example
  *
  * dom("div").hide()
- * // => null
+ * // => [ELEMENT]
  */
 declare function hide(): any;

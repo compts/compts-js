@@ -8,6 +8,6 @@ export default getScrollPositon;
  * @example
  *
  * dom("div").getScrollPositon()
- * // => false
+ * // => {left: 0, top: 0}
  */
 declare function getScrollPositon(): any;

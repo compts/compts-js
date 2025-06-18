@@ -9,6 +9,6 @@ export default show;
  * @example
  *
  * dom("div").show()
- * // => null
+ * // => [ELEMENT]
  */
 declare function show(): any;

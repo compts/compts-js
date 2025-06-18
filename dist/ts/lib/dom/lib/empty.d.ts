@@ -8,7 +8,7 @@ export default empty;
  * @returns {Object} Returns the total.
  * @example
  *
- * dom("div").index()
- * // => 1
+ * dom("div").empty()
+ * // => ''
  */
 declare function empty(): any;

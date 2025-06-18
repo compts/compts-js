@@ -10,6 +10,6 @@ export default on;
  * @example
  *
  * dom("body")
- * // => ElementTrigger{element: Array(1), parent_child: null}element: Array(1)0: div#idlength: 1__proto__: Array(0)parent_child: null__proto__: Object
+ * // => [ELEMENT]
  */
 declare function on(event: string, fn: string): Class;
