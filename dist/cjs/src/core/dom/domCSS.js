@@ -23,7 +23,7 @@ function domCSS (id, dList) {
         :"";
     const split_style=get_attr.toString().split(";");
 
-    each(split_style, function (spk, spv) {
+    each(split_style, function (spv) {
 
         const elem_d=spv.split(":");
 

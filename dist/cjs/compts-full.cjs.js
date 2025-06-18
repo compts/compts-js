@@ -1166,7 +1166,7 @@ function domCSS (id, dList) {
         :"";
     const split_style=get_attr.toString().split(";");
 
-    _stk.each(split_style, function (spk, spv) {
+    _stk.each(split_style, function (spv) {
 
         const elem_d=spv.split(":");
 
